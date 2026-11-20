@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrandLinker Spark — Curated Luxury Store &amp; Global Shipping</title>
+  <meta name="description" content="BrandLinker Spark is a premium curated dropshipping storefront featuring hand-selected lifestyle objects, lighting, timepieces, and global express shipping." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.brandlinkerspark.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BrandLinker Spark — Curated Luxury Store" />
+  <meta property="og:description" content="Hand-selected lifestyle essentials with elevated design and reliable worldwide shipping." />
+  <meta property="og:url" content="https://www.brandlinkerspark.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #1A1410;
+      --bg-deep: #120D0A;
+      --card: #2B1F17;
+      --accent: #C48A5A;
+      --accent-bright: #DDA476;
+      --cream: #FAF6F0;
+      --latte: #E7D6C1;
+      --muted: rgba(231, 214, 193, 0.65);
+      --border: rgba(231, 214, 193, 0.14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      background: radial-gradient(circle at 82% 6%, rgba(196,138,90,0.18), transparent 44%), var(--bg);
+      color: var(--latte);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .container { max-width: 1220px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 38px); }
+    header {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(26, 20, 16, 0.86); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--cream); text-decoration: none; }
+    .brand-icon {
+      width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+      background: linear-gradient(145deg, rgba(196,138,90,0.4), rgba(43,31,23,0.92));
+      border: 1px solid rgba(221,164,118,0.55); font-family: "Cormorant Garamond", serif; font-size: 1.35rem; font-weight: 600;
+    }
+    .brand-name { font-family: "Cormorant Garamond", serif; font-size: 1.4rem; font-weight: 600; line-height: 1; }
+    .brand-sub { display: block; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-bright); margin-top: 2px; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(250,246,240,0.22);
+      background: linear-gradient(135deg, rgba(250,246,240,0.12), rgba(43,31,23,0.7));
+      color: var(--cream); font-size: 0.85rem; font-weight: 500; cursor: pointer; text-decoration: none;
+      backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 rgba(250,246,240,0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); border-color: rgba(221,164,118,0.68); }
+    .btn-accent { background: linear-gradient(135deg, rgba(221,164,118,0.46), rgba(196,138,90,0.32)); border-color: rgba(221,164,118,0.68); }
+    .cart-count {
+      background: var(--accent); color: #1A1410; font-weight: 700; font-size: 0.74rem;
+      min-width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center; padding: 0 6px;
+    }
+
+    .hero { padding: clamp(56px, 8vw, 96px) 0 46px; text-align: center; }
+    .eyebrow { display: inline-block; font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-bright); margin-bottom: 14px; }
+    .hero h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2.6rem, 5.8vw, 4.7rem); font-weight: 500; color: var(--cream); line-height: 1.04; margin-bottom: 16px; }
+    .hero h1 em { color: var(--accent-bright); font-style: italic; }
+    .hero p { max-width: 58ch; margin: 0 auto 28px; color: var(--muted); font-size: 1rem; }
+    .perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; font-size: 0.8rem; color: var(--latte); opacity: 0.86; }
+
+    .toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+      margin: 26px 0 28px; padding: 14px 18px; border-radius: 18px;
+      background: rgba(43,31,23,0.65); border: 1px solid var(--border);
+    }
+    .cats { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cat-btn {
+      padding: 7px 15px; border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(20,15,11,0.55); color: var(--latte); font-size: 0.8rem; cursor: pointer;
+    }
+    .cat-btn.active, .cat-btn:hover { background: rgba(196,138,90,0.26); border-color: var(--accent-bright); color: var(--cream); }
+    .search-sort { display: flex; gap: 10px; flex-wrap: wrap; }
+    .search-sort input, .search-sort select {
+      padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(18,13,10,0.75); color: var(--cream); font-size: 0.84rem;
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-bottom: 72px; }
+    .product {
+      background: var(--card); border: 1px solid var(--border); border-radius: 22px; overflow: hidden;
+      display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .product:hover { transform: translateY(-5px); border-color: rgba(221,164,118,0.5); }
+    .product-visual {
+      aspect-ratio: 4/3; position: relative; display: grid; place-items: center; padding: 24px; cursor: pointer;
+      background: radial-gradient(circle at 50% 35%, rgba(196,138,90,0.26), rgba(18,13,10,0.94));
+    }
+    .product-badge {
+      position: absolute; top: 14px; left: 14px; padding: 4px 12px; border-radius: 999px;
+      background: rgba(20,15,11,0.72); border: 1px solid rgba(250,246,240,0.18);
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream);
+    }
+    .product-icon { font-size: 3.4rem; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.55)); }
+    .product-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+    .product-cat { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .product-title { font-family: "Cormorant Garamond", serif; font-size: 1.55rem; color: var(--cream); margin-bottom: 8px; cursor: pointer; }
+    .product-desc { font-size: 0.86rem; color: var(--muted); margin-bottom: 18px; flex: 1; }
+    .product-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 14px; border-top: 1px solid rgba(231,214,193,0.1); }
+    .price { font-family: "Cormorant Garamond", serif; font-size: 1.65rem; font-weight: 600; color: var(--cream); }
+    .price small { font-family: "Plus Jakarta Sans", sans-serif; font-size: 0.76rem; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
+
+    /* Modal & Drawer */
+    .overlay { position: fixed; inset: 0; background: rgba(10,7,5,0.78); backdrop-filter: blur(8px); z-index: 80; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .overlay.open { display: flex; }
+    .modal {
+      width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; border-radius: 24px; padding: 28px;
+      background: linear-gradient(155deg, #2B1F17, #1A1410); border: 1px solid rgba(221,164,118,0.42);
+    }
+    .drawer-wrap { position: fixed; inset: 0; background: rgba(10,7,5,0.72); backdrop-filter: blur(6px); z-index: 90; display: none; justify-content: flex-end; }
+    .drawer-wrap.open { display: flex; }
+    .drawer {
+      width: 100%; max-width: 420px; height: 100%; background: #1B1410; border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; padding: 24px;
+    }
+    .drawer-items { flex: 1; overflow-y: auto; margin: 16px 0; display: flex; flex-direction: column; gap: 12px; }
+    .cart-row {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .qty-ctrl { display: inline-flex; align-items: center; gap: 8px; }
+    .qty-btn { width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--border); background: #140F0B; color: var(--cream); cursor: pointer; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .field label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .field input, .field select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(16,12,9,0.8); color: var(--cream); font-size: 0.88rem; }
+    footer { border-top: 1px solid var(--border); padding: 34px 0; text-align: center; font-size: 0.84rem; color: var(--muted); }
+    footer a { color: var(--accent-bright); text-decoration: none; }
+    @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .grid, .form-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <div class="brand-name">BrandLinker Spark</div>
+          <span class="brand-sub">Curated Global Store</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <a href="https://www.brandlinkerbd.com" target="_blank" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
+        <button class="btn btn-accent" onclick="openCart()">
+          <span>Cart</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">A BrandLinker Headquarters Venture</span>
+      <h1>Selected Objects.<br /><em>Delivered Worldwide.</em></h1>
+      <p>Hand-picked minimalist timepieces, architectural lighting, precision audio, and travel essentials — vetted for quality and shipped globally.</p>
+      <div class="perks">
+        <span>&#10003; Worldwide Express Shipping</span>
+        <span>&#10003; Curated Quality Guarantee</span>
+        <span>&#10003; Use Code <strong>SPARK10</strong> for 10% Off</span>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="cats" id="catBar">
+        <button class="cat-btn active" onclick="setCat('All', this)">All</button>
+        <button class="cat-btn" onclick="setCat('Timepieces', this)">Timepieces</button>
+        <button class="cat-btn" onclick="setCat('Lighting', this)">Lighting</button>
+        <button class="cat-btn" onclick="setCat('Audio', this)">Audio</button>
+        <button class="cat-btn" onclick="setCat('Travel', this)">Travel</button>
+        <button class="cat-btn" onclick="setCat('Home', this)">Home</button>
+      </div>
+      <div class="search-sort">
+        <input type="search" id="searchInput" placeholder="Search products..." oninput="renderGrid()" />
+        <select id="sortSelect" onchange="renderGrid()">
+          <option value="featured">Sort: Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <section class="grid" id="productGrid"></section>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank">BrandLinker Headquarters</a>
+    </div>
+  </footer>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="overlay" id="detailOverlay" onclick="if(event.target===this) closeDetail()">
+    <div class="modal" id="detailContent"></div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="drawer-wrap" id="cartDrawer" onclick="if(event.target===this) closeCart()">
+    <div class="drawer">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--cream);">Your Cart</h2>
+        <button class="qty-btn" onclick="closeCart()">&#10005;</button>
+      </div>
+      <div id="freeShipBar" style="font-size:0.78rem; color:var(--accent-bright); margin-top:8px;"></div>
+      <div class="drawer-items" id="cartItems"></div>
+      <div style="border-top:1px solid var(--border); padding-top:14px;">
+        <div style="display:flex; gap:8px; margin-bottom:12px;">
+          <input type="text" id="promoInput" placeholder="Promo code (SPARK10)" style="flex:1; padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:#120D0A; color:var(--cream);" />
+          <button class="btn" style="padding:8px 14px;" onclick="applyPromo()">Apply</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:1.05rem; color:var(--cream); margin-bottom:14px;">
+          <span>Total</span>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+        <button class="btn btn-accent" style="width:100%;" onclick="openCheckout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="overlay" id="checkoutOverlay" onclick="if(event.target===this) closeCheckout()">
+    <div class="modal">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--cream);">Express Checkout</h2>
+        <button class="qty-btn" onclick="closeCheckout()">&#10005;</button>
+      </div>
+      <form id="checkoutForm" onsubmit="placeOrder(event)">
+        <div class="form-grid">
+          <div class="field"><label>Full Name</label><input required id="coName" placeholder="Your full name" /></div>
+          <div class="field"><label>Email</label><input required type="email" id="coEmail" placeholder="you@example.com" /></div>
+          <div class="field full"><label>Shipping Address</label><input required id="coAddr" placeholder="Street, apartment, city" /></div>
+          <div class="field">
+            <label>Country / Region</label>
+            <select id="coCountry">
+              <option>Bangladesh</option>
+              <option>United Arab Emirates (Dubai / GCC)</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>European Union</option>
+              <option>Worldwide Express</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Payment Method</label>
+            <select id="coPay">
+              <option>Credit / Debit Card</option>
+              <option>Cash on Delivery</option>
+              <option>Apple Pay / Google Pay</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
+          <span style="color:var(--muted); font-size:0.85rem;">Order Total: <strong id="coTotal" style="color:var(--cream);">$0.00</strong></span>
+          <button type="submit" class="btn btn-accent">Complete Order</button>
+        </div>
+      </form>
+      <div id="orderConfirm" style="display:none; padding:18px; border-radius:14px; background:rgba(196,138,90,0.18); border:1px solid rgba(221,164,118,0.5); margin-top:14px; color:var(--cream);"></div>
+    </div>
+  </div>
+
+  <script>
+    const PRODUCTS = [
+      { id: "p1", name: "Obsidian Minimalist Chronograph", category: "Timepieces", price: 149, compare: 189, badge: "Best Seller", icon: "⌚", variants: ["Matte Black", "Brushed Bronze"], desc: "Sapphire glass, Japanese quartz precision, and hand-stitched espresso leather strap." },
+      { id: "p2", name: "Caramel Bronze Sculptural Desk Lamp", category: "Lighting", price: 118, compare: 145, badge: "Signature", icon: "🛋️", variants: ["Warm Bronze", "Smoked Espresso"], desc: "Touch-dimmable warm 2700K architectural LED lamp milled from anodized aluminum." },
+      { id: "p3", name: "Studio ANC Wireless Headphones", category: "Audio", price: 179, compare: 229, badge: "New Drop", icon: "🎧", variants: ["Espresso Leather", "Obsidian"], desc: "42dB hybrid active noise cancellation, 50-hour battery, and studio-tuned warm acoustics." },
+      { id: "p4", name: "Nomad Carbon Weekender Carry-On", category: "Travel", price: 135, compare: 168, badge: "Global Ready", icon: "🧳", variants: ["Dark Walnut", "Charcoal"], desc: "Weatherproof minimalist travel pack with dedicated 16-inch laptop vault and TSA lock." },
+      { id: "p5", name: "Smoked Amber Glass Aroma Diffuser", category: "Home", price: 68, compare: 85, badge: "Curated", icon: "🕯️", variants: ["Amber Glass", "Matte Stone"], desc: "Hand-blown smoked amber vessel with ultrasonic silent mist and warm candlelight glow." },
+      { id: "p6", name: "Magnetic MagSafe Walnut Desk Dock", category: "Home", price: 79, compare: 99, badge: "Limited", icon: "📱", variants: ["American Walnut", "Dark Oak"], desc: "3-in-1 Qi2 fast wireless charging sculpture crafted from solid walnut and brushed brass." }
+    ];
+
+    let activeCat = "All";
+    let promoDiscount = 0;
+    let cart = JSON.parse(localStorage.getItem("bls_spark_cart") || "[]");
+
+    function saveCart() {
+      localStorage.setItem("bls_spark_cart", JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function setCat(cat, btn) {
+      activeCat = cat;
+      document.querySelectorAll(".cat-btn").forEach(b => b.classList.toggle("active", b === btn));
+      renderGrid();
+    }
+
+    function renderGrid() {
+      const q = document.getElementById("searchInput").value.toLowerCase();
+      const sort = document.getElementById("sortSelect").value;
+      let list = PRODUCTS.filter(p => (activeCat === "All" || p.category === activeCat) && (p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
+      if (sort === "low") list.sort((a, b) => a.price - b.price);
+      if (sort === "high") list.sort((a, b) => b.price - a.price);
+
+      document.getElementById("productGrid").innerHTML = list.map(p => `
+        <article class="product">
+          <div class="product-visual" onclick="openDetail('${p.id}')">
+            <span class="product-badge">${p.badge}</span>
+            <div class="product-icon">${p.icon}</div>
+          </div>
+          <div class="product-body">
+            <div class="product-cat">${p.category}</div>
+            <h3 class="product-title" onclick="openDetail('${p.id}')">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-foot">
+              <div class="price">$${p.price}<small>$${p.compare}</small></div>
+              <button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="addToCart('${p.id}', '${p.variants[0]}')">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function openDetail(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById("detailContent").innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:start; gap:12px; margin-bottom:16px;">
+          <div>
+            <div class="product-cat">${p.category} &middot; ${p.badge}</div>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--cream);">${p.name}</h2>
+          </div>
+          <button class="qty-btn" onclick="closeDetail()">&#10005;</button>
+        </div>
+        <div style="height:180px; border-radius:16px; display:grid; place-items:center; background:radial-gradient(circle, rgba(196,138,90,0.28), #120D0A); font-size:4.2rem; margin-bottom:18px;">${p.icon}</div>
+        <p style="color:var(--latte); margin-bottom:18px;">${p.desc}</p>
+        <div class="field" style="margin-bottom:18px;">
+          <label>Select Finish</label>
+          <select id="detailVariant">${p.variants.map(v => `<option>${v}</option>`).join("")}</select>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+          <div class="price">$${p.price}<small>$${p.compare}</small></div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn" onclick="addToCart('${p.id}', document.getElementById('detailVariant').value); closeDetail();">Add to Cart</button>
+            <button class="btn btn-accent" onclick="addToCart('${p.id}', document.getElementById('detailVariant').value); closeDetail(); openCheckout();">Buy Now</button>
+          </div>
+        </div>
+      `;
+      document.getElementById("detailOverlay").classList.add("open");
+    }
+
+    function closeDetail() { document.getElementById("detailOverlay").classList.remove("open"); }
+
+    function addToCart(id, variant) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p) return;
+      const key = `${id}:${variant}`;
+      const existing = cart.find(c => c.key === key);
+      if (existing) existing.qty += 1;
+      else cart.push({ key, id, name: p.name, variant, price: p.price, qty: 1 });
+      saveCart();
+      openCart();
+    }
+
+    function changeQty(key, delta) {
+      const item = cart.find(c => c.key === key);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) cart = cart.filter(c => c.key !== key);
+      saveCart();
+    }
+
+    function calcTotal() {
+      const sub = cart.reduce((s, c) => s + c.price * c.qty, 0);
+      return sub * (1 - promoDiscount);
+    }
+
+    function applyPromo() {
+      const code = document.getElementById("promoInput").value.trim().toUpperCase();
+      promoDiscount = code === "SPARK10" ? 0.1 : 0;
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.reduce((s, c) => s + c.qty, 0);
+      document.getElementById("cartCount").textContent = count;
+      const total = calcTotal();
+      document.getElementById("cartTotal").textContent = "$" + total.toFixed(2);
+      document.getElementById("coTotal").textContent = "$" + total.toFixed(2);
+      document.getElementById("freeShipBar").textContent = total >= 150
+        ? "✓ You unlocked Free Global Express Shipping!"
+        : `Add $${Math.max(0, 150 - total).toFixed(2)} more for Free Global Express Shipping`;
+
+      document.getElementById("cartItems").innerHTML = cart.length
+        ? cart.map(c => `
+            <div class="cart-row">
+              <div>
+                <strong style="display:block; color:var(--cream); font-size:0.88rem;">${c.name}</strong>
+                <small style="color:var(--muted);">${c.variant} &middot; $${c.price}</small>
+              </div>
+              <div class="qty-ctrl">
+                <button class="qty-btn" onclick="changeQty('${c.key}', -1)">-</button>
+                <span>${c.qty}</span>
+                <button class="qty-btn" onclick="changeQty('${c.key}', 1)">+</button>
+              </div>
+            </div>
+          `).join("")
+        : "<p style='color:var(--muted); font-size:0.88rem;'>Your cart is empty. Explore our curated objects.</p>";
+    }
+
+    function openCart() { document.getElementById("cartDrawer").classList.add("open"); }
+    function closeCart() { document.getElementById("cartDrawer").classList.remove("open"); }
+    function openCheckout() {
+      if (!cart.length) return;
+      closeCart();
+      document.getElementById("orderConfirm").style.display = "none";
+      document.getElementById("checkoutForm").style.display = "block";
+      document.getElementById("checkoutOverlay").classList.add("open");
+    }
+    function closeCheckout() { document.getElementById("checkoutOverlay").classList.remove("open"); }
+
+    function placeOrder(e) {
+      e.preventDefault();
+      const orderNo = "BLS-" + Math.floor(100000 + Math.random() * 900000);
+      const name = document.getElementById("coName").value.trim();
+      const total = calcTotal().toFixed(2);
+      document.getElementById("checkoutForm").style.display = "none";
+      const box = document.getElementById("orderConfirm");
+      box.style.display = "block";
+      box.innerHTML = `<strong>Order Confirmed (${orderNo})</strong><br/>Thank you, ${name}! Your curated order ($${total}) has been registered with BrandLinker Spark fulfillment.`;
+      cart = [];
+      saveCart();
+    }
+
+    renderGrid();
+    updateCartUI();
+  </script>
+</body>
+</html>
