@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": false,
   "headers": [
     {
@@ -28,6 +28,48 @@
           "value": "noindex, nofollow"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/shipping",
+      "destination": "/shipping.html"
+    },
+    {
+      "source": "/returns",
+      "destination": "/returns.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/image-credits",
+      "destination": "/image-credits.html"
+    },
+    {
+      "source": "/orders-admin",
+      "destination": "/orders-admin.html"
+    },
+    {
+      "source": "/products/:slug",
+      "destination": "/products/:slug.html"
+    },
+    {
+      "source": "/best-travel-accessories",
+      "destination": "/best-travel-accessories.html"
+    },
+    {
+      "source": "/disclosure",
+      "destination": "/disclosure.html"
+    },
+    {
+      "source": "/guides/:slug",
+      "destination": "/guides/:slug.html"
     }
   ]
 }

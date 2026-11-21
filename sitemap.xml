@@ -4,19 +4,22 @@
     <loc>https://brandlinkerspark.com/</loc>
   </url>
   <url>
-    <loc>https://brandlinkerspark.com/shipping</loc>
+    <loc>https://brandlinkerspark.com/#amazon-picks</loc>
   </url>
   <url>
-    <loc>https://brandlinkerspark.com/returns</loc>
+    <loc>https://brandlinkerspark.com/#travel</loc>
   </url>
   <url>
-    <loc>https://brandlinkerspark.com/privacy</loc>
+    <loc>https://brandlinkerspark.com/#travel-essentials</loc>
   </url>
   <url>
-    <loc>https://brandlinkerspark.com/terms</loc>
+    <loc>https://brandlinkerspark.com/#packing</loc>
   </url>
   <url>
-    <loc>https://brandlinkerspark.com/disclosure</loc>
+    <loc>https://brandlinkerspark.com/#tech</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/#store-catalogue</loc>
   </url>
   <url>
     <loc>https://brandlinkerspark.com/best-travel-accessories</loc>
@@ -29,12 +32,6 @@
   </url>
   <url>
     <loc>https://brandlinkerspark.com/guides/carry-on-packing-list</loc>
-  </url>
-  <url>
-    <loc>https://brandlinkerspark.com/#travel</loc>
-  </url>
-  <url>
-    <loc>https://brandlinkerspark.com/#amazon-picks</loc>
   </url>
   <url>
     <loc>https://brandlinkerspark.com/products/obsidian-minimalist-chronograph</loc>
@@ -83,5 +80,29 @@
   </url>
   <url>
     <loc>https://brandlinkerspark.com/products/silicone-travel-bottles</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/products/rfid-passport-holder</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/products/foldable-travel-tote</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/shipping</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/returns</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/privacy</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/terms</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/disclosure</loc>
+  </url>
+  <url>
+    <loc>https://brandlinkerspark.com/image-credits</loc>
   </url>
 </urlset>
