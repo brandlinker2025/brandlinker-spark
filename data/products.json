@@ -1,0 +1,953 @@
+{
+  "promoCodes": {
+    "SPARK10": {
+      "type": "percent",
+      "value": 10,
+      "label": "10% off"
+    }
+  },
+  "products": [
+    {
+      "id": "p1",
+      "name": "Obsidian Minimalist Chronograph",
+      "category": "Timepieces",
+      "price": 149,
+      "compare": null,
+      "cost": null,
+      "currency": "USD",
+      "badge": null,
+      "icon": "⌚",
+      "images": [],
+      "variants": [
+        "Matte Black",
+        "Brushed Bronze"
+      ],
+      "desc": "Sapphire glass, Japanese quartz precision, and hand-stitched espresso leather strap.",
+      "source": null,
+      "sourceUrl": null,
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "note": "Delivery will be confirmed when we contact you."
+        },
+        "other": {
+          "cost": null,
+          "note": "We will contact you to confirm whether we can deliver to your address."
+        }
+      },
+      "interim": false,
+      "slug": "obsidian-minimalist-chronograph",
+      "url": "/products/obsidian-minimalist-chronograph"
+    },
+    {
+      "id": "p2",
+      "name": "Caramel Bronze Sculptural Desk Lamp",
+      "category": "Lighting",
+      "price": 118,
+      "compare": null,
+      "cost": null,
+      "currency": "USD",
+      "badge": null,
+      "icon": "🛋️",
+      "images": [],
+      "variants": [
+        "Warm Bronze",
+        "Smoked Espresso"
+      ],
+      "desc": "Touch-dimmable warm 2700K architectural LED lamp milled from anodized aluminum.",
+      "source": null,
+      "sourceUrl": null,
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "note": "Delivery will be confirmed when we contact you."
+        },
+        "other": {
+          "cost": null,
+          "note": "We will contact you to confirm whether we can deliver to your address."
+        }
+      },
+      "interim": false,
+      "slug": "caramel-bronze-sculptural-desk-lamp",
+      "url": "/products/caramel-bronze-sculptural-desk-lamp"
+    },
+    {
+      "id": "p3",
+      "name": "Studio ANC Wireless Headphones",
+      "category": "Audio",
+      "price": 179,
+      "compare": null,
+      "cost": null,
+      "currency": "USD",
+      "badge": null,
+      "icon": "🎧",
+      "images": [],
+      "variants": [
+        "Espresso Leather",
+        "Obsidian"
+      ],
+      "desc": "42dB hybrid active noise cancellation, 50-hour battery, and studio-tuned warm acoustics.",
+      "source": null,
+      "sourceUrl": null,
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "note": "Delivery will be confirmed when we contact you."
+        },
+        "other": {
+          "cost": null,
+          "note": "We will contact you to confirm whether we can deliver to your address."
+        }
+      },
+      "interim": false,
+      "slug": "studio-anc-wireless-headphones",
+      "url": "/products/studio-anc-wireless-headphones"
+    },
+    {
+      "id": "p5",
+      "name": "Smoked Amber Glass Aroma Diffuser",
+      "category": "Home",
+      "price": 68,
+      "compare": null,
+      "cost": null,
+      "currency": "USD",
+      "badge": null,
+      "icon": "🕯️",
+      "images": [],
+      "variants": [
+        "Amber Glass",
+        "Matte Stone"
+      ],
+      "desc": "Hand-blown smoked amber vessel with ultrasonic silent mist and warm candlelight glow.",
+      "source": null,
+      "sourceUrl": null,
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "note": "Delivery will be confirmed when we contact you."
+        },
+        "other": {
+          "cost": null,
+          "note": "We will contact you to confirm whether we can deliver to your address."
+        }
+      },
+      "interim": false,
+      "slug": "smoked-amber-glass-aroma-diffuser",
+      "url": "/products/smoked-amber-glass-aroma-diffuser"
+    },
+    {
+      "id": "p6",
+      "name": "Magnetic MagSafe Walnut Desk Dock",
+      "category": "Home",
+      "price": 79,
+      "compare": null,
+      "cost": null,
+      "currency": "USD",
+      "badge": null,
+      "icon": "📱",
+      "images": [],
+      "variants": [
+        "American Walnut",
+        "Dark Oak"
+      ],
+      "desc": "3-in-1 Qi2 fast wireless charging sculpture crafted from solid walnut and brushed brass.",
+      "source": null,
+      "sourceUrl": null,
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "note": "Delivery will be confirmed when we contact you."
+        },
+        "other": {
+          "cost": null,
+          "note": "We will contact you to confirm whether we can deliver to your address."
+        }
+      },
+      "interim": false,
+      "slug": "magnetic-magsafe-walnut-desk-dock",
+      "url": "/products/magnetic-magsafe-walnut-desk-dock"
+    },
+    {
+      "id": "t01",
+      "slug": "packing-cube-set",
+      "name": "Packing cube set",
+      "icon": "🧳",
+      "variants": [
+        "Standard set"
+      ],
+      "desc": "A set of packing cubes for organizing clothes in a suitcase.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005007706974778.html",
+      "sourceProduct": "Travel Storage Bags 6 Pcs; Choice listing; 5,000+ sold",
+      "cost": 695.75,
+      "costCurrency": "BDT",
+      "costNotes": "Sale price on an AliExpress search card in a Bangladesh ship-to session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": "5,000+ sold (AliExpress search card, 21 Nov 2026)",
+      "researchRank": 1,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/packing-cube-set",
+      "images": [
+        {
+          "src": "/assets/travel/packing-cube-set.svg",
+          "alt": "Category illustration for Packing cube set. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t02",
+      "slug": "hanging-toiletry-bag",
+      "name": "Hanging toiletry bag",
+      "icon": "🧴",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A hanging toiletry bag for bathroom and hotel use.",
+      "source": null,
+      "sourceUrl": null,
+      "sourceProduct": null,
+      "cost": null,
+      "costCurrency": null,
+      "costNotes": "No verified supplier listing was captured in the 21 Nov 2026 research pass (AliExpress search was blocked; a DHgate candidate returned 404).",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 2,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/hanging-toiletry-bag",
+      "images": [
+        {
+          "src": "/assets/travel/hanging-toiletry-bag.svg",
+          "alt": "Category illustration for Hanging toiletry bag. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t03",
+      "slug": "travel-neck-pillow",
+      "name": "Travel neck pillow",
+      "icon": "🛏️",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A travel neck pillow for use on flights and other journeys.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005006760465481.html",
+      "sourceProduct": "Travel neck pillow listing captured 21 Nov 2026",
+      "cost": 1019.35,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 4,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/travel-neck-pillow",
+      "images": [
+        {
+          "src": "/assets/travel/travel-neck-pillow.svg",
+          "alt": "Category illustration for Travel neck pillow. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t04",
+      "slug": "travel-plug-adapter",
+      "name": "Travel plug adapter",
+      "icon": "🔌",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A travel plug adapter for regional outlets. This is not a voltage converter.",
+      "source": "DHgate",
+      "sourceUrl": "https://www.dhgate.com/goods/978521684.html",
+      "sourceProduct": "Universal / regional travel plug adapter (not a voltage converter)",
+      "cost": "9.04-11.42",
+      "costCurrency": "USD",
+      "costNotes": "DHgate unit price range captured 21 Nov 2026. An AliExpress BDT view also existed. Not a public retail price. Destination shipping was not verified.",
+      "altSource": "AliExpress",
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 5,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/travel-plug-adapter",
+      "images": [
+        {
+          "src": "/assets/travel/travel-plug-adapter.svg",
+          "alt": "Category illustration for Travel plug adapter. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t05",
+      "slug": "luggage-scale",
+      "name": "Luggage scale",
+      "icon": "⚖️",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A handheld scale for checking suitcase weight before you travel.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005004683027117.html",
+      "sourceProduct": "Digital hanging luggage scale",
+      "cost": 1197.72,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. A DHgate USD listing was also checked and was more expensive. Not a public retail price. Destination shipping was not verified.",
+      "altSource": "DHgate",
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 6,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/luggage-scale",
+      "images": [
+        {
+          "src": "/assets/travel/luggage-scale.svg",
+          "alt": "Category illustration for Luggage scale. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t06",
+      "slug": "foldable-travel-duffel",
+      "name": "Foldable travel duffel",
+      "icon": "🎒",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A foldable duffel bag that packs down when not in use.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005008222699520.html",
+      "sourceProduct": "Foldable / packable travel duffel",
+      "cost": 969.56,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 7,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/foldable-travel-duffel",
+      "images": [
+        {
+          "src": "/assets/travel/foldable-travel-duffel.svg",
+          "alt": "Category illustration for Foldable travel duffel. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t07",
+      "slug": "cable-organizer",
+      "name": "Cable organizer",
+      "icon": "🪢",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A pouch for organizing charging cables and small travel electronics.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005005599899117.html",
+      "sourceProduct": "Travel cable / tech organizer pouch",
+      "cost": 868.29,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 8,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/cable-organizer",
+      "images": [
+        {
+          "src": "/assets/travel/cable-organizer.svg",
+          "alt": "Category illustration for Cable organizer. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t08",
+      "slug": "travel-jewelry-case",
+      "name": "Travel jewelry case",
+      "icon": "💍",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A compact case for jewelry when you travel.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005012266187556.html",
+      "sourceProduct": "Travel jewelry case / pouch",
+      "cost": 571.28,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 9,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/travel-jewelry-case",
+      "images": [
+        {
+          "src": "/assets/travel/travel-jewelry-case.svg",
+          "alt": "Category illustration for Travel jewelry case. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t09",
+      "slug": "travel-shoe-bags",
+      "name": "Travel shoe bags",
+      "icon": "👟",
+      "variants": [
+        "Standard set"
+      ],
+      "desc": "Bags for keeping shoes separate from clothes in a suitcase.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005005446786246.html",
+      "sourceProduct": "Travel shoe bags (drawstring / zippered sets)",
+      "cost": 726.36,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 10,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/travel-shoe-bags",
+      "images": [
+        {
+          "src": "/assets/travel/travel-shoe-bags.svg",
+          "alt": "Category illustration for Travel shoe bags. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t10",
+      "slug": "holder-case-for-airtag",
+      "name": "Holder case for AirTag",
+      "icon": "🏷️",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A holder case for AirTag. This is a case only — an AirTag is not included. Apple is not affiliated with this listing.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005008625654234.html",
+      "sourceProduct": "Waterproof holder / keychain case for AirTag (case only, no tracker)",
+      "cost": 521.5,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": "4,000+ sold (AliExpress search card, 21 Nov 2026)",
+      "researchRank": 11,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/holder-case-for-airtag",
+      "images": [
+        {
+          "src": "/assets/travel/holder-case-for-airtag.svg",
+          "alt": "Category illustration for Holder case for AirTag. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    },
+    {
+      "id": "t11",
+      "slug": "silicone-travel-bottles",
+      "name": "Silicone travel bottles",
+      "icon": "🫧",
+      "variants": [
+        "Standard set"
+      ],
+      "desc": "Empty reusable silicone bottles for travel toiletries. Fill them yourself; they are sold empty.",
+      "source": "AliExpress",
+      "sourceUrl": "https://www.aliexpress.com/item/1005008371796145.html",
+      "sourceProduct": "Empty silicone travel bottle set",
+      "cost": 795.32,
+      "costCurrency": "BDT",
+      "costNotes": "AliExpress search-card price in a Bangladesh session on 21 Nov 2026. Not a public retail price. Destination shipping was not verified. No official TSA approval was verified for this listing, so none is claimed.",
+      "altSource": null,
+      "altSourceUrl": null,
+      "altCost": null,
+      "sellerRating": null,
+      "sellerOrders": null,
+      "researchRank": 12,
+      "category": "Travel",
+      "price": null,
+      "priceStatus": "coming_soon",
+      "priceLabel": "Price coming soon",
+      "compare": null,
+      "badge": null,
+      "currency": "USD",
+      "url": "/products/silicone-travel-bottles",
+      "images": [
+        {
+          "src": "/assets/travel/silicone-travel-bottles.svg",
+          "alt": "Category illustration for Silicone travel bottles. This is not a supplier product photo.",
+          "kind": "illustration",
+          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo."
+        }
+      ],
+      "shipping": {
+        "BD": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "US": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UK": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "UAE": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        },
+        "other": {
+          "cost": null,
+          "time": null,
+          "note": "Delivery time confirmed at checkout."
+        }
+      },
+      "publicShippingNote": "Delivery time confirmed at checkout.",
+      "interim": true,
+      "orderMode": "inquiry"
+    }
+  ],
+  "currency": {
+    "base": "USD",
+    "rates": {
+      "BDT": 124.75
+    },
+    "note": "Fixed site rate: 1 USD = 124.75 BDT. Based on the Bangladesh Bank weighted average published on 19 November 2026 (the latest official sheet at the time this rate was set). This is not a live bank rate and may differ from the rate a bank charges.",
+    "source": "Bangladesh Bank weighted average, 19 November 2026",
+    "sourceUrl": "https://www.bb.org.bd/en/index.php/econdata/exchangerate_archive"
+  }
+}
