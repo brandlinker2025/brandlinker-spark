@@ -3,147 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrandLinker Spark — Curated Luxury Store &amp; Global Shipping</title>
-  <meta name="description" content="BrandLinker Spark is a premium curated dropshipping storefront featuring hand-selected lifestyle objects, lighting, timepieces, and global express shipping." />
+  <title>BrandLinker Spark — Curated Store</title>
+  <meta name="description" content="BrandLinker Spark is a curated storefront featuring lifestyle objects, lighting, timepieces, and a travel collection." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.brandlinkerspark.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="BrandLinker Spark — Curated Luxury Store" />
-  <meta property="og:description" content="Hand-selected lifestyle essentials with elevated design and reliable worldwide shipping." />
+  <meta property="og:description" content="A BrandLinker store with lifestyle pieces and a travel collection." />
   <meta property="og:url" content="https://www.brandlinkerspark.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #1A1410;
-      --bg-deep: #120D0A;
-      --card: #2B1F17;
-      --accent: #C48A5A;
-      --accent-bright: #DDA476;
-      --cream: #FAF6F0;
-      --latte: #E7D6C1;
-      --muted: rgba(231, 214, 193, 0.65);
-      --border: rgba(231, 214, 193, 0.14);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-      background: radial-gradient(circle at 82% 6%, rgba(196,138,90,0.18), transparent 44%), var(--bg);
-      color: var(--latte);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
-    .container { max-width: 1220px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 38px); }
-    header {
-      position: sticky; top: 0; z-index: 40;
-      background: rgba(26, 20, 16, 0.86); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav {
-      height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
-    }
-    .brand { display: flex; align-items: center; gap: 12px; color: var(--cream); text-decoration: none; }
-    .brand-icon {
-      width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
-      background: linear-gradient(145deg, rgba(196,138,90,0.4), rgba(43,31,23,0.92));
-      border: 1px solid rgba(221,164,118,0.55); font-family: "Cormorant Garamond", serif; font-size: 1.35rem; font-weight: 600;
-    }
-    .brand-name { font-family: "Cormorant Garamond", serif; font-size: 1.4rem; font-weight: 600; line-height: 1; }
-    .brand-sub { display: block; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-bright); margin-top: 2px; }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(250,246,240,0.22);
-      background: linear-gradient(135deg, rgba(250,246,240,0.12), rgba(43,31,23,0.7));
-      color: var(--cream); font-size: 0.85rem; font-weight: 500; cursor: pointer; text-decoration: none;
-      backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 rgba(250,246,240,0.3);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); border-color: rgba(221,164,118,0.68); }
-    .btn-accent { background: linear-gradient(135deg, rgba(221,164,118,0.46), rgba(196,138,90,0.32)); border-color: rgba(221,164,118,0.68); }
-    .cart-count {
-      background: var(--accent); color: #1A1410; font-weight: 700; font-size: 0.74rem;
-      min-width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center; padding: 0 6px;
-    }
-
-    .hero { padding: clamp(56px, 8vw, 96px) 0 46px; text-align: center; }
-    .eyebrow { display: inline-block; font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-bright); margin-bottom: 14px; }
-    .hero h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2.6rem, 5.8vw, 4.7rem); font-weight: 500; color: var(--cream); line-height: 1.04; margin-bottom: 16px; }
-    .hero h1 em { color: var(--accent-bright); font-style: italic; }
-    .hero p { max-width: 58ch; margin: 0 auto 28px; color: var(--muted); font-size: 1rem; }
-    .perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; font-size: 0.8rem; color: var(--latte); opacity: 0.86; }
-
-    .toolbar {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
-      margin: 26px 0 28px; padding: 14px 18px; border-radius: 18px;
-      background: rgba(43,31,23,0.65); border: 1px solid var(--border);
-    }
-    .cats { display: flex; flex-wrap: wrap; gap: 8px; }
-    .cat-btn {
-      padding: 7px 15px; border-radius: 999px; border: 1px solid var(--border);
-      background: rgba(20,15,11,0.55); color: var(--latte); font-size: 0.8rem; cursor: pointer;
-    }
-    .cat-btn.active, .cat-btn:hover { background: rgba(196,138,90,0.26); border-color: var(--accent-bright); color: var(--cream); }
-    .search-sort { display: flex; gap: 10px; flex-wrap: wrap; }
-    .search-sort input, .search-sort select {
-      padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border);
-      background: rgba(18,13,10,0.75); color: var(--cream); font-size: 0.84rem;
-    }
-
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-bottom: 72px; }
-    .product {
-      background: var(--card); border: 1px solid var(--border); border-radius: 22px; overflow: hidden;
-      display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .product:hover { transform: translateY(-5px); border-color: rgba(221,164,118,0.5); }
-    .product-visual {
-      aspect-ratio: 4/3; position: relative; display: grid; place-items: center; padding: 24px; cursor: pointer;
-      background: radial-gradient(circle at 50% 35%, rgba(196,138,90,0.26), rgba(18,13,10,0.94));
-    }
-    .product-badge {
-      position: absolute; top: 14px; left: 14px; padding: 4px 12px; border-radius: 999px;
-      background: rgba(20,15,11,0.72); border: 1px solid rgba(250,246,240,0.18);
-      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream);
-    }
-    .product-icon { font-size: 3.4rem; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.55)); }
-    .product-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
-    .product-cat { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .product-title { font-family: "Cormorant Garamond", serif; font-size: 1.55rem; color: var(--cream); margin-bottom: 8px; cursor: pointer; }
-    .product-desc { font-size: 0.86rem; color: var(--muted); margin-bottom: 18px; flex: 1; }
-    .product-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 14px; border-top: 1px solid rgba(231,214,193,0.1); }
-    .price { font-family: "Cormorant Garamond", serif; font-size: 1.65rem; font-weight: 600; color: var(--cream); }
-    .price small { font-family: "Plus Jakarta Sans", sans-serif; font-size: 0.76rem; color: var(--muted); text-decoration: line-through; margin-left: 6px; }
-
-    /* Modal & Drawer */
-    .overlay { position: fixed; inset: 0; background: rgba(10,7,5,0.78); backdrop-filter: blur(8px); z-index: 80; display: none; align-items: center; justify-content: center; padding: 20px; }
-    .overlay.open { display: flex; }
-    .modal {
-      width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto; border-radius: 24px; padding: 28px;
-      background: linear-gradient(155deg, #2B1F17, #1A1410); border: 1px solid rgba(221,164,118,0.42);
-    }
-    .drawer-wrap { position: fixed; inset: 0; background: rgba(10,7,5,0.72); backdrop-filter: blur(6px); z-index: 90; display: none; justify-content: flex-end; }
-    .drawer-wrap.open { display: flex; }
-    .drawer {
-      width: 100%; max-width: 420px; height: 100%; background: #1B1410; border-left: 1px solid var(--border);
-      display: flex; flex-direction: column; padding: 24px;
-    }
-    .drawer-items { flex: 1; overflow-y: auto; margin: 16px 0; display: flex; flex-direction: column; gap: 12px; }
-    .cart-row {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px;
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    }
-    .qty-ctrl { display: inline-flex; align-items: center; gap: 8px; }
-    .qty-btn { width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--border); background: #140F0B; color: var(--cream); cursor: pointer; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
-    .form-grid .full { grid-column: 1 / -1; }
-    .field label { display: block; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-    .field input, .field select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(16,12,9,0.8); color: var(--cream); font-size: 0.88rem; }
-    footer { border-top: 1px solid var(--border); padding: 34px 0; text-align: center; font-size: 0.84rem; color: var(--muted); }
-    footer a { color: var(--accent-bright); text-decoration: none; }
-    @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .grid, .form-grid { grid-template-columns: 1fr; } }
-  </style>
+    <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <header>
@@ -152,10 +23,14 @@
         <div class="brand-icon">S</div>
         <div>
           <div class="brand-name">BrandLinker Spark</div>
-          <span class="brand-sub">Curated Global Store</span>
+          <span class="brand-sub">Curated Store</span>
         </div>
       </a>
       <div class="nav-right">
+        <div class="currency-switch" role="group" aria-label="Currency">
+          <button type="button" id="curUSD" onclick="setCurrency('USD')">USD</button>
+          <button type="button" id="curBDT" onclick="setCurrency('BDT')">BDT</button>
+        </div>
         <a href="https://www.brandlinkerbd.com" target="_blank" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
         <button class="btn btn-accent" onclick="openCart()">
           <span>Cart</span>
@@ -168,11 +43,10 @@
   <main class="container">
     <section class="hero">
       <span class="eyebrow">A BrandLinker Headquarters Venture</span>
-      <h1>Selected Objects.<br /><em>Delivered Worldwide.</em></h1>
-      <p>Hand-picked minimalist timepieces, architectural lighting, precision audio, and travel essentials — vetted for quality and shipped globally.</p>
+      <h1>Selected Objects.<br /><em>For the journey ahead.</em></h1>
+      <p>Minimalist timepieces, architectural lighting, precision audio, and travel pieces — plus a short path to cheap flight search.</p>
       <div class="perks">
-        <span>&#10003; Worldwide Express Shipping</span>
-        <span>&#10003; Curated Quality Guarantee</span>
+        <span>&#10003; Cash on Delivery in Bangladesh</span>
         <span>&#10003; Use Code <strong>SPARK10</strong> for 10% Off</span>
       </div>
     </section>
@@ -196,11 +70,27 @@
       </div>
     </div>
 
+
+    <section class="travel-collection" id="travel">
+      <div class="travel-head">
+        <h2>Travel Collection</h2>
+        <p>Practical travel gear for trips you book with Cheap Ticket Finder. Prices are not set yet, so each item shows “Price coming soon.” You can send a pre-order request and we will confirm the price by email. Delivery time is confirmed at checkout.</p>
+        <a class="btn travel-flights" href="https://cheapticketfinder.site" target="_blank" rel="noopener noreferrer">Find cheap flights</a>
+      </div>
+      <div class="grid" id="travelGrid" style="padding-bottom: 28px;"></div>
+    </section>
+
     <section class="grid" id="productGrid"></section>
   </main>
 
   <footer>
     <div class="container">
+      <div class="footer-links">
+        <a href="/shipping">Shipping</a>
+        <a href="/returns">Returns &amp; Refunds</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+      </div>
       &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank">BrandLinker Headquarters</a>
     </div>
   </footer>
@@ -217,7 +107,6 @@
         <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--cream);">Your Cart</h2>
         <button class="qty-btn" onclick="closeCart()">&#10005;</button>
       </div>
-      <div id="freeShipBar" style="font-size:0.78rem; color:var(--accent-bright); margin-top:8px;"></div>
       <div class="drawer-items" id="cartItems"></div>
       <div style="border-top:1px solid var(--border); padding-top:14px;">
         <div style="display:flex; gap:8px; margin-bottom:12px;">
@@ -237,56 +126,109 @@
   <div class="overlay" id="checkoutOverlay" onclick="if(event.target===this) closeCheckout()">
     <div class="modal">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--cream);">Express Checkout</h2>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--cream);">Checkout</h2>
         <button class="qty-btn" onclick="closeCheckout()">&#10005;</button>
       </div>
       <form id="checkoutForm" onsubmit="placeOrder(event)">
+        <div class="hp" aria-hidden="true">
+          <label>Website</label>
+          <input id="coWebsite" name="website" tabindex="-1" autocomplete="off" />
+        </div>
         <div class="form-grid">
-          <div class="field"><label>Full Name</label><input required id="coName" placeholder="Your full name" /></div>
-          <div class="field"><label>Email</label><input required type="email" id="coEmail" placeholder="you@example.com" /></div>
-          <div class="field full"><label>Shipping Address</label><input required id="coAddr" placeholder="Street, apartment, city" /></div>
+          <div class="field"><label for="coName">Full Name</label><input required id="coName" name="name" autocomplete="name" placeholder="Your full name" /></div>
+          <div class="field"><label for="coEmail">Email</label><input required type="email" id="coEmail" name="email" autocomplete="email" placeholder="you@example.com" /></div>
+          <div class="field"><label for="coPhone">Phone</label><input required id="coPhone" name="phone" type="tel" autocomplete="tel" placeholder="Include country code" /></div>
+          <div class="field full"><label for="coAddr">Shipping Address</label><input required id="coAddr" name="address" autocomplete="street-address" placeholder="Street, apartment, city" /></div>
           <div class="field">
-            <label>Country / Region</label>
-            <select id="coCountry">
-              <option>Bangladesh</option>
-              <option>United Arab Emirates (Dubai / GCC)</option>
-              <option>United States</option>
-              <option>United Kingdom</option>
-              <option>European Union</option>
-              <option>Worldwide Express</option>
+            <label for="coCountry">Country / Region</label>
+            <select id="coCountry" name="country" onchange="syncPaymentOptions()">
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="United Arab Emirates (Dubai / GCC)">United Arab Emirates (Dubai / GCC)</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="European Union">European Union</option>
             </select>
           </div>
           <div class="field">
-            <label>Payment Method</label>
-            <select id="coPay">
-              <option>Credit / Debit Card</option>
-              <option>Cash on Delivery</option>
-              <option>Apple Pay / Google Pay</option>
-            </select>
+            <label for="coPay">Payment Method</label>
+            <select id="coPay" name="paymentMethod"></select>
+          </div>
+          <div class="field full">
+            <label for="coNote">Order note (optional)</label>
+            <textarea id="coNote" name="note" maxlength="500" placeholder="Anything we should know about this order"></textarea>
           </div>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
+        <p class="checkout-note" id="payHint"></p>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:14px; flex-wrap:wrap;">
           <span style="color:var(--muted); font-size:0.85rem;">Order Total: <strong id="coTotal" style="color:var(--cream);">$0.00</strong></span>
-          <button type="submit" class="btn btn-accent">Complete Order</button>
+          <button type="submit" class="btn btn-accent" id="placeOrderBtn">Place order</button>
         </div>
+        <p class="form-error" id="coError" hidden></p>
       </form>
       <div id="orderConfirm" style="display:none; padding:18px; border-radius:14px; background:rgba(196,138,90,0.18); border:1px solid rgba(221,164,118,0.5); margin-top:14px; color:var(--cream);"></div>
     </div>
   </div>
 
+
+  <!-- PRE-ORDER / INQUIRY MODAL -->
+  <div class="overlay" id="inquiryOverlay" onclick="if(event.target===this) closeInquiry()">
+    <div class="modal">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--cream);">Pre-order request</h2>
+        <button class="qty-btn" onclick="closeInquiry()">&#10005;</button>
+      </div>
+      <p class="checkout-note">Prices are not set yet. Submit a pre-order request — we'll email you available payment options to confirm your order. No payment is taken now. Delivery time is confirmed at checkout.</p>
+      <ul id="inquiryItems" style="color:var(--latte); margin:12px 0 0 1.1em;"></ul>
+      <form id="inquiryForm" onsubmit="submitInquiry(event)">
+        <div class="hp" aria-hidden="true">
+          <label>Website</label>
+          <input id="iqWebsite" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="form-grid">
+          <div class="field"><label for="iqName">Full Name</label><input required id="iqName" autocomplete="name" placeholder="Your full name" /></div>
+          <div class="field"><label for="iqEmail">Email</label><input required type="email" id="iqEmail" autocomplete="email" placeholder="you@example.com" /></div>
+          <div class="field"><label for="iqPhone">Phone</label><input required id="iqPhone" type="tel" autocomplete="tel" placeholder="Include country code" /></div>
+          <div class="field"><label for="iqCountry">Country / Region</label>
+            <select id="iqCountry">
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="United Arab Emirates (Dubai / GCC)">United Arab Emirates (Dubai / GCC)</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="European Union">European Union</option>
+            </select>
+          </div>
+          <div class="field full"><label for="iqAddr">Address (optional)</label><input id="iqAddr" autocomplete="street-address" placeholder="Street, apartment, city" /></div>
+          <div class="field full"><label for="iqNote">Order note (optional)</label><textarea id="iqNote" maxlength="500" placeholder="Anything we should know about this request"></textarea></div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+          <button type="submit" class="btn btn-accent" id="inquiryBtn">Send pre-order request</button>
+        </div>
+        <p class="form-error" id="inquiryError" hidden></p>
+      </form>
+      <div id="inquiryConfirm" style="display:none; padding:18px; border-radius:14px; background:rgba(196,138,90,0.18); border:1px solid rgba(221,164,118,0.5); margin-top:14px; color:var(--cream);"></div>
+    </div>
+  </div>
+
   <script>
-    const PRODUCTS = [
-      { id: "p1", name: "Obsidian Minimalist Chronograph", category: "Timepieces", price: 149, compare: 189, badge: "Best Seller", icon: "⌚", variants: ["Matte Black", "Brushed Bronze"], desc: "Sapphire glass, Japanese quartz precision, and hand-stitched espresso leather strap." },
-      { id: "p2", name: "Caramel Bronze Sculptural Desk Lamp", category: "Lighting", price: 118, compare: 145, badge: "Signature", icon: "🛋️", variants: ["Warm Bronze", "Smoked Espresso"], desc: "Touch-dimmable warm 2700K architectural LED lamp milled from anodized aluminum." },
-      { id: "p3", name: "Studio ANC Wireless Headphones", category: "Audio", price: 179, compare: 229, badge: "New Drop", icon: "🎧", variants: ["Espresso Leather", "Obsidian"], desc: "42dB hybrid active noise cancellation, 50-hour battery, and studio-tuned warm acoustics." },
-      { id: "p4", name: "Nomad Carbon Weekender Carry-On", category: "Travel", price: 135, compare: 168, badge: "Global Ready", icon: "🧳", variants: ["Dark Walnut", "Charcoal"], desc: "Weatherproof minimalist travel pack with dedicated 16-inch laptop vault and TSA lock." },
-      { id: "p5", name: "Smoked Amber Glass Aroma Diffuser", category: "Home", price: 68, compare: 85, badge: "Curated", icon: "🕯️", variants: ["Amber Glass", "Matte Stone"], desc: "Hand-blown smoked amber vessel with ultrasonic silent mist and warm candlelight glow." },
-      { id: "p6", name: "Magnetic MagSafe Walnut Desk Dock", category: "Home", price: 79, compare: 99, badge: "Limited", icon: "📱", variants: ["American Walnut", "Dark Oak"], desc: "3-in-1 Qi2 fast wireless charging sculpture crafted from solid walnut and brushed brass." }
+    let PRODUCTS = [];
+    let promoCode = "";
+    let promoDiscount = 0;
+    let activeCat = "All";
+    let cart = JSON.parse(localStorage.getItem("bls_spark_cart") || "[]");
+
+    const PAY_BD = [
+      { value: "cod", label: "Cash on Delivery (Bangladesh)" },
+      { value: "bkash", label: "bKash (we'll contact you with payment details)" },
+      { value: "nagad", label: "Nagad (we'll contact you with payment details)" }
     ];
 
-    let activeCat = "All";
-    let promoDiscount = 0;
-    let cart = JSON.parse(localStorage.getItem("bls_spark_cart") || "[]");
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
 
     function saveCart() {
       localStorage.setItem("bls_spark_cart", JSON.stringify(cart));
@@ -299,58 +241,95 @@
       renderGrid();
     }
 
+    let FX = { base: "USD", rates: { BDT: 124.75 }, note: "" };
+    let currency = "USD";
+
+    function money(usd) {
+      const n = Number(usd) || 0;
+      if (currency === "BDT") {
+        const bdt = Math.round(n * Number(FX.rates.BDT) * 100) / 100;
+        return "BDT " + bdt.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      return "$" + n.toFixed(2);
+    }
+
+    function setCurrency(next, { persist = true } = {}) {
+      currency = next === "BDT" ? "BDT" : "USD";
+      if (persist) localStorage.setItem("bls_spark_currency", currency);
+      const usdBtn = document.getElementById("curUSD");
+      const bdtBtn = document.getElementById("curBDT");
+      if (usdBtn && bdtBtn) {
+        usdBtn.classList.toggle("active", currency === "USD");
+        bdtBtn.classList.toggle("active", currency === "BDT");
+      }
+      renderTravel();
+      renderGrid();
+      updateCartUI();
+      document.querySelectorAll("[data-fx-note]").forEach(el => { el.textContent = FX.note || ""; });
+    }
+
+    function productUrl(p) {
+      return p.url || ("/products/" + (p.slug || p.id));
+    }
+
+    function isInquiryItem(p) {
+      return !p || p.orderMode === "inquiry" || p.priceStatus === "coming_soon" || p.price == null;
+    }
+
+    function productCard(p) {
+      const badge = p.badge ? `<span class="product-badge">${escapeHtml(p.badge)}</span>` : "";
+      const visual = (p.images && p.images[0] && p.images[0].src)
+        ? `<img src="${escapeHtml(p.images[0].src)}" alt="${escapeHtml(p.images[0].alt || p.name)}" width="400" height="300" style="width:100%;height:100%;object-fit:cover;display:block;" />`
+        : `<div class="product-icon">${p.icon || ""}</div>`;
+      const inquiry = isInquiryItem(p);
+      const priceHtml = inquiry
+        ? `<div class="price" style="font-size:1.15rem;">Price coming soon</div>`
+        : `<div class="price">${money(p.price)}</div>`;
+      const action = inquiry
+        ? `<button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="openInquiry('${p.id}')">Pre-order request</button>`
+        : `<button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="addToCart('${p.id}', '${escapeHtml((p.variants && p.variants[0]) || "")}')">Add to Cart</button>`;
+      const ship = p.publicShippingNote ? `<p class="fx-note">${escapeHtml(p.publicShippingNote)}</p>` : "";
+      return `
+        <article class="product">
+          <a class="product-visual" href="${productUrl(p)}" style="color:inherit; text-decoration:none;">
+            ${badge}
+            ${visual}
+          </a>
+          <div class="product-body">
+            <div class="product-cat">${escapeHtml(p.category || "")}</div>
+            <h3 class="product-title"><a href="${productUrl(p)}" style="color:inherit; text-decoration:none;">${escapeHtml(p.name)}</a></h3>
+            <p class="product-desc">${escapeHtml(p.desc || "")}</p>
+            <div class="product-foot">
+              ${priceHtml}
+              ${action}
+            </div>
+            ${ship}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderTravel() {
+      const grid = document.getElementById("travelGrid");
+      if (!grid) return;
+      const list = PRODUCTS.filter(p => String(p.category).toLowerCase() === "travel");
+      grid.innerHTML = list.length
+        ? list.map(productCard).join("")
+        : "<p style='color:var(--muted); text-align:center; grid-column:1/-1;'>Travel pieces will appear here when they are added to the catalogue.</p>";
+    }
+
     function renderGrid() {
       const q = document.getElementById("searchInput").value.toLowerCase();
       const sort = document.getElementById("sortSelect").value;
-      let list = PRODUCTS.filter(p => (activeCat === "All" || p.category === activeCat) && (p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)));
+      let list = PRODUCTS.filter(p => (activeCat === "All" || p.category === activeCat) && ((p.name || "").toLowerCase().includes(q) || (p.desc || "").toLowerCase().includes(q)));
       if (sort === "low") list.sort((a, b) => a.price - b.price);
       if (sort === "high") list.sort((a, b) => b.price - a.price);
-
-      document.getElementById("productGrid").innerHTML = list.map(p => `
-        <article class="product">
-          <div class="product-visual" onclick="openDetail('${p.id}')">
-            <span class="product-badge">${p.badge}</span>
-            <div class="product-icon">${p.icon}</div>
-          </div>
-          <div class="product-body">
-            <div class="product-cat">${p.category}</div>
-            <h3 class="product-title" onclick="openDetail('${p.id}')">${p.name}</h3>
-            <p class="product-desc">${p.desc}</p>
-            <div class="product-foot">
-              <div class="price">$${p.price}<small>$${p.compare}</small></div>
-              <button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="addToCart('${p.id}', '${p.variants[0]}')">Add to Cart</button>
-            </div>
-          </div>
-        </article>
-      `).join("");
+      document.getElementById("productGrid").innerHTML = list.map(productCard).join("");
     }
 
     function openDetail(id) {
       const p = PRODUCTS.find(x => x.id === id);
-      if (!p) return;
-      document.getElementById("detailContent").innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:start; gap:12px; margin-bottom:16px;">
-          <div>
-            <div class="product-cat">${p.category} &middot; ${p.badge}</div>
-            <h2 style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--cream);">${p.name}</h2>
-          </div>
-          <button class="qty-btn" onclick="closeDetail()">&#10005;</button>
-        </div>
-        <div style="height:180px; border-radius:16px; display:grid; place-items:center; background:radial-gradient(circle, rgba(196,138,90,0.28), #120D0A); font-size:4.2rem; margin-bottom:18px;">${p.icon}</div>
-        <p style="color:var(--latte); margin-bottom:18px;">${p.desc}</p>
-        <div class="field" style="margin-bottom:18px;">
-          <label>Select Finish</label>
-          <select id="detailVariant">${p.variants.map(v => `<option>${v}</option>`).join("")}</select>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-          <div class="price">$${p.price}<small>$${p.compare}</small></div>
-          <div style="display:flex; gap:10px;">
-            <button class="btn" onclick="addToCart('${p.id}', document.getElementById('detailVariant').value); closeDetail();">Add to Cart</button>
-            <button class="btn btn-accent" onclick="addToCart('${p.id}', document.getElementById('detailVariant').value); closeDetail(); openCheckout();">Buy Now</button>
-          </div>
-        </div>
-      `;
-      document.getElementById("detailOverlay").classList.add("open");
+      if (p) window.location.href = productUrl(p);
     }
 
     function closeDetail() { document.getElementById("detailOverlay").classList.remove("open"); }
@@ -358,6 +337,7 @@
     function addToCart(id, variant) {
       const p = PRODUCTS.find(x => x.id === id);
       if (!p) return;
+      if (isInquiryItem(p)) { openInquiry(id); return; }
       const key = `${id}:${variant}`;
       const existing = cart.find(c => c.key === key);
       if (existing) existing.qty += 1;
@@ -381,7 +361,8 @@
 
     function applyPromo() {
       const code = document.getElementById("promoInput").value.trim().toUpperCase();
-      promoDiscount = code === "SPARK10" ? 0.1 : 0;
+      promoCode = code === "SPARK10" ? "SPARK10" : "";
+      promoDiscount = promoCode ? 0.1 : 0;
       updateCartUI();
     }
 
@@ -389,18 +370,15 @@
       const count = cart.reduce((s, c) => s + c.qty, 0);
       document.getElementById("cartCount").textContent = count;
       const total = calcTotal();
-      document.getElementById("cartTotal").textContent = "$" + total.toFixed(2);
-      document.getElementById("coTotal").textContent = "$" + total.toFixed(2);
-      document.getElementById("freeShipBar").textContent = total >= 150
-        ? "✓ You unlocked Free Global Express Shipping!"
-        : `Add $${Math.max(0, 150 - total).toFixed(2)} more for Free Global Express Shipping`;
-
+      document.getElementById("cartTotal").textContent = money(total);
+      const coTotal = document.getElementById("coTotal");
+      if (coTotal) coTotal.textContent = money(total);
       document.getElementById("cartItems").innerHTML = cart.length
         ? cart.map(c => `
             <div class="cart-row">
               <div>
-                <strong style="display:block; color:var(--cream); font-size:0.88rem;">${c.name}</strong>
-                <small style="color:var(--muted);">${c.variant} &middot; $${c.price}</small>
+                <strong style="display:block; color:var(--cream); font-size:0.88rem;">${escapeHtml(c.name)}</strong>
+                <small style="color:var(--muted);">${escapeHtml(c.variant)} &middot; ${money(c.price)}</small>
               </div>
               <div class="qty-ctrl">
                 <button class="qty-btn" onclick="changeQty('${c.key}', -1)">-</button>
@@ -412,6 +390,94 @@
         : "<p style='color:var(--muted); font-size:0.88rem;'>Your cart is empty. Explore our curated objects.</p>";
     }
 
+    function syncPaymentOptions() {
+      const country = document.getElementById("coCountry").value;
+      const select = document.getElementById("coPay");
+      const payField = select.closest(".field");
+      const hint = document.getElementById("payHint");
+      const btn = document.getElementById("placeOrderBtn");
+      const isBd = country === "Bangladesh";
+      if (isBd) {
+        payField.hidden = false;
+        select.required = true;
+        const current = select.value;
+        select.innerHTML = PAY_BD.map(o => `<option value="${o.value}">${escapeHtml(o.label)}</option>`).join("");
+        if (PAY_BD.some(o => o.value === current)) select.value = current;
+        hint.textContent = "We will contact you to confirm your order, payment and delivery. No payment is taken on this page.";
+        if (btn) btn.textContent = "Place order";
+        setCurrency("BDT");
+      } else {
+        payField.hidden = true;
+        select.required = false;
+        select.innerHTML = '<option value="none">none</option>';
+        hint.textContent = "Submit a pre-order request — we'll email you available payment options to confirm your order.";
+        if (btn) btn.textContent = "Submit pre-order request";
+        setCurrency("USD");
+      }
+    }
+
+    let inquiryItems = [];
+
+    function openInquiry(id) {
+      const p = PRODUCTS.find(x => x.id === id);
+      if (!p || !isInquiryItem(p)) return;
+      const variant = (p.variants && p.variants[0]) || "Standard";
+      const key = p.id + ":" + variant;
+      const existing = inquiryItems.find(c => c.key === key);
+      if (existing) existing.qty += 1;
+      else inquiryItems.push({ key, id: p.id, name: p.name, variant, qty: 1 });
+      const box = document.getElementById("inquiryItems");
+      if (box) {
+        box.innerHTML = inquiryItems.map(c => `<li>${escapeHtml(c.name)} (${escapeHtml(c.variant)}) × ${c.qty}</li>`).join("");
+      }
+      document.getElementById("inquiryError").hidden = true;
+      document.getElementById("inquiryConfirm").style.display = "none";
+      document.getElementById("inquiryForm").style.display = "block";
+      document.getElementById("inquiryOverlay").classList.add("open");
+    }
+
+    function closeInquiry() { document.getElementById("inquiryOverlay").classList.remove("open"); }
+
+    async function submitInquiry(e) {
+      e.preventDefault();
+      const btn = document.getElementById("inquiryBtn");
+      const err = document.getElementById("inquiryError");
+      err.hidden = true;
+      if (!inquiryItems.length) return;
+      btn.disabled = true;
+      const name = document.getElementById("iqName").value.trim();
+      const payload = {
+        type: "preorder_request",
+        name,
+        email: document.getElementById("iqEmail").value.trim(),
+        phone: document.getElementById("iqPhone").value.trim(),
+        address: document.getElementById("iqAddr").value.trim(),
+        country: document.getElementById("iqCountry").value,
+        note: document.getElementById("iqNote").value.trim(),
+        website: document.getElementById("iqWebsite").value,
+        currency,
+        items: inquiryItems.map(c => ({ id: c.id, variant: c.variant, qty: c.qty }))
+      };
+      try {
+        const res = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok || !data.orderId) throw new Error(data.error || "We could not save your request. Please try again.");
+        document.getElementById("inquiryForm").style.display = "none";
+        const box = document.getElementById("inquiryConfirm");
+        box.style.display = "block";
+        box.innerHTML = `<strong>Pre-order request received (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. We have saved your request. We'll email you available payment options to confirm your order. No payment has been taken.`;
+        inquiryItems = [];
+      } catch (ex) {
+        err.textContent = ex.message || "We could not save your request. Please try again.";
+        err.hidden = false;
+        btn.disabled = false;
+      }
+    }
+
     function openCart() { document.getElementById("cartDrawer").classList.add("open"); }
     function closeCart() { document.getElementById("cartDrawer").classList.remove("open"); }
     function openCheckout() {
@@ -419,25 +485,92 @@
       closeCart();
       document.getElementById("orderConfirm").style.display = "none";
       document.getElementById("checkoutForm").style.display = "block";
+      document.getElementById("coError").hidden = true;
+      document.getElementById("placeOrderBtn").disabled = false;
+      syncPaymentOptions();
       document.getElementById("checkoutOverlay").classList.add("open");
     }
     function closeCheckout() { document.getElementById("checkoutOverlay").classList.remove("open"); }
 
-    function placeOrder(e) {
+    async function placeOrder(e) {
       e.preventDefault();
-      const orderNo = "BLS-" + Math.floor(100000 + Math.random() * 900000);
+      const btn = document.getElementById("placeOrderBtn");
+      const err = document.getElementById("coError");
+      err.hidden = true;
+      if (!cart.length) return;
+      btn.disabled = true;
       const name = document.getElementById("coName").value.trim();
-      const total = calcTotal().toFixed(2);
-      document.getElementById("checkoutForm").style.display = "none";
-      const box = document.getElementById("orderConfirm");
-      box.style.display = "block";
-      box.innerHTML = `<strong>Order Confirmed (${orderNo})</strong><br/>Thank you, ${name}! Your curated order ($${total}) has been registered with BrandLinker Spark fulfillment.`;
-      cart = [];
-      saveCart();
+      const country = document.getElementById("coCountry").value;
+      const international = country !== "Bangladesh";
+      const payload = {
+        type: international ? "preorder_request" : "order",
+        name,
+        email: document.getElementById("coEmail").value.trim(),
+        phone: document.getElementById("coPhone").value.trim(),
+        address: document.getElementById("coAddr").value.trim(),
+        country,
+        paymentMethod: international ? "none" : document.getElementById("coPay").value,
+        note: document.getElementById("coNote").value.trim(),
+        website: document.getElementById("coWebsite").value,
+        promoCode,
+        currency,
+        items: cart.map(c => ({ id: c.id, variant: c.variant, qty: c.qty }))
+      };
+      try {
+        const res = await fetch("/api/orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok || !data.orderId) {
+          throw new Error(data.error || "We could not save your order. Please try again.");
+        }
+        const isPre = data.type === "preorder_request" || international;
+        const payNote = isPre
+          ? "We'll email you available payment options to confirm your order."
+          : "We will contact you to confirm.";
+        const title = isPre ? "Pre-order request received" : "Order received";
+        document.getElementById("checkoutForm").style.display = "none";
+        const box = document.getElementById("orderConfirm");
+        box.style.display = "block";
+        box.innerHTML = `<strong>${title} (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. Your request has been saved. ${payNote} No payment has been taken.`;
+        cart = [];
+        promoCode = "";
+        promoDiscount = 0;
+        saveCart();
+      } catch (ex) {
+        err.textContent = ex.message || "We could not save your order. Please try again.";
+        err.hidden = false;
+        btn.disabled = false;
+      }
     }
 
-    renderGrid();
-    updateCartUI();
+    async function boot() {
+      try {
+        const res = await fetch("/data/products.json", { cache: "no-store" });
+        const data = await res.json();
+        PRODUCTS = Array.isArray(data.products) ? data.products : [];
+        if (data.currency) FX = data.currency;
+      } catch (e) {
+        PRODUCTS = [];
+      }
+      const saved = localStorage.getItem("bls_spark_currency");
+      setCurrency(saved === "BDT" ? "BDT" : "USD", { persist: false });
+      renderTravel();
+      renderGrid();
+      updateCartUI();
+      const params = new URLSearchParams(location.search);
+      if (params.get("request")) openInquiry(params.get("request"));
+      if (params.get("add")) {
+        const prod = PRODUCTS.find(x => x.id === params.get("add"));
+        if (prod && !isInquiryItem(prod)) addToCart(prod.id, (prod.variants && prod.variants[0]) || "");
+        else if (prod) openInquiry(prod.id);
+      }
+    }
+
+    boot();
   </script>
+
 </body>
 </html>
