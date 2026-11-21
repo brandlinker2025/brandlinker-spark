@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BrandLinker Spark — Curated Store</title>
-  <meta name="description" content="BrandLinker Spark is a curated storefront featuring lifestyle objects, lighting, timepieces, and a travel collection." />
+  <meta name="description" content="Travel essentials, packing organizers, tech adapters, Amazon Picks, and lifestyle pieces from BrandLinker Spark." />
   <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="S1r6s034-Tgw0dhoQqFXxLQxULQ4hEpTFO-IDasgfy0" />
   <link rel="canonical" href="https://www.brandlinkerspark.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="BrandLinker Spark — Curated Luxury Store" />
-  <meta property="og:description" content="A BrandLinker store with lifestyle pieces and a travel collection." />
+  <meta property="og:description" content="Travel essentials, packing organizers, tech adapters, Amazon Picks, and lifestyle pieces." />
   <meta property="og:url" content="https://www.brandlinkerspark.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,8 +32,7 @@
           <button type="button" id="curUSD" onclick="setCurrency('USD')">USD</button>
           <button type="button" id="curBDT" onclick="setCurrency('BDT')">BDT</button>
         </div>
-        <a href="/best-travel-accessories" class="btn" style="padding:8px 16px; font-size:0.8rem;">Travel guides</a>
-        <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
+        <a href="https://www.brandlinkerbd.com" target="_blank" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
         <button class="btn btn-accent" onclick="openCart()">
           <span>Cart</span>
           <span class="cart-count" id="cartCount">0</span>
@@ -42,145 +42,157 @@
   </header>
 
   <main class="container">
-    <section class="hero">
-      <span class="eyebrow">A BrandLinker Headquarters Venture</span>
-      <h1>Selected Objects.<br /><em>For the journey ahead.</em></h1>
-      <p>Minimalist timepieces, architectural lighting, precision audio, and travel pieces — plus a short path to cheap flight search.</p>
-      <div class="perks">
-        <span>&#10003; Cash on Delivery in Bangladesh</span>
-        <span>&#10003; Use Code <strong>SPARK10</strong> for 10% Off</span>
-      </div>
-    </section>
-
-    <div class="toolbar">
-      <div class="cats" id="catBar">
-        <button class="cat-btn active" onclick="setCat('All', this)">All</button>
-        <button class="cat-btn" onclick="setCat('Timepieces', this)">Timepieces</button>
-        <button class="cat-btn" onclick="setCat('Lighting', this)">Lighting</button>
-        <button class="cat-btn" onclick="setCat('Audio', this)">Audio</button>
-        <button class="cat-btn" onclick="setCat('Travel', this)">Travel</button>
-        <button class="cat-btn" onclick="setCat('Home', this)">Home</button>
-      </div>
-      <div class="search-sort">
-        <input type="search" id="searchInput" placeholder="Search products..." oninput="renderGrid()" />
-        <select id="sortSelect" onchange="renderGrid()">
-          <option value="featured">Sort: Featured</option>
-          <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to Low</option>
-        </select>
-      </div>
-    </div>
-
-
-    <section class="travel-collection" id="travel">
-      <div class="travel-head">
-        <h2>Travel Collection</h2>
-        <p>Practical travel gear for trips you book with Cheap Ticket Finder. Prices are not set yet, so each item shows “Price coming soon.” You can send a pre-order request and we will confirm the price by email. Delivery time is confirmed at checkout.</p>
-        <div class="travel-head-actions">
-          <a class="btn travel-flights" href="https://cheapticketfinder.site" target="_blank" rel="noopener noreferrer">Find cheap flights</a>
-          <a class="btn" href="#amazon-picks">Amazon Picks</a>
-          <a class="btn btn-accent" href="/best-travel-accessories">Top travel picks on Amazon</a>
+    <section class="hero hero-photo">
+      <img class="hero-img" src="/assets/photos/hero-travel.webp" alt="An open suitcase packed with clothes, a camera and travel organizers on a wooden floor." width="1600" height="900" fetchpriority="high" decoding="async" />
+      <div class="hero-overlay">
+        <span class="eyebrow">A BrandLinker Headquarters Venture</span>
+        <h1>Travel gear,<br /><em>ready to browse.</em></h1>
+        <p>Shop travel essentials, packing organizers, tech and adapters, and Amazon Picks. Photos are labeled honestly. Prices are shown only when we have set them — no made-up ratings, reviews or stock counts.</p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href="#amazon-picks">Amazon Picks</a>
+          <a class="btn" href="#travel-essentials">Travel essentials</a>
+          <a class="btn" href="#store-catalogue">Also in the store</a>
+          <a class="btn" href="https://cheapticketfinder.site" target="_blank" rel="noopener noreferrer">Find cheap flights</a>
         </div>
+        <div class="perks">
+          <span>&#10003; Cash on Delivery in Bangladesh on selected store items</span>
+          <span>&#10003; Use code <strong>SPARK10</strong> for 10% off priced items</span>
+        </div>
+        <span class="hero-credit">Photo by Timur Weber on Pexels. A travel packing scene — not a photo of a specific store item.</span>
       </div>
-      <div class="grid" id="travelGrid" style="padding-bottom: 28px;"></div>
     </section>
+
+    <nav class="shop-nav" aria-label="Shop sections">
+      <a href="#amazon-picks">Amazon Picks</a>
+      <a href="#travel-essentials">Travel essentials</a>
+      <a href="#packing">Packing &amp; organizers</a>
+      <a href="#tech">Tech &amp; adapters</a>
+      <a href="#store-catalogue">Store catalogue</a>
+      <a href="/best-travel-accessories">Travel guides</a>
+    </nav>
+
+    <div class="category-tiles">
+      <a class="category-tile" href="#travel-essentials">
+        <img src="/assets/photos/banner-travel-essentials.webp" alt="" width="1200" height="675" loading="eager" decoding="async" />
+        <span>Travel essentials</span>
+      </a>
+      <a class="category-tile" href="#packing">
+        <img src="/assets/photos/banner-packing.webp" alt="" width="1200" height="675" loading="eager" decoding="async" />
+        <span>Packing &amp; organizers</span>
+      </a>
+      <a class="category-tile" href="#tech">
+        <img src="/assets/photos/banner-tech.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+        <span>Tech &amp; adapters</span>
+      </a>
+      <a class="category-tile" href="#amazon-picks">
+        <img src="/assets/photos/banner-amazon.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+        <span>Amazon Picks</span>
+      </a>
+    </div>
 
     <section class="travel-collection amazon-picks" id="amazon-picks">
       <div class="travel-head">
         <h2>Amazon Picks</h2>
-        <p>Ready-to-buy travel gear on Amazon.com. These are affiliate links, not items sold by BrandLinker Spark. Prices, stock and shipping are shown on Amazon and can change, so they are not listed here. Our own Travel Collection is above this section.</p>
+        <p>Ready-to-buy travel gear on Amazon.com. These are affiliate links, not items sold by BrandLinker Spark. Prices, stock and shipping are shown on Amazon and can change, so they are not listed here.</p>
         <p class="amazon-disclosure">As an Amazon Associate I earn from qualifying purchases.</p>
-        <p><a href="/best-travel-accessories">Top travel picks on Amazon</a> includes these items plus a power bank, a checked suitcase, and three packing guides.</p>
+        <p>The photos on these cards are free-licence stock photos of the product type, or an illustration. They are not photographs of the exact Amazon item. Each card names the real product and links to its Amazon page.</p>
       </div>
       <div class="grid amazon-picks-grid">
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <img src="/assets/travel/packing-cube-set.svg" alt="Illustration of packing cubes" width="400" height="300" />
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-packing-cubes.webp" alt="Stock photo of packing cubes. This is not a photo of the exact Amazon item." width="800" height="600" loading="eager" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Packing cubes</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B014VBHYRA?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Amazon Basics 4-Piece Packing Cubes Set (Sky Blue)</a></h3>
-            <p class="product-desc">A 4-piece packing cube set in sky blue (2 medium and 2 large).</p>
+            <p class="product-desc">A set of packing cubes for organizing clothes in a suitcase.</p>
+            <p class="photo-caption">Stock photo of packing cubes. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B014VBHYRA?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B014VBHYRA?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <img src="/assets/travel/travel-neck-pillow.svg" alt="Illustration of a travel neck pillow" width="400" height="300" />
+            <div class="product-visual amazon-visual is-illustration">
+              <img src="/assets/travel/travel-neck-pillow.svg" alt="Illustration, not a photo of the Cabeau pillow." width="400" height="300" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Travel pillow</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B079X5FTZR?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Cabeau Evolution S3 Memory Foam Travel Neck Pillow (Jet Black)</a></h3>
-            <p class="product-desc">A memory foam travel neck pillow in jet black.</p>
+            <p class="product-desc">A memory-foam travel neck pillow. Check the current price and options on Amazon.</p>
+            <p class="photo-caption">Illustration, not a photo of the Cabeau pillow.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B079X5FTZR?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B079X5FTZR?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <img src="/assets/travel/travel-plug-adapter.svg" alt="Illustration of a travel plug adapter" width="400" height="300" />
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-adapters.webp" alt="Stock photo of travel plug adapters. This is not a photo of the exact Amazon item." width="800" height="600" loading="eager" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Travel adapter</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B07DMQ42VS?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">EPICKA Universal Travel Adapter, 1 AC + 3 USB-C + 2 USB-A</a></h3>
-            <p class="product-desc">A universal travel plug adapter with 1 AC socket, 3 USB-C ports and 2 USB-A ports. It is not a voltage converter.</p>
+            <p class="product-desc">A universal travel adapter with AC and USB ports. This is not sold by BrandLinker Spark.</p>
+            <p class="photo-caption">Stock photo of travel plug adapters. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B07DMQ42VS?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B07DMQ42VS?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <img src="/assets/travel/luggage-scale.svg" alt="Illustration of a luggage scale" width="400" height="300" />
+            <div class="product-visual amazon-visual is-illustration">
+              <img src="/assets/travel/luggage-scale.svg" alt="Illustration, not a photo of the Etekcity scale." width="400" height="300" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Luggage scale</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B00QV1F27I?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Etekcity Digital Luggage Scale, 110 lb / 50 kg</a></h3>
-            <p class="product-desc">A handheld digital luggage scale rated to 110 lb / 50 kg.</p>
+            <p class="product-desc">A handheld digital luggage scale. Check the current price on Amazon.</p>
+            <p class="photo-caption">Illustration, not a photo of the Etekcity scale.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B00QV1F27I?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B00QV1F27I?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <img src="/assets/travel/hanging-toiletry-bag.svg" alt="Illustration of a hanging toiletry bag" width="400" height="300" />
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-toiletry.webp" alt="Stock photo of a hanging toiletry bag. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Toiletry bag</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B0CJMNPWGD?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">PAVILIA Hanging Toiletry Bag, Water-Resistant Travel Dopp Kit</a></h3>
-            <p class="product-desc">A hanging, water-resistant travel toiletry bag / dopp kit.</p>
+            <p class="product-desc">A hanging toiletry bag for bathroom and hotel use.</p>
+            <p class="photo-caption">Stock photo of a hanging toiletry bag. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0CJMNPWGD?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0CJMNPWGD?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <div class="amazon-mono" aria-hidden="true">S</div>
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-luggage-airport.webp" alt="Stock photo of travel luggage. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Carry-on suitcase</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B0H3194T1F?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Samsonite Element Hard-Sided 20-Inch Carry-On Spinner (Copper Orange)</a></h3>
-            <p class="product-desc">A hard-sided 20-inch expandable carry-on spinner in copper orange.</p>
+            <p class="product-desc">A hard-sided 20-inch carry-on spinner. Check sizes and the current price on Amazon.</p>
+            <p class="photo-caption">Stock photo of travel luggage. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0H3194T1F?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0H3194T1F?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <div class="amazon-mono" aria-hidden="true">L</div>
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-backpacks.webp" alt="Stock photo of backpacks. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Travel backpack</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B0C4YRF1ZV?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">LOVEVOOK 40L Travel Backpack, Personal Item / Carry-On</a></h3>
-            <p class="product-desc">A 40L travel backpack sized as a personal item or carry-on.</p>
+            <p class="product-desc">A 40L travel backpack intended as a personal item or carry-on. Check airline limits on Amazon.</p>
+            <p class="photo-caption">Stock photo of backpacks. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0C4YRF1ZV?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0C4YRF1ZV?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
@@ -189,87 +201,151 @@
               <div class="amazon-mono" aria-hidden="true">A</div>
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Luggage tracker</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B0GJTFXNRX?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Apple AirTag (2nd Generation)</a></h3>
-            <p class="product-desc">An Apple AirTag (2nd generation) item tracker. This is the tracker itself, not a holder case.</p>
+            <p class="product-desc">An Apple AirTag tracker. Check the current price and pack size on Amazon.</p>
+            <p class="photo-caption">Monogram, not a photo of Apple AirTag.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0GJTFXNRX?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0GJTFXNRX?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <div class="amazon-mono" aria-hidden="true">F</div>
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-tsa-lock.webp" alt="Stock photo of a TSA-compatible luggage lock. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Luggage locks</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B015TA6BL2?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Forge TSA Approved Luggage Locks, Black, 2 Pack</a></h3>
-            <p class="product-desc">A 2-pack of TSA approved luggage locks in black.</p>
+            <p class="product-desc">A two-pack of TSA-approved luggage locks.</p>
+            <p class="photo-caption">Stock photo of a TSA-compatible luggage lock. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B015TA6BL2?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B015TA6BL2?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <div class="amazon-mono" aria-hidden="true">Z</div>
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-suitcase-passport.webp" alt="Stock photo of a suitcase and travel documents. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Passport wallet</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B0DB5938JV?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">ZOPPEN RFID Passport Holder Travel Wallet (Brown)</a></h3>
-            <p class="product-desc">An RFID-blocking passport holder travel wallet in brown.</p>
+            <p class="product-desc">An RFID passport holder and travel wallet.</p>
+            <p class="photo-caption">Stock photo of a suitcase and travel documents. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0DB5938JV?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B0DB5938JV?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <div class="amazon-mono" aria-hidden="true">M</div>
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-sleep-mask.webp" alt="Stock photo of a person wearing a sleep mask. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Sleep mask</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B09QSH4BJ2?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">MZOO Luxury Sleep Mask, Contoured Eye Cups</a></h3>
-            <p class="product-desc">A contoured, light-blocking sleep mask for travel.</p>
+            <p class="product-desc">A contoured sleep mask. Check the current price on Amazon.</p>
+            <p class="photo-caption">Stock photo of a person wearing a sleep mask. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B09QSH4BJ2?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B09QSH4BJ2?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
         <article class="product amazon-pick">
-            <div class="product-visual amazon-visual">
-              <div class="amazon-mono" aria-hidden="true">H</div>
+            <div class="product-visual amazon-visual has-photo">
+              <img src="/assets/photos/stock-tote-bottle.webp" alt="Stock photo of a reusable water bottle. This is not a photo of the exact Amazon item." width="800" height="600" loading="lazy" decoding="async" />
             </div>
           <div class="product-body">
-            <div class="product-cat">Amazon Picks</div>
+            <div class="product-cat">Water bottle</div>
             <h3 class="product-title"><a href="https://www.amazon.com/dp/B07JB964VX?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">HYDAWAY 17oz Collapsible Water Bottle</a></h3>
-            <p class="product-desc">A 17 oz collapsible, packable water bottle for travel.</p>
+            <p class="product-desc">A 17 oz collapsible water bottle. Check the current price on Amazon.</p>
+            <p class="photo-caption">Stock photo of a reusable water bottle. This is not a photo of the exact Amazon item.</p>
             <div class="product-foot amazon-foot">
-              <a class="btn btn-accent" href="https://www.amazon.com/dp/B07JB964VX?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+              <a class="btn btn-accent" href="https://www.amazon.com/dp/B07JB964VX?tag=rsfusionbd-20" target="_blank" rel="sponsored nofollow noopener">Check price on Amazon</a>
             </div>
           </div>
         </article>
       </div>
     </section>
 
+    <div id="travel">
+    <section class="travel-collection" id="travel-essentials">
+      <div class="travel-head">
+        <h2>Travel essentials</h2>
+        <img class="section-banner" src="/assets/photos/banner-travel-essentials.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+        <p>Everyday travel pieces from BrandLinker Spark. Items with a price can be added to your cart. Items marked “Price coming soon” can be requested as a pre-order — we will confirm the price by email, and no payment is taken now.</p>
+        <div class="travel-head-actions">
+          <a class="btn travel-flights" href="https://cheapticketfinder.site" target="_blank" rel="noopener noreferrer">Find cheap flights</a>
+          <a class="btn" href="#amazon-picks">Amazon Picks</a>
+        </div>
+      </div>
+      <div class="grid" id="travelEssentialsGrid" style="padding-bottom: 28px;"></div>
+    </section>
+
+    <section class="travel-collection" id="packing">
+      <div class="travel-head">
+        <h2>Packing &amp; organizers</h2>
+        <img class="section-banner" src="/assets/photos/banner-packing.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+        <p>Cubes, pouches and cases to keep a suitcase in order. Free shipping to the United States and the United Kingdom on priced items; delivery is usually 5-12 business days. UAE shipping coming soon.</p>
+      </div>
+      <div class="grid" id="packingGrid" style="padding-bottom: 28px;"></div>
+    </section>
+
+    <section class="travel-collection" id="tech">
+      <div class="travel-head">
+        <h2>Tech &amp; adapters</h2>
+        <img class="section-banner" src="/assets/photos/banner-tech.webp" alt="" width="1200" height="675" loading="lazy" decoding="async" />
+        <p>Travel electronics and adapters. The plug adapter is not a voltage converter. The AirTag case is a case only — an AirTag is not included.</p>
+      </div>
+      <div class="grid" id="techGrid" style="padding-bottom: 28px;"></div>
+    </section>
+    </div>
+
+    <section class="catalogue-head" id="store-catalogue">
+      <h2>Also in the store</h2>
+      <p>Lifestyle pieces from the BrandLinker Spark catalogue. Cash on Delivery is available in Bangladesh on these items. Delivery time is confirmed at checkout.</p>
+    </section>
+
+    <div class="toolbar">
+      <div class="cats" id="catBar">
+        <button class="cat-btn active" onclick="setCat('All', this)">All</button>
+        <button class="cat-btn" onclick="setCat('Timepieces', this)">Timepieces</button>
+        <button class="cat-btn" onclick="setCat('Lighting', this)">Lighting</button>
+        <button class="cat-btn" onclick="setCat('Audio', this)">Audio</button>
+        <button class="cat-btn" onclick="setCat('Home', this)">Home</button>
+        <button class="cat-btn" onclick="setCat('Travel', this)">Travel</button>
+      </div>
+      <div class="search-sort">
+        <input type="search" id="searchInput" placeholder="Search products..." oninput="renderTravel(); renderGrid();" />
+        <select id="sortSelect" onchange="renderGrid()">
+          <option value="featured">Sort: Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
     <section class="grid" id="productGrid"></section>
-  </main>
+    </main>
 
   <footer>
     <div class="container">
       <div class="footer-links">
-        <a href="/best-travel-accessories">Top travel picks</a>
-        <a href="/guides/what-to-pack-dubai-or-us-from-bangladesh">Dubai &amp; US packing</a>
-        <a href="/guides/universal-travel-adapter-guide">Travel adapter</a>
-        <a href="/guides/carry-on-packing-list">Carry-on list</a>
         <a href="/shipping">Shipping</a>
         <a href="/returns">Returns &amp; Refunds</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms</a>
-        <a href="/disclosure">Disclosure</a>
+        <a href="/best-travel-accessories">Top travel picks</a>
+        <a href="/guides/what-to-pack-dubai-or-us-from-bangladesh">Dubai &amp; US packing</a>
+        <a href="/guides/universal-travel-adapter-guide">Travel adapter</a>
+        <a href="/guides/carry-on-packing-list">Carry-on list</a>
         <a href="#amazon-picks">Amazon Picks</a>
+        <a href="/disclosure">Disclosure</a>
+        <a href="/image-credits">Photo credits</a>
       </div>
-      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank">BrandLinker Headquarters</a>
+      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer">BrandLinker Headquarters</a>
+      <p class="footer-credits">Store photos are either CJ listing photos or free-licence stock photos, labeled honestly. <a href="/image-credits">Full photo credits</a>.</p>
     </div>
   </footer>
 
@@ -336,6 +412,8 @@
             <textarea id="coNote" name="note" maxlength="500" placeholder="Anything we should know about this order"></textarea>
           </div>
         </div>
+        <div id="coItemList" class="checkout-note"></div>
+        <p class="checkout-note" id="destHint"></p>
         <p class="checkout-note" id="payHint"></p>
         <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:14px; flex-wrap:wrap;">
           <span style="color:var(--muted); font-size:0.85rem;">Order Total: <strong id="coTotal" style="color:var(--cream);">$0.00</strong></span>
@@ -416,6 +494,11 @@
     function setCat(cat, btn) {
       activeCat = cat;
       document.querySelectorAll(".cat-btn").forEach(b => b.classList.toggle("active", b === btn));
+      if (cat === "Travel") {
+        const el = document.getElementById("travel");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      renderTravel();
       renderGrid();
     }
 
@@ -454,29 +537,65 @@
       return !p || p.orderMode === "inquiry" || p.priceStatus === "coming_soon" || p.price == null;
     }
 
+    function hasFulfillment(p) {
+      return Boolean(p && p.fulfillment && Array.isArray(p.fulfillment.orderableCountries));
+    }
+
+    function destinationShippingNote(country) {
+      const travel = cart.map(c => PRODUCTS.find(p => p.id === c.id)).filter(hasFulfillment);
+      if (!travel.length) return "";
+      if (country === "United States" || country === "United Kingdom") {
+        const allOk = travel.every(p => p.fulfillment.orderableCountries.includes(country));
+        if (allOk) return "Free shipping to the " + country + ". Delivery is usually 5-12 business days.";
+      }
+      if (country === "United Arab Emirates (Dubai / GCC)") return "UAE shipping coming soon.";
+      return "Shipping to " + country + " for these travel items is not confirmed yet.";
+    }
+
+    function cartShouldPreorder(country) {
+      const prods = cart.map(c => PRODUCTS.find(p => p.id === c.id)).filter(Boolean);
+      const travel = prods.filter(hasFulfillment);
+      const others = prods.filter(p => !hasFulfillment(p));
+      if (country === "United States" || country === "United Kingdom") {
+        const travelOk = travel.length && travel.every(p => p.fulfillment.orderableCountries.includes(country));
+        if (travelOk && others.length === 0) return false;
+        return true;
+      }
+      if (country === "Bangladesh") return travel.length > 0;
+      return true;
+    }
+
     function productCard(p) {
-      const badge = p.badge ? `<span class="product-badge">${escapeHtml(p.badge)}</span>` : "";
-      const visual = (p.images && p.images[0] && p.images[0].src)
-        ? `<img src="${escapeHtml(p.images[0].src)}" alt="${escapeHtml(p.images[0].alt || p.name)}" width="400" height="300" style="width:100%;height:100%;object-fit:cover;display:block;" />`
+      const img = p.images && p.images[0];
+      const kind = img && img.kind;
+      const visClass = kind === "illustration" ? "product-visual is-illustration" : (img && img.src ? "product-visual has-photo" : "product-visual");
+      const visual = (img && img.src)
+        ? `<img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt || p.name)}" width="${img.width || 800}" height="${img.height || 600}" loading="lazy" decoding="async" />`
         : `<div class="product-icon">${p.icon || ""}</div>`;
+      const caption = (img && img.caption) ? `<p class="photo-caption">${escapeHtml(img.caption)}</p>` : "";
       const inquiry = isInquiryItem(p);
       const priceHtml = inquiry
         ? `<div class="price" style="font-size:1.15rem;">Price coming soon</div>`
         : `<div class="price">${money(p.price)}</div>`;
+      const firstVariant = (p.variants && p.variants[0]) || "Standard";
       const action = inquiry
         ? `<button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="openInquiry('${p.id}')">Pre-order request</button>`
-        : `<button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="addToCart('${p.id}', '${escapeHtml((p.variants && p.variants[0]) || "")}')">Add to Cart</button>`;
+        : `<button class="btn btn-accent" style="padding:8px 16px; font-size:0.8rem;" onclick="addToCart('${p.id}', '${escapeHtml(firstVariant)}')">Add to Cart</button>`;
       const ship = p.publicShippingNote ? `<p class="fx-note">${escapeHtml(p.publicShippingNote)}</p>` : "";
+      const catLabel = p.storeSection === "packing" ? "Packing & organizers"
+        : p.storeSection === "tech" ? "Tech & adapters"
+        : p.storeSection === "travel-essentials" ? "Travel essentials"
+        : escapeHtml(p.category || "");
       return `
         <article class="product">
-          <a class="product-visual" href="${productUrl(p)}" style="color:inherit; text-decoration:none;">
-            ${badge}
+          <a class="${visClass}" href="${productUrl(p)}" style="color:inherit; text-decoration:none;">
             ${visual}
           </a>
           <div class="product-body">
-            <div class="product-cat">${escapeHtml(p.category || "")}</div>
+            <div class="product-cat">${catLabel}</div>
             <h3 class="product-title"><a href="${productUrl(p)}" style="color:inherit; text-decoration:none;">${escapeHtml(p.name)}</a></h3>
             <p class="product-desc">${escapeHtml(p.desc || "")}</p>
+            ${caption}
             <div class="product-foot">
               ${priceHtml}
               ${action}
@@ -487,21 +606,42 @@
       `;
     }
 
-    function renderTravel() {
-      const grid = document.getElementById("travelGrid");
+    function searchQuery() {
+      const el = document.getElementById("searchInput");
+      return el ? el.value.toLowerCase().trim() : "";
+    }
+
+    function matchesQuery(p, q) {
+      if (!q) return true;
+      return ((p.name || "").toLowerCase().includes(q) || (p.desc || "").toLowerCase().includes(q));
+    }
+
+    function fillSectionGrid(id, section) {
+      const grid = document.getElementById(id);
       if (!grid) return;
-      const list = PRODUCTS.filter(p => String(p.category).toLowerCase() === "travel");
+      const q = searchQuery();
+      const list = PRODUCTS.filter(p => p.storeSection === section && matchesQuery(p, q));
       grid.innerHTML = list.length
         ? list.map(productCard).join("")
-        : "<p style='color:var(--muted); text-align:center; grid-column:1/-1;'>Travel pieces will appear here when they are added to the catalogue.</p>";
+        : "<p style='color:var(--muted); text-align:center; grid-column:1/-1;'>No matching items in this section.</p>";
+    }
+
+    function renderTravel() {
+      fillSectionGrid("travelEssentialsGrid", "travel-essentials");
+      fillSectionGrid("packingGrid", "packing");
+      fillSectionGrid("techGrid", "tech");
     }
 
     function renderGrid() {
-      const q = document.getElementById("searchInput").value.toLowerCase();
-      const sort = document.getElementById("sortSelect").value;
-      let list = PRODUCTS.filter(p => (activeCat === "All" || p.category === activeCat) && ((p.name || "").toLowerCase().includes(q) || (p.desc || "").toLowerCase().includes(q)));
-      if (sort === "low") list.sort((a, b) => a.price - b.price);
-      if (sort === "high") list.sort((a, b) => b.price - a.price);
+      const search = document.getElementById("searchInput");
+      const sortEl = document.getElementById("sortSelect");
+      if (!search || !sortEl) return;
+      const q = search.value.toLowerCase();
+      const sort = sortEl.value;
+      let list = PRODUCTS.filter(p => (p.storeSection === "lifestyle" || (!p.storeSection && String(p.category).toLowerCase() !== "travel")) && (activeCat === "All" || activeCat === "Travel" || p.category === activeCat) && ((p.name || "").toLowerCase().includes(q) || (p.desc || "").toLowerCase().includes(q)));
+      if (activeCat === "Travel") list = [];
+      if (sort === "low") list.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+      if (sort === "high") list.sort((a, b) => (Number(b.price) || 0) - (Number(a.price) || 0));
       document.getElementById("productGrid").innerHTML = list.map(productCard).join("");
     }
 
@@ -568,30 +708,58 @@
         : "<p style='color:var(--muted); font-size:0.88rem;'>Your cart is empty. Explore our curated objects.</p>";
     }
 
+    function renderCheckoutSummary() {
+      const countryEl = document.getElementById("coCountry");
+      const listEl = document.getElementById("coItemList");
+      const destEl = document.getElementById("destHint");
+      if (!countryEl) return;
+      const country = countryEl.value;
+      if (listEl) {
+        const lines = cart.map(c => {
+          const p = PRODUCTS.find(x => x.id === c.id);
+          const unit = p && p.price != null ? money(p.price) : "Price coming soon";
+          return `${escapeHtml(c.name)} (${escapeHtml(c.variant || "")}) × ${c.qty} — ${unit}`;
+        });
+        listEl.innerHTML = lines.length ? ("Items:<br/>" + lines.join("<br/>")) : "";
+      }
+      if (destEl) {
+        const ship = destinationShippingNote(country);
+        destEl.innerHTML = "<strong>Destination:</strong> " + escapeHtml(country) + (ship ? "<br/>" + escapeHtml(ship) : "");
+      }
+    }
+
     function syncPaymentOptions() {
       const country = document.getElementById("coCountry").value;
       const select = document.getElementById("coPay");
       const payField = select.closest(".field");
       const hint = document.getElementById("payHint");
       const btn = document.getElementById("placeOrderBtn");
-      const isBd = country === "Bangladesh";
-      if (isBd) {
+      const pre = cartShouldPreorder(country);
+      const isBdPay = country === "Bangladesh" && !pre;
+      if (isBdPay) {
         payField.hidden = false;
         select.required = true;
         const current = select.value;
         select.innerHTML = PAY_BD.map(o => `<option value="${o.value}">${escapeHtml(o.label)}</option>`).join("");
         if (PAY_BD.some(o => o.value === current)) select.value = current;
-        hint.textContent = "We will contact you to confirm your order, payment and delivery. No payment is taken on this page.";
+        hint.textContent = "We will contact you to confirm your order, payment and delivery. No payment is taken on this page. Your destination country and item prices are included on this form.";
         if (btn) btn.textContent = "Place order";
         setCurrency("BDT");
       } else {
         payField.hidden = true;
         select.required = false;
         select.innerHTML = '<option value="none">none</option>';
-        hint.textContent = "Submit a pre-order request — we'll email you available payment options to confirm your order.";
-        if (btn) btn.textContent = "Submit pre-order request";
-        setCurrency("USD");
+        if (!pre && (country === "United States" || country === "United Kingdom")) {
+          hint.textContent = "This is a priced order. No payment is taken on this page — we will email payment options. Your destination country and item prices are included on this form.";
+          if (btn) btn.textContent = "Place order";
+        } else {
+          hint.textContent = "This will be saved as a pre-order request. We'll email you about payment and delivery. Your destination country and, where set, item prices are included on this form.";
+          if (btn) btn.textContent = "Submit pre-order request";
+        }
+        if (country === "Bangladesh") setCurrency("BDT");
+        else setCurrency("USD");
       }
+      renderCheckoutSummary();
     }
 
     let inquiryItems = [];
@@ -679,15 +847,15 @@
       btn.disabled = true;
       const name = document.getElementById("coName").value.trim();
       const country = document.getElementById("coCountry").value;
-      const international = country !== "Bangladesh";
+      const pre = cartShouldPreorder(country);
       const payload = {
-        type: international ? "preorder_request" : "order",
+        type: pre ? "preorder_request" : "order",
         name,
         email: document.getElementById("coEmail").value.trim(),
         phone: document.getElementById("coPhone").value.trim(),
         address: document.getElementById("coAddr").value.trim(),
         country,
-        paymentMethod: international ? "none" : document.getElementById("coPay").value,
+        paymentMethod: pre && country !== "Bangladesh" ? "none" : (pre ? "none" : document.getElementById("coPay").value),
         note: document.getElementById("coNote").value.trim(),
         website: document.getElementById("coWebsite").value,
         promoCode,
@@ -704,15 +872,18 @@
         if (!res.ok || !data.ok || !data.orderId) {
           throw new Error(data.error || "We could not save your order. Please try again.");
         }
-        const isPre = data.type === "preorder_request" || international;
-        const payNote = isPre
-          ? "We'll email you available payment options to confirm your order."
-          : "We will contact you to confirm.";
+        const isPre = data.type === "preorder_request";
+        const payNote = "We'll email you available payment options. No payment has been taken.";
         const title = isPre ? "Pre-order request received" : "Order received";
+        const totalLine = (data.total != null && data.currency)
+          ? `Order total: ${escapeHtml(String(data.currency))} ${escapeHtml(String(data.total))}.`
+          : "";
+        const destLine = data.country ? `Destination: ${escapeHtml(data.country)}.` : `Destination: ${escapeHtml(country)}.`;
+        const shipLine = data.shippingNote ? escapeHtml(data.shippingNote) : "";
         document.getElementById("checkoutForm").style.display = "none";
         const box = document.getElementById("orderConfirm");
         box.style.display = "block";
-        box.innerHTML = `<strong>${title} (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. Your request has been saved. ${payNote} No payment has been taken.`;
+        box.innerHTML = `<strong>${title} (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. Your request has been saved. ${totalLine} ${destLine} ${shipLine} ${payNote}`;
         cart = [];
         promoCode = "";
         promoDiscount = 0;

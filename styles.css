@@ -134,7 +134,6 @@ footer a { color: var(--accent-bright); text-decoration: none; }
 .travel-head h2 { font-family: "Cormorant Garamond", serif; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--cream); font-weight: 500; margin-bottom: 8px; }
 .travel-head p { color: var(--muted); font-size: 0.95rem; max-width: 52ch; margin: 0 auto 16px; }
 .travel-flights { display: inline-flex; }
-.travel-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .field textarea { width: 100%; min-height: 72px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: rgba(16,12,9,0.8); color: var(--cream); font-size: 0.88rem; font-family: inherit; resize: vertical; }
 .checkout-note { color: var(--muted); font-size: 0.82rem; margin-top: 10px; }
@@ -187,7 +186,6 @@ footer a { color: var(--accent-bright); text-decoration: none; }
   max-width: 56ch;
 }
 .amazon-picks { margin-top: 22px; }
-.amazon-picks .travel-head a:not(.btn) { color: var(--accent-bright); }
 .amazon-visual img {
   width: 72%;
   height: auto;
@@ -210,6 +208,92 @@ footer a { color: var(--accent-bright); text-decoration: none; }
   text-decoration: none;
 }
 .product-title a { color: inherit; text-decoration: none; }
+
+/* Full-store homepage additions — same palette and type */
+.shop-nav {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px;
+  padding: 12px 0 0; font-size: 0.8rem;
+}
+.shop-nav a { color: var(--accent-bright); text-decoration: none; white-space: nowrap; }
+.shop-nav a:hover { text-decoration: underline; }
+
+.hero.hero-photo {
+  position: relative; text-align: left; border-radius: 22px; overflow: hidden;
+  min-height: clamp(320px, 48vw, 520px);
+  display: flex; align-items: flex-end;
+  padding: 0; margin: 28px 0 8px;
+  border: 1px solid var(--border);
+}
+.hero-photo img.hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+.hero-photo .hero-overlay {
+  position: relative; z-index: 1; width: 100%;
+  padding: clamp(28px, 5vw, 48px);
+  background: linear-gradient(180deg, rgba(18,13,10,0.08) 0%, rgba(18,13,10,0.78) 55%, rgba(18,13,10,0.92) 100%);
+}
+.hero-photo h1, .hero-photo p, .hero-photo .eyebrow { margin-left: 0; }
+.hero-photo p { margin: 0 0 22px; max-width: 54ch; color: var(--latte); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.hero-credit {
+  display: block; margin-top: 10px; font-size: 0.68rem; color: var(--muted);
+}
+
+.category-tiles {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;
+  margin: 28px 0 8px;
+}
+.category-tile {
+  position: relative; display: block; border-radius: 18px; overflow: hidden;
+  min-height: 140px; border: 1px solid var(--border); text-decoration: none; color: var(--cream);
+}
+.category-tile img { width: 100%; height: 140px; object-fit: cover; display: block; }
+.category-tile span {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px;
+  background: linear-gradient(180deg, transparent, rgba(18,13,10,0.88));
+  font-family: "Cormorant Garamond", serif; font-size: 1.25rem;
+}
+.section-banner {
+  width: 100%; height: 160px; object-fit: cover; display: block;
+  border-radius: 16px; margin: 0 0 18px;
+}
+.photo-caption { font-size: 0.7rem; color: var(--muted); margin: 8px 0 0; line-height: 1.45; }
+.product-visual.has-photo { padding: 0; overflow: hidden; }
+.product-visual.has-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.product-visual.is-illustration { padding: 24px; }
+.product-visual.is-illustration img {
+  width: 72%; height: auto; max-height: 100%; object-fit: contain; display: block; margin: 0 auto;
+}
+.amazon-visual.has-photo img { width: 100%; height: 100%; object-fit: cover; max-height: none; }
+.catalogue-head { text-align: center; margin: 32px 0 8px; }
+.catalogue-head h2 {
+  font-family: "Cormorant Garamond", serif; font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--cream); font-weight: 500; margin-bottom: 8px;
+}
+.catalogue-head p { color: var(--muted); font-size: 0.95rem; max-width: 52ch; margin: 0 auto 16px; }
+.footer-credits { margin-top: 10px; font-size: 0.78rem; }
+img { max-width: 100%; }
+.travel-collection + .travel-collection { margin-top: 22px; }
+#travel { margin: 0; padding: 0; border: 0; background: transparent; }
+
+@media (max-width: 960px) {
+  .category-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .category-tiles { grid-template-columns: 1fr 1fr; }
+  .category-tile img { height: 120px; }
+  .section-banner { height: 120px; }
+  .hero.hero-photo { min-height: 420px; }
+}
+
+.product-page .visual.has-photo { padding: 0; overflow: hidden; }
+.product-page .visual.has-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.travel-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.amazon-picks .travel-head a:not(.btn) { color: var(--accent-bright); }
 .page-intro { text-align: center; max-width: 68ch; margin: 0 auto; padding: 42px 0 8px; }
 .page-intro h1 { font-family: "Cormorant Garamond", serif; font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 500; color: var(--cream); line-height: 1.05; margin: 8px 0 12px; }
 .page-intro .lede, .page-intro .bn { color: var(--muted); margin-bottom: 12px; }

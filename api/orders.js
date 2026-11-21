@@ -313,7 +313,10 @@ function buildOrderEmailText(order) {
         `Discount: $${Number(order.discount).toFixed(2)} USD\n` +
         `Total: ${order.currency} ${Number(order.total).toFixed(2)} (USD ${Number(order.totalUsd).toFixed(2)} / BDT ${Number(order.totalBdt).toFixed(2)})\n` +
         `FX: 1 USD = ${order.fxRate} BDT (fixed site rate, not a live bank rate)\n\n`) +
-    `No payment has been taken online. Contact the customer to confirm the price, payment and delivery.`
+    (order.shippingNote ? `Shipping: ${order.shippingNote}\n\n` : "") +
+    (order.total == null || order.priceStatus === "price confirmed by email"
+      ? `No payment has been taken online. Contact the customer to confirm the price, payment and delivery.`
+      : `No payment has been taken online. Contact the customer to confirm payment and delivery. The prices and destination country above are part of this order.`)
   );
 }
 
@@ -372,6 +375,10 @@ async function emailOrderViaFormSubmit(order, { to, text }) {
       customer_phone: order.customer.phone,
       customer_address: order.customer.address,
       customer_country: order.customer.country,
+      destination_country: order.customer.country,
+      order_total: order.total == null ? "" : String(order.total),
+      order_currency: order.currency || "",
+      shipping_note: order.shippingNote || "",
       payment: order.paymentMethodLabel,
       payment_status: order.paymentStatus,
       note: order.note || "",
@@ -406,6 +413,45 @@ async function emailOrder(order) {
   return emailOrderViaFormSubmit(order, { to, text });
 }
 
+
+function hasFulfillment(product) {
+  return Boolean(product && product.fulfillment && Array.isArray(product.fulfillment.orderableCountries));
+}
+
+function destinationShippingNote(country, itemRows, catalog) {
+  const byId = new Map(catalog.products.map((p) => [p.id, p]));
+  const prods = itemRows.map((i) => byId.get(i.id)).filter(Boolean);
+  const travel = prods.filter(hasFulfillment);
+  if (!travel.length) return "";
+  if (country === "United States" || country === "United Kingdom") {
+    const allOk = travel.every((p) => p.fulfillment.orderableCountries.includes(country));
+    if (allOk) return `Free shipping to the ${country}. Delivery is usually 5-12 business days.`;
+  }
+  if (country === "United Arab Emirates (Dubai / GCC)") {
+    return "UAE shipping coming soon.";
+  }
+  return `Shipping to ${country} for these travel items is not confirmed yet.`;
+}
+
+function shouldPreorder(country, itemRows, catalog) {
+  const byId = new Map(catalog.products.map((p) => [p.id, p]));
+  const prods = itemRows.map((i) => byId.get(i.id)).filter(Boolean);
+  const travel = prods.filter(hasFulfillment);
+  const others = prods.filter((p) => !hasFulfillment(p));
+  if (country === "United States" || country === "United Kingdom") {
+    const travelOk = travel.length && travel.every((p) => p.fulfillment.orderableCountries.includes(country));
+    // Lifestyle items still use a pre-order request for destinations outside Bangladesh.
+    if (travelOk && others.length === 0) return false;
+    return true;
+  }
+  if (country === "Bangladesh") {
+    // Do not take a Cash on Delivery order for travel items whose Bangladesh shipping is not confirmed.
+    if (travel.length) return true;
+    return false;
+  }
+  return true;
+}
+
 async function handleCreate(req, res) {
   if (!allowOrigin(req)) return json(res, 403, { ok: false, error: "Forbidden." });
   const ip = clientIp(req);
@@ -437,35 +483,16 @@ async function handleCreate(req, res) {
   const rawType = clean(data.type, 32).toLowerCase();
   const currencyPref = clean(data.currency, 8).toUpperCase() === "BDT" ? "BDT" : "USD";
   const isTest = data.isTest === true || /\bTEST\b/i.test(`${name} ${note} ${email}`);
-  const international = country !== "Bangladesh";
-  // Accept a legacy "inquiry" value from earlier drafts; store only preorder_request.
-  const type = (rawType === "inquiry" || rawType === "preorder_request" || international)
-    ? "preorder_request"
-    : "order";
 
   if (!name) return json(res, 400, { ok: false, error: "Please enter your full name." });
   if (!validEmail(email)) return json(res, 400, { ok: false, error: "Please enter a valid email address." });
   if (!validPhone(phone)) return json(res, 400, { ok: false, error: "Please enter a valid phone number." });
-  if (type !== "preorder_request" && !address) return json(res, 400, { ok: false, error: "Please enter your address." });
   if (!COUNTRIES.includes(country)) return json(res, 400, { ok: false, error: "Please choose a country or region." });
 
-  let paymentMethod = "none";
-  let paymentMethodLabel = "none";
-  if (type === "preorder_request") {
-    paymentMethod = "none";
-    paymentMethodLabel = "none";
-  } else {
-    if (!BD_PAYMENTS.includes(paymentKey)) {
-      return json(res, 400, { ok: false, error: "Please choose Cash on Delivery, bKash, or Nagad." });
-    }
-    paymentMethod = paymentKey;
-    paymentMethodLabel = PAYMENT_METHODS[paymentKey];
-  }
-
   const catalog = loadCatalog();
+  const items = Array.isArray(data.items) ? data.items : [];
   let priced;
   try {
-    const items = Array.isArray(data.items) ? data.items : [];
     const unpriced = items.every((it) => {
       const prod = catalog.products.find((x) => x.id === (it && it.id));
       return isInquiryProduct(prod);
@@ -477,6 +504,31 @@ async function handleCreate(req, res) {
   } catch (err) {
     return json(res, err.status || 400, { ok: false, error: err.message || "Could not price this order." });
   }
+
+  // Client type is advisory. Unpriced items and destinations we cannot ship to yet are pre-order requests.
+  const unpricedOrder = priced.priceStatus === "price confirmed by email" || priced.total == null;
+  const type = (unpricedOrder || shouldPreorder(country, items, catalog)) ? "preorder_request" : "order";
+  if (type !== "preorder_request" && !address) return json(res, 400, { ok: false, error: "Please enter your address." });
+
+  let paymentMethod = "none";
+  let paymentMethodLabel = "none";
+  if (type === "preorder_request") {
+    paymentMethod = "none";
+    paymentMethodLabel = "none";
+  } else if (country === "Bangladesh") {
+    if (!BD_PAYMENTS.includes(paymentKey)) {
+      return json(res, 400, { ok: false, error: "Please choose Cash on Delivery, bKash, or Nagad." });
+    }
+    paymentMethod = paymentKey;
+    paymentMethodLabel = PAYMENT_METHODS[paymentKey];
+  } else if (country === "United States" || country === "United Kingdom") {
+    paymentMethod = "none";
+    paymentMethodLabel = "Payment options will be emailed";
+  } else {
+    return json(res, 400, { ok: false, error: "Please choose a country or region." });
+  }
+
+  const shippingNote = destinationShippingNote(country, items, catalog);
 
   const createdAt = new Date().toISOString();
   const id = buildOrderId();
@@ -504,6 +556,7 @@ async function handleCreate(req, res) {
     fxRate: priced.fxRate || null,
     fxNote: priced.fxNote || null,
     promo: priced.promo,
+    shippingNote: shippingNote || "",
     ipHash,
   };
 
@@ -527,11 +580,12 @@ async function handleCreate(req, res) {
     emailProvider: mail.provider || null,
     stored: true,
     isTest,
-    type,
+    type: order.type,
+    country: order.customer.country,
+    shippingNote: order.shippingNote || "",
+    priceStatus: order.priceStatus,
     paymentMethod,
     paymentStatus: order.paymentStatus,
-    priceStatus: order.priceStatus,
-    currency: order.currency,
     totalUsd: order.totalUsd,
     totalBdt: order.totalBdt,
   });
