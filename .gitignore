@@ -1,3 +1,9 @@
 .secrets/
 .env
 *.pem
+
+data/internal-supplier-refs.json
+data/internal-supplier-costs.json
+shots/
+orders-2026-11-21/
+premium-2026-11-21/
