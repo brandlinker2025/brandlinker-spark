@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms — BrandLinker Spark</title>
+  <meta name="description" content="Terms for placing an order or pre-order request with BrandLinker Spark." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.brandlinkerspark.com/terms" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <div class="brand-name">BrandLinker Spark</div>
+          <span class="brand-sub">Curated Store</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <div class="currency-switch" role="group" aria-label="Currency">
+          <button type="button" id="curUSD" onclick="setCurrency('USD')">USD</button>
+          <button type="button" id="curBDT" onclick="setCurrency('BDT')">BDT</button>
+        </div>
+        <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
+        <a class="btn btn-accent" href="/#travel">Travel Collection</a>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+
+    <article class="legal">
+      <h1>Terms</h1>
+      <p>These terms apply to brandlinkerspark.com, a venture of BrandLinker Headquarters.</p>
+      <h2>Orders and pre-order requests</h2>
+      <p>Submitting a form on this site is a request, not a completed sale. We will contact you to confirm whether we can supply the item, the price, payment and delivery. Either of us may decide not to go ahead before that confirmation.</p>
+      <p>Travel Collection items are listed with a placeholder price (“Price coming soon”). A pre-order request for those items is saved as an inquiry. The price is confirmed by email before any payment is due.</p>
+      <h2>Prices and currency</h2>
+      <p>Where a price is shown, you can view it in US dollars (USD) or Bangladeshi taka (BDT). BDT amounts use a fixed site rate of <strong>1 USD = 124.75 BDT</strong>, based on the Bangladesh Bank weighted average published on 19 November 2026. This is not a live bank rate and may differ from the rate a bank charges. The rate is also recorded in our product data file.</p>
+      <p>We may need to change a price before we confirm an order, for example if a supplier cost or shipping cost has changed. We will not take payment until you have agreed the confirmed amount.</p>
+      <h2>Payment</h2>
+      <p>No payment is taken on this website. For orders from Bangladesh we offer Cash on Delivery, bKash and Nagad. For bKash and Nagad we will contact you with payment details. For other countries, checkout is a pre-order request with no payment step: we will email you available payment options to confirm your order. We do not promise a specific international payment method on this site.</p>
+      <h2>Products</h2>
+      <p>Product descriptions are kept brief on purpose. We do not claim official brand affiliation, and we do not invent delivery times, stock levels or guarantees. A holder case for AirTag is a case only; an AirTag is not included, and Apple is not affiliated with BrandLinker Spark.</p>
+      <h2>Contact</h2>
+      <p>Questions about these terms can be sent to <a href="mailto:inforsfusionbd@gmail.com">inforsfusionbd@gmail.com</a>.</p>
+    </article>
+      </main>
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/shipping">Shipping</a>
+        <a href="/returns">Returns &amp; Refunds</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+      </div>
+      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer">BrandLinker Headquarters</a>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const saved = localStorage.getItem("bls_spark_currency") === "BDT" ? "BDT" : "USD";
+      window.setCurrency = function (next) {
+        const cur = next === "BDT" ? "BDT" : "USD";
+        localStorage.setItem("bls_spark_currency", cur);
+        const usd = document.getElementById("curUSD");
+        const bdt = document.getElementById("curBDT");
+        if (usd && bdt) {
+          usd.classList.toggle("active", cur === "USD");
+          bdt.classList.toggle("active", cur === "BDT");
+        }
+        document.querySelectorAll("[data-price-usd]").forEach(function (el) {
+          const usdVal = Number(el.getAttribute("data-price-usd"));
+          if (!Number.isFinite(usdVal)) {
+            el.textContent = el.getAttribute("data-price-label") || "Price coming soon";
+            return;
+          }
+          if (cur === "BDT") {
+            const bdtVal = Math.round(usdVal * 124.75 * 100) / 100;
+            el.textContent = "BDT " + bdtVal.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          } else {
+            el.textContent = "$" + usdVal.toFixed(2);
+          }
+        });
+      };
+      window.setCurrency(saved);
+    })();
+  </script>
+</body>
+</html>

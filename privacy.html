@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — BrandLinker Spark</title>
+  <meta name="description" content="What order data BrandLinker Spark collects, why it is collected, and where it is stored." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.brandlinkerspark.com/privacy" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <div class="brand-name">BrandLinker Spark</div>
+          <span class="brand-sub">Curated Store</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <div class="currency-switch" role="group" aria-label="Currency">
+          <button type="button" id="curUSD" onclick="setCurrency('USD')">USD</button>
+          <button type="button" id="curBDT" onclick="setCurrency('BDT')">BDT</button>
+        </div>
+        <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
+        <a class="btn btn-accent" href="/#travel">Travel Collection</a>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+
+    <article class="legal">
+      <h1>Privacy Policy</h1>
+      <p>This page explains what personal data BrandLinker Spark collects, why we collect it, and where it is stored. BrandLinker Spark is a venture of BrandLinker Headquarters.</p>
+      <h2>What we collect</h2>
+      <p>When you place an order or a pre-order request, we collect:</p>
+      <ul>
+        <li>Your name, email address, phone number and country</li>
+        <li>Your shipping address (required for paid orders; optional on a pre-order request)</li>
+        <li>Your payment method, when one is chosen (Cash on Delivery, bKash or Nagad). International pre-order requests are saved with no payment method.</li>
+        <li>An optional order note</li>
+        <li>The items you requested, including the variant and quantity</li>
+        <li>Promo code, totals and currency, when a price has been set</li>
+        <li>The time the request was saved, and whether it is an order or a pre-order inquiry</li>
+      </ul>
+      <p>We also store a hashed version of your IP address for basic anti-spam and rate limiting. We do not use it for marketing.</p>
+      <p>The shopping cart and currency preference are saved only in your browser (local storage).</p>
+      <h2>Why we collect it</h2>
+      <p>We use this information to save your request, contact you to confirm price, payment and delivery, email available payment options for international pre-order requests, and notify the store that a request has arrived.</p>
+      <h2>Where it is stored</h2>
+      <p>Each saved request is stored in a private Vercel Blob store used by BrandLinker Spark. A notification copy of the same details is emailed to <a href="mailto:inforsfusionbd@gmail.com">inforsfusionbd@gmail.com</a>.</p>
+      <p>Access keys stay on the server. They are not placed in the public website code.</p>
+      <h2>What we do not collect on this site</h2>
+      <p>We do not collect card numbers, Apple Pay or Google Pay details, or bKash or Nagad wallet numbers on this website.</p>
+      <h2>Sharing</h2>
+      <p>We do not sell your data. We may share what is needed with a supplier or payment provider only after we have confirmed the request with you, so that the item can be fulfilled or paid for.</p>
+      <h2>Your requests</h2>
+      <p>To ask about the data we hold, or to ask us to correct or delete it, email <a href="mailto:inforsfusionbd@gmail.com">inforsfusionbd@gmail.com</a>.</p>
+    </article>
+      </main>
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/shipping">Shipping</a>
+        <a href="/returns">Returns &amp; Refunds</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+      </div>
+      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer">BrandLinker Headquarters</a>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const saved = localStorage.getItem("bls_spark_currency") === "BDT" ? "BDT" : "USD";
+      window.setCurrency = function (next) {
+        const cur = next === "BDT" ? "BDT" : "USD";
+        localStorage.setItem("bls_spark_currency", cur);
+        const usd = document.getElementById("curUSD");
+        const bdt = document.getElementById("curBDT");
+        if (usd && bdt) {
+          usd.classList.toggle("active", cur === "USD");
+          bdt.classList.toggle("active", cur === "BDT");
+        }
+        document.querySelectorAll("[data-price-usd]").forEach(function (el) {
+          const usdVal = Number(el.getAttribute("data-price-usd"));
+          if (!Number.isFinite(usdVal)) {
+            el.textContent = el.getAttribute("data-price-label") || "Price coming soon";
+            return;
+          }
+          if (cur === "BDT") {
+            const bdtVal = Math.round(usdVal * 124.75 * 100) / 100;
+            el.textContent = "BDT " + bdtVal.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          } else {
+            el.textContent = "$" + usdVal.toFixed(2);
+          }
+        });
+      };
+      window.setCurrency(saved);
+    })();
+  </script>
+</body>
+</html>
