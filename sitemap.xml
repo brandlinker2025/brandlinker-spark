@@ -105,4 +105,9 @@
   <url>
     <loc>https://brandlinkerspark.com/image-credits</loc>
   </url>
+  <url>
+    <loc>https://brandlinkerspark.com/google-merchant-feed.xml</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>
