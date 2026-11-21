@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affiliate disclosure — BrandLinker Spark</title>
+  <meta name="description" content="Amazon Associates disclosure for BrandLinker Spark. Affiliate links may earn a commission. The store does not set Amazon prices." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.brandlinkerspark.com/disclosure" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Affiliate disclosure — BrandLinker Spark" />
+  <meta property="og:description" content="Amazon Associates disclosure for BrandLinker Spark. Affiliate links may earn a commission. The store does not set Amazon prices." />
+  <meta property="og:url" content="https://www.brandlinkerspark.com/disclosure" />
+  <meta property="og:site_name" content="BrandLinker Spark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <div class="brand-name">BrandLinker Spark</div>
+          <span class="brand-sub">Curated Store</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <div class="currency-switch" role="group" aria-label="Currency">
+          <button type="button" id="curUSD" onclick="setCurrency('USD')">USD</button>
+          <button type="button" id="curBDT" onclick="setCurrency('BDT')">BDT</button>
+        </div>
+        <a href="/best-travel-accessories" class="btn" style="padding:8px 16px; font-size:0.8rem;">Amazon picks</a>
+        <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
+        <a class="btn btn-accent" href="/#travel">Travel Collection</a>
+      </div>
+    </div>
+  </header>
+  <main class="container guide-page">
+    <article class="legal">
+      <h1>Affiliate disclosure</h1>
+      <p class="affiliate-disclosure">As an Amazon Associate I earn from qualifying purchases.</p>
+      <p>BrandLinker Spark is a venture of BrandLinker Headquarters. Some pages, including the travel picks and packing guides, link to products on Amazon.com.</p>
+      <h2>Amazon Associates</h2>
+      <p>Those Amazon links include the Associates tag <strong>rsfusionbd-20</strong>. As an Amazon Associate I earn from qualifying purchases. The commission, if any, is paid by Amazon. It is not an extra charge added by this website.</p>
+      <p>Amazon sets the price, availability, delivery and returns for those items. We do not show prices or ratings on the travel pages, because they change. Check them on Amazon before you buy.</p>
+      <h2>What this store sells itself</h2>
+      <p>The <a href="/#travel">Travel Collection</a> and the rest of the catalogue are separate. A pre-order or order on brandlinkerspark.com is a request to BrandLinker Spark. It is not an Amazon checkout, and the Amazon tag is not used on those orders. Payment options for the store's own requests are described in the <a href="/terms">terms</a>.</p>
+      <h2>Contact</h2>
+      <p>Questions about this disclosure can be sent to <a href="mailto:inforsfusionbd@gmail.com">inforsfusionbd@gmail.com</a>.</p>
+    </article>
+
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/best-travel-accessories">Top travel picks</a>
+        <a href="/guides/what-to-pack-dubai-or-us-from-bangladesh">Dubai &amp; US packing</a>
+        <a href="/guides/universal-travel-adapter-guide">Travel adapter</a>
+        <a href="/guides/carry-on-packing-list">Carry-on list</a>
+        <a href="/shipping">Shipping</a>
+        <a href="/returns">Returns &amp; Refunds</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+        <a href="/disclosure">Disclosure</a>
+      </div>
+      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer">BrandLinker Headquarters</a>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const saved = localStorage.getItem("bls_spark_currency") === "BDT" ? "BDT" : "USD";
+      window.setCurrency = function (next) {
+        const cur = next === "BDT" ? "BDT" : "USD";
+        localStorage.setItem("bls_spark_currency", cur);
+        const usd = document.getElementById("curUSD");
+        const bdt = document.getElementById("curBDT");
+        if (usd && bdt) {
+          usd.classList.toggle("active", cur === "USD");
+          bdt.classList.toggle("active", cur === "BDT");
+        }
+        document.querySelectorAll("[data-price-usd]").forEach(function (el) {
+          const usdVal = Number(el.getAttribute("data-price-usd"));
+          if (!Number.isFinite(usdVal)) {
+            el.textContent = el.getAttribute("data-price-label") || "Price coming soon";
+            return;
+          }
+          if (cur === "BDT") {
+            const bdtVal = Math.round(usdVal * 124.75 * 100) / 100;
+            el.textContent = "BDT " + bdtVal.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          } else {
+            el.textContent = "$" + usdVal.toFixed(2);
+          }
+        });
+      };
+      window.setCurrency(saved);
+    })();
+  </script>
+</body>
+</html>
