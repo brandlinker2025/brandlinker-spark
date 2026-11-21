@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="travel neck pillow category illustration">
+  <rect width="400" height="300" rx="24" fill="#1A1410"/>
+  <rect x="16" y="16" width="368" height="268" rx="18" fill="none" stroke="#C48A5A" stroke-opacity="0.35"/>
+  
+  <path d="M120 180c0-70 40-110 80-110s80 40 80 110" fill="none" stroke="#E7D6C1" stroke-width="16" stroke-linecap="round"/>
+  <path d="M130 190c10 20 30 30 70 30s60-10 70-30" fill="none" stroke="#C48A5A" stroke-width="8" stroke-linecap="round"/>
+
+</svg>

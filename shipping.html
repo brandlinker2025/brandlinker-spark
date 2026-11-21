@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping — BrandLinker Spark</title>
+  <meta name="description" content="How BrandLinker Spark handles shipping. Delivery times are confirmed when we contact you." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.brandlinkerspark.com/shipping" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <div class="brand-name">BrandLinker Spark</div>
+          <span class="brand-sub">Curated Store</span>
+        </div>
+      </a>
+      <div class="nav-right">
+        <div class="currency-switch" role="group" aria-label="Currency">
+          <button type="button" id="curUSD" onclick="setCurrency('USD')">USD</button>
+          <button type="button" id="curBDT" onclick="setCurrency('BDT')">BDT</button>
+        </div>
+        <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer" class="btn" style="padding:8px 16px; font-size:0.8rem;">BrandLinker HQ &#8599;</a>
+        <a class="btn btn-accent" href="/#travel">Travel Collection</a>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+
+    <article class="legal">
+      <h1>Shipping</h1>
+      <p>When you place an order or a pre-order request, we will contact you to confirm whether we can deliver to your address, what the shipping cost will be, and an estimated delivery time.</p>
+      <h2>Delivery times</h2>
+      <p>Any delivery time we later share is an estimate only. Times vary by supplier and by country, and they are not guaranteed until we confirm them with you for that order.</p>
+      <p>On product pages we show: <strong>Delivery time confirmed at checkout</strong>. We do not promise express, next-day or worldwide shipping.</p>
+      <h2>Where we can send orders</h2>
+      <p>We will tell you whether we can deliver to your country when we confirm your request. We do not treat a listed country as a guarantee of delivery.</p>
+      <h2>Cost</h2>
+      <p>Shipping costs are confirmed when we contact you. They are not included in a placeholder product price, and we do not offer a free worldwide shipping threshold.</p>
+    </article>
+      </main>
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/shipping">Shipping</a>
+        <a href="/returns">Returns &amp; Refunds</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+      </div>
+      &copy; 2026 <strong>BrandLinker Spark</strong> (`brandlinkerspark.com`) &middot; A Venture of <a href="https://www.brandlinkerbd.com" target="_blank" rel="noopener noreferrer">BrandLinker Headquarters</a>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const saved = localStorage.getItem("bls_spark_currency") === "BDT" ? "BDT" : "USD";
+      window.setCurrency = function (next) {
+        const cur = next === "BDT" ? "BDT" : "USD";
+        localStorage.setItem("bls_spark_currency", cur);
+        const usd = document.getElementById("curUSD");
+        const bdt = document.getElementById("curBDT");
+        if (usd && bdt) {
+          usd.classList.toggle("active", cur === "USD");
+          bdt.classList.toggle("active", cur === "BDT");
+        }
+        document.querySelectorAll("[data-price-usd]").forEach(function (el) {
+          const usdVal = Number(el.getAttribute("data-price-usd"));
+          if (!Number.isFinite(usdVal)) {
+            el.textContent = el.getAttribute("data-price-label") || "Price coming soon";
+            return;
+          }
+          if (cur === "BDT") {
+            const bdtVal = Math.round(usdVal * 124.75 * 100) / 100;
+            el.textContent = "BDT " + bdtVal.toLocaleString("en-BD", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          } else {
+            el.textContent = "$" + usdVal.toFixed(2);
+          }
+        });
+      };
+      window.setCurrency(saved);
+    })();
+  </script>
+</body>
+</html>
