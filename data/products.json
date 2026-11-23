@@ -1,1 +1,1 @@
-{"promoCodes":{"SPARK10":{"type":"percent","value":10,"label":"10% off"}}}
+$(cat /tmp/products_priced.json)
