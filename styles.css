@@ -189,9 +189,28 @@ footer a { color: var(--accent-bright); text-decoration: none; }
 @media (max-width: 800px) { .product-page { grid-template-columns: 1fr; } }
 
 @media (max-width: 720px) {
-  .nav { height: auto; min-height: 74px; padding: 10px 0; flex-wrap: wrap; }
-  .nav-right { width: 100%; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
-  .nav-right > .btn { padding: 8px 14px; font-size: 0.78rem; }
+  /* One tidy row on phones: brand left; currency + main action right. */
+  .nav { height: 64px; gap: 8px; flex-wrap: nowrap; }
+  .brand { gap: 9px; min-width: 0; }
+  .brand-icon { width: 32px; height: 32px; font-size: 1.15rem; flex-shrink: 0; }
+  .brand > div { min-width: 0; }
+  .brand-name { font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand-sub { display: none; }
+  .nav-right { gap: 8px; flex-wrap: nowrap; flex-shrink: 0; }
+  /* Header links are repeated by the logo and breadcrumbs; on phones keep only the currency switch and Cart. */
+  .nav-right > a.btn { display: none; }
+  .nav-right > .btn { padding: 7px 13px !important; font-size: 0.76rem !important; white-space: nowrap; }
+  .currency-switch button { padding: 6px 9px; font-size: 0.7rem; letter-spacing: 0.04em; }
+}
+@media (max-width: 380px) {
+  .brand-name { font-size: 0.98rem; }
+  .brand { gap: 7px; }
+  .brand-icon { width: 30px; height: 30px; }
+  .currency-switch button { padding: 6px 7px; }
+  .nav-right { gap: 6px; }
+  .nav-right > button.btn { padding: 6px 10px !important; gap: 6px; }
+  .nav-right .cart-count { min-width: 20px; height: 20px; font-size: 0.7rem; padding: 0 5px; }
+  .nav-right > .btn { padding: 7px 10px !important; }
 }
 
 .travel-head-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
@@ -370,3 +389,7 @@ img { max-width: 100%; }
 .product:hover { border-color: rgba(188,108,255,0.55); box-shadow: 0 0 26px rgba(188,108,255,0.18); }
 ::selection { background: var(--pink); color: var(--night); }
 .hero-photo .eyebrow { text-shadow: 0 1px 8px rgba(4,6,20,0.9); }
+@media (max-width: 350px) {
+  .brand-name { font-size: 0.86rem; }
+  .currency-switch button { padding: 6px 5px; }
+}
