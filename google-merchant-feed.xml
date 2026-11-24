@@ -26,6 +26,27 @@
       </g:shipping>
     </item>
     <item>
+      <g:id>t14</g:id>
+      <title>Travel gift bundle (3 pieces)</title>
+      <description>A ready-to-gift travel set: an 8-piece packing cube set (Beige), a PU travel jewelry box (Pink or Blue) and a black RFID passport holder.</description>
+      <link>https://brandlinkerspark.com/products/travel-gift-bundle</link>
+      <g:image_link>https://brandlinkerspark.com/assets/photos/cj-gift-bundle.webp</g:image_link>
+      <g:price>55.99 USD</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>BrandLinker Spark</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>Luggage &amp; Bags &gt; Luggage Accessories &gt; Packing Organizers</g:google_product_category>
+      <g:shipping>
+        <g:country>US</g:country>
+        <g:price>0 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>GB</g:country>
+        <g:price>0 USD</g:price>
+      </g:shipping>
+    </item>
+    <item>
       <g:id>t12</g:id>
       <title>RFID passport holder</title>
       <description>A leather-style RFID passport holder and ID case. The offered color is Black.</description>

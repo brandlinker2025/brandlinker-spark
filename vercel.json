@@ -92,5 +92,62 @@
       "source": "/guides/:slug",
       "destination": "/guides/:slug.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/products/obsidian-minimalist-chronograph",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/caramel-bronze-sculptural-desk-lamp",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/studio-anc-wireless-headphones",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/smoked-amber-glass-aroma-diffuser",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/magnetic-magsafe-walnut-desk-dock",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hanging-toiletry-bag",
+      "destination": "/#amazon-picks",
+      "permanent": true
+    },
+    {
+      "source": "/products/travel-plug-adapter",
+      "destination": "/guides/universal-travel-adapter-guide",
+      "permanent": true
+    },
+    {
+      "source": "/products/foldable-travel-duffel",
+      "destination": "/#travel-essentials",
+      "permanent": true
+    },
+    {
+      "source": "/products/travel-shoe-bags",
+      "destination": "/#packing",
+      "permanent": true
+    },
+    {
+      "source": "/products/holder-case-for-airtag",
+      "destination": "/#amazon-picks",
+      "permanent": true
+    },
+    {
+      "source": "/products/silicone-travel-bottles",
+      "destination": "/#travel-essentials",
+      "permanent": true
+    }
   ]
 }

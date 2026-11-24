@@ -17,199 +17,62 @@
   },
   "products": [
     {
-      "id": "p1",
-      "name": "Obsidian Minimalist Chronograph",
-      "category": "Timepieces",
-      "price": 149,
+      "id": "t14",
+      "slug": "travel-gift-bundle",
+      "name": "Travel gift bundle (3 pieces)",
+      "variants": [
+        "Pink jewelry box",
+        "Blue jewelry box"
+      ],
+      "desc": "A ready-to-gift travel set: the 8-piece packing cube set (Beige), the PU travel jewelry box (Pink or Blue) and the black RFID passport holder. Bought separately these cost $61.97.",
+      "category": "Travel",
+      "price": 55.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
       "currency": "USD",
+      "url": "/products/travel-gift-bundle",
       "images": [
         {
-          "src": "/assets/photos/stock-watch.webp",
-          "alt": "Stock photo of an analog wristwatch. This is not a photo of the exact product.",
-          "caption": "Stock photo of an analog wristwatch. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
+          "src": "/assets/photos/cj-gift-bundle.webp",
+          "alt": "Product photos of the packing cube set, travel jewelry box and RFID passport holder in this bundle, from the CJ listings.",
+          "caption": "Product photos of the three bundle items, from the CJ listings.",
+          "credit": "Photos from the CJ Dropshipping product listings.",
+          "kind": "cj_listing",
+          "width": 1200,
+          "height": 900
         }
       ],
-      "variants": [
-        "Matte Black",
-        "Brushed Bronze"
-      ],
-      "desc": "Sapphire glass, Japanese quartz precision, and hand-stitched espresso leather strap.",
       "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
         "BD": {
-          "cost": null,
-          "note": "Delivery will be confirmed when we contact you."
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
         },
         "other": {
-          "cost": null,
-          "note": "We will contact you to confirm whether we can deliver to your address."
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
         }
       },
-      "slug": "obsidian-minimalist-chronograph",
-      "url": "/products/obsidian-minimalist-chronograph",
-      "storeSection": "lifestyle",
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
       "orderMode": "purchase",
-      "priceStatus": "priced",
-      "publicShippingNote": "Delivery time confirmed at checkout."
-    },
-    {
-      "id": "p2",
-      "name": "Caramel Bronze Sculptural Desk Lamp",
-      "category": "Lighting",
-      "price": 118,
-      "currency": "USD",
-      "images": [
-        {
-          "src": "/assets/photos/stock-lamp.webp",
-          "alt": "Stock photo of a brass desk lamp. This is not a photo of the exact product.",
-          "caption": "Stock photo of a brass desk lamp. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
+      "storeSection": "packing",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
         }
-      ],
-      "variants": [
-        "Warm Bronze",
-        "Smoked Espresso"
-      ],
-      "desc": "Touch-dimmable warm 2700K architectural LED lamp milled from anodized aluminum.",
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "note": "Delivery will be confirmed when we contact you."
-        },
-        "other": {
-          "cost": null,
-          "note": "We will contact you to confirm whether we can deliver to your address."
-        }
-      },
-      "slug": "caramel-bronze-sculptural-desk-lamp",
-      "url": "/products/caramel-bronze-sculptural-desk-lamp",
-      "storeSection": "lifestyle",
-      "orderMode": "purchase",
-      "priceStatus": "priced",
-      "publicShippingNote": "Delivery time confirmed at checkout."
-    },
-    {
-      "id": "p3",
-      "name": "Studio ANC Wireless Headphones",
-      "category": "Audio",
-      "price": 179,
-      "currency": "USD",
-      "images": [
-        {
-          "src": "/assets/photos/stock-headphones.webp",
-          "alt": "Stock photo of headphones on a desk. This is not a photo of the exact product.",
-          "caption": "Stock photo of headphones on a desk. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "variants": [
-        "Espresso Leather",
-        "Obsidian"
-      ],
-      "desc": "42dB hybrid active noise cancellation, 50-hour battery, and studio-tuned warm acoustics.",
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "note": "Delivery will be confirmed when we contact you."
-        },
-        "other": {
-          "cost": null,
-          "note": "We will contact you to confirm whether we can deliver to your address."
-        }
-      },
-      "slug": "studio-anc-wireless-headphones",
-      "url": "/products/studio-anc-wireless-headphones",
-      "storeSection": "lifestyle",
-      "orderMode": "purchase",
-      "priceStatus": "priced",
-      "publicShippingNote": "Delivery time confirmed at checkout."
-    },
-    {
-      "id": "p5",
-      "name": "Smoked Amber Glass Aroma Diffuser",
-      "category": "Home",
-      "price": 68,
-      "currency": "USD",
-      "images": [
-        {
-          "src": "/assets/photos/stock-diffuser.webp",
-          "alt": "Stock photo of an aroma diffuser. This is not a photo of the exact product.",
-          "caption": "Stock photo of an aroma diffuser. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "variants": [
-        "Amber Glass",
-        "Matte Stone"
-      ],
-      "desc": "Hand-blown smoked amber vessel with ultrasonic silent mist and warm candlelight glow.",
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "note": "Delivery will be confirmed when we contact you."
-        },
-        "other": {
-          "cost": null,
-          "note": "We will contact you to confirm whether we can deliver to your address."
-        }
-      },
-      "slug": "smoked-amber-glass-aroma-diffuser",
-      "url": "/products/smoked-amber-glass-aroma-diffuser",
-      "storeSection": "lifestyle",
-      "orderMode": "purchase",
-      "priceStatus": "priced",
-      "publicShippingNote": "Delivery time confirmed at checkout."
-    },
-    {
-      "id": "p6",
-      "name": "Magnetic MagSafe Walnut Desk Dock",
-      "category": "Home",
-      "price": 79,
-      "currency": "USD",
-      "images": [
-        {
-          "src": "/assets/photos/stock-charging-basket.webp",
-          "alt": "Stock photo of a phone and watch charging in a basket. This is not a photo of the exact product.",
-          "caption": "Stock photo of a phone and watch charging in a basket. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "variants": [
-        "American Walnut",
-        "Dark Oak"
-      ],
-      "desc": "3-in-1 Qi2 fast wireless charging sculpture crafted from solid walnut and brushed brass.",
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "note": "Delivery will be confirmed when we contact you."
-        },
-        "other": {
-          "cost": null,
-          "note": "We will contact you to confirm whether we can deliver to your address."
-        }
-      },
-      "slug": "magnetic-magsafe-walnut-desk-dock",
-      "url": "/products/magnetic-magsafe-walnut-desk-dock",
-      "storeSection": "lifestyle",
-      "orderMode": "purchase",
-      "priceStatus": "priced",
-      "publicShippingNote": "Delivery time confirmed at checkout."
+      }
     },
     {
       "id": "t01",
@@ -270,62 +133,6 @@
       }
     },
     {
-      "id": "t02",
-      "slug": "hanging-toiletry-bag",
-      "name": "Hanging toiletry bag",
-      "variants": [
-        "Standard"
-      ],
-      "desc": "A hanging toiletry bag for bathroom and hotel use.",
-      "category": "Travel",
-      "price": null,
-      "priceStatus": "coming_soon",
-      "priceLabel": "Price coming soon",
-      "currency": "USD",
-      "url": "/products/hanging-toiletry-bag",
-      "images": [
-        {
-          "src": "/assets/photos/stock-toiletry.webp",
-          "alt": "Stock photo of a hanging toiletry bag. This is not a photo of the exact product.",
-          "caption": "Stock photo of a hanging toiletry bag. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "US": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UK": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UAE": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "other": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        }
-      },
-      "publicShippingNote": "Delivery time confirmed at checkout.",
-      "orderMode": "inquiry",
-      "storeSection": "travel-essentials"
-    },
-    {
       "id": "t03",
       "slug": "travel-neck-pillow",
       "name": "U-shape travel pillow",
@@ -384,62 +191,6 @@
       }
     },
     {
-      "id": "t04",
-      "slug": "travel-plug-adapter",
-      "name": "Travel plug adapter",
-      "variants": [
-        "Standard"
-      ],
-      "desc": "A travel plug adapter for regional outlets. This is not a voltage converter.",
-      "category": "Travel",
-      "price": null,
-      "priceStatus": "coming_soon",
-      "priceLabel": "Price coming soon",
-      "currency": "USD",
-      "url": "/products/travel-plug-adapter",
-      "images": [
-        {
-          "src": "/assets/photos/stock-adapters.webp",
-          "alt": "Stock photo of travel plug adapters. This is not a photo of the exact product.",
-          "caption": "Stock photo of travel plug adapters. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "US": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UK": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UAE": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "other": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        }
-      },
-      "publicShippingNote": "Delivery time confirmed at checkout.",
-      "orderMode": "inquiry",
-      "storeSection": "tech"
-    },
-    {
       "id": "t05",
       "slug": "luggage-scale",
       "name": "Digital luggage scale",
@@ -496,62 +247,6 @@
           "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
         }
       }
-    },
-    {
-      "id": "t06",
-      "slug": "foldable-travel-duffel",
-      "name": "Foldable travel duffel",
-      "variants": [
-        "Standard"
-      ],
-      "desc": "A foldable duffel bag that packs down when not in use.",
-      "category": "Travel",
-      "price": null,
-      "priceStatus": "coming_soon",
-      "priceLabel": "Price coming soon",
-      "currency": "USD",
-      "url": "/products/foldable-travel-duffel",
-      "images": [
-        {
-          "src": "/assets/photos/stock-luggage-airport.webp",
-          "alt": "Stock photo of travel luggage and a duffel. This is not a photo of the exact product.",
-          "caption": "Stock photo of travel luggage and a duffel. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "US": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UK": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UAE": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "other": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        }
-      },
-      "publicShippingNote": "Delivery time confirmed at checkout.",
-      "orderMode": "inquiry",
-      "storeSection": "travel-essentials"
     },
     {
       "id": "t07",
@@ -669,174 +364,6 @@
           "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
         }
       }
-    },
-    {
-      "id": "t09",
-      "slug": "travel-shoe-bags",
-      "name": "Travel shoe bags",
-      "variants": [
-        "Standard set"
-      ],
-      "desc": "Bags for keeping shoes separate from clothes in a suitcase.",
-      "category": "Travel",
-      "price": null,
-      "priceStatus": "coming_soon",
-      "priceLabel": "Price coming soon",
-      "currency": "USD",
-      "url": "/products/travel-shoe-bags",
-      "images": [
-        {
-          "src": "/assets/photos/stock-pouches.webp",
-          "alt": "Stock photo of small travel bags and pouches. This is not a photo of the exact product.",
-          "caption": "Stock photo of small travel bags and pouches. This is not a photo of the exact product.",
-          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
-          "kind": "stock_product_type",
-          "width": 800,
-          "height": 600
-        }
-      ],
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "US": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UK": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UAE": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "other": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        }
-      },
-      "publicShippingNote": "Delivery time confirmed at checkout.",
-      "orderMode": "inquiry",
-      "storeSection": "packing"
-    },
-    {
-      "id": "t10",
-      "slug": "holder-case-for-airtag",
-      "name": "Holder case for AirTag",
-      "variants": [
-        "Standard"
-      ],
-      "desc": "A holder case for AirTag. This is a case only \u2014 an AirTag is not included. Apple is not affiliated with this listing.",
-      "category": "Travel",
-      "price": null,
-      "priceStatus": "coming_soon",
-      "priceLabel": "Price coming soon",
-      "currency": "USD",
-      "url": "/products/holder-case-for-airtag",
-      "images": [
-        {
-          "src": "/assets/travel/holder-case-for-airtag.svg",
-          "alt": "Category illustration for Holder case for AirTag. This is not a supplier product photo.",
-          "caption": "Original category illustration by BrandLinker Spark. Not a supplier photo.",
-          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo.",
-          "kind": "illustration",
-          "width": 400,
-          "height": 300
-        }
-      ],
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "US": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UK": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UAE": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "other": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        }
-      },
-      "publicShippingNote": "Delivery time confirmed at checkout.",
-      "orderMode": "inquiry",
-      "storeSection": "tech"
-    },
-    {
-      "id": "t11",
-      "slug": "silicone-travel-bottles",
-      "name": "Silicone travel bottles",
-      "variants": [
-        "Standard set"
-      ],
-      "desc": "Empty reusable silicone bottles for travel toiletries. Fill them yourself; they are sold empty.",
-      "category": "Travel",
-      "price": null,
-      "priceStatus": "coming_soon",
-      "priceLabel": "Price coming soon",
-      "currency": "USD",
-      "url": "/products/silicone-travel-bottles",
-      "images": [
-        {
-          "src": "/assets/travel/silicone-travel-bottles.svg",
-          "alt": "Category illustration for Silicone travel bottles. This is not a supplier product photo.",
-          "caption": "Original category illustration by BrandLinker Spark. Not a supplier photo.",
-          "credit": "Original category illustration by BrandLinker Spark. Not a supplier photo.",
-          "kind": "illustration",
-          "width": 400,
-          "height": 300
-        }
-      ],
-      "shipping": {
-        "BD": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "US": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UK": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "UAE": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        },
-        "other": {
-          "cost": null,
-          "time": null,
-          "note": "Delivery time confirmed at checkout."
-        }
-      },
-      "publicShippingNote": "Delivery time confirmed at checkout.",
-      "orderMode": "inquiry",
-      "storeSection": "travel-essentials"
     },
     {
       "id": "t12",
