@@ -1,18 +1,6 @@
-# BrandLinker Spark
-
-> BrandLinker Spark (https://www.brandlinkerspark.com/) sells and recommends travel gear for travellers from Bangladesh: universal travel adapters, power banks, luggage scales, locks and passport wallets. Some picks link to Amazon as an affiliate.
-
-## Key pages
-- [Home](https://www.brandlinkerspark.com/)
-- [Best travel accessories](https://www.brandlinkerspark.com/best-travel-accessories)
-- [Universal travel adapter guide](https://www.brandlinkerspark.com/guides/universal-travel-adapter-guide)
-- [Carry-on packing list](https://www.brandlinkerspark.com/guides/carry-on-packing-list)
-- [What to pack for Dubai or the US from Bangladesh](https://www.brandlinkerspark.com/guides/what-to-pack-dubai-or-us-from-bangladesh)
-- [Shipping](https://www.brandlinkerspark.com/shipping) · [Returns](https://www.brandlinkerspark.com/returns) · [Affiliate disclosure](https://www.brandlinkerspark.com/disclosure)
 
 ## BrandLinker family
-This site is part of BrandLinker (https://brandlinkerbd.com/), founded by RS Lina in Dhaka, Bangladesh. Sister sites:
+This site is part of BrandLinker (https://www.brandlinkerbd.com/), founded by RS Lina in Dhaka, Bangladesh. Sister sites:
 - [Cheap Ticket Finder](https://cheapticketfinder.site/): Cheap flight search for travellers in Bangladesh
 - [BrandLinker Dubai](https://brandlinkerdubai.com/): Dubai off-plan property explained in Bangla and English
-- [BrandLinker Studio](https://brandlinkerstudio.com/): Free online video editor in the browser
 - [SheRides](https://sherides.online/): Women-only ride sharing in Bangladesh
