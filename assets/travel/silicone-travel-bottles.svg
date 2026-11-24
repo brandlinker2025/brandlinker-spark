@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="silicone travel bottles category illustration">
-  <rect width="400" height="300" rx="24" fill="#1A1410"/>
-  <rect x="16" y="16" width="368" height="268" rx="18" fill="none" stroke="#C48A5A" stroke-opacity="0.35"/>
+  <rect width="400" height="300" rx="24" fill="#0B0F2B"/>
+  <rect x="16" y="16" width="368" height="268" rx="18" fill="none" stroke="#FF5CA8" stroke-opacity="0.35"/>
   
-  <rect x="90" y="90" width="50" height="130" rx="16" fill="none" stroke="#E7D6C1" stroke-width="3"/>
-  <rect x="102" y="70" width="26" height="28" rx="6" fill="none" stroke="#C48A5A" stroke-width="3"/>
-  <rect x="175" y="110" width="50" height="110" rx="16" fill="none" stroke="#E7D6C1" stroke-width="3"/>
-  <rect x="187" y="90" width="26" height="28" rx="6" fill="none" stroke="#C48A5A" stroke-width="3"/>
-  <rect x="260" y="80" width="50" height="140" rx="16" fill="none" stroke="#E7D6C1" stroke-width="3"/>
-  <rect x="272" y="60" width="26" height="28" rx="6" fill="none" stroke="#C48A5A" stroke-width="3"/>
+  <rect x="90" y="90" width="50" height="130" rx="16" fill="none" stroke="#D6DAF5" stroke-width="3"/>
+  <rect x="102" y="70" width="26" height="28" rx="6" fill="none" stroke="#FF5CA8" stroke-width="3"/>
+  <rect x="175" y="110" width="50" height="110" rx="16" fill="none" stroke="#D6DAF5" stroke-width="3"/>
+  <rect x="187" y="90" width="26" height="28" rx="6" fill="none" stroke="#FF5CA8" stroke-width="3"/>
+  <rect x="260" y="80" width="50" height="140" rx="16" fill="none" stroke="#D6DAF5" stroke-width="3"/>
+  <rect x="272" y="60" width="26" height="28" rx="6" fill="none" stroke="#FF5CA8" stroke-width="3"/>
 
 </svg>

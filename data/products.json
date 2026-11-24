@@ -1,1 +1,482 @@
-$(cat /tmp/products_priced.json)
+{
+  "promoCodes": {
+    "SPARK10": {
+      "type": "percent",
+      "value": 10,
+      "label": "10% off"
+    }
+  },
+  "currency": {
+    "base": "USD",
+    "rates": {
+      "BDT": 124.75
+    },
+    "note": "Fixed site rate: 1 USD = 124.75 BDT. Based on the Bangladesh Bank weighted average published on 19 November 2026 (the latest official sheet at the time this rate was set). This is not a live bank rate and may differ from the rate a bank charges.",
+    "source": "Bangladesh Bank weighted average, 19 November 2026",
+    "sourceUrl": "https://www.bb.org.bd/en/index.php/econdata/exchangerate_archive"
+  },
+  "products": [
+    {
+      "id": "t14",
+      "slug": "travel-gift-bundle",
+      "name": "Travel gift bundle (3 pieces)",
+      "variants": [
+        "Pink jewelry box",
+        "Blue jewelry box"
+      ],
+      "desc": "A ready-to-gift travel set: the 8-piece packing cube set (Beige), the PU travel jewelry box (Pink or Blue) and the black RFID passport holder. Bought separately these cost $61.97.",
+      "category": "Travel",
+      "price": 55.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
+      "currency": "USD",
+      "url": "/products/travel-gift-bundle",
+      "images": [
+        {
+          "src": "/assets/photos/cj-gift-bundle.webp",
+          "alt": "Product photos of the packing cube set, travel jewelry box and RFID passport holder in this bundle, from the CJ listings.",
+          "caption": "Product photos of the three bundle items, from the CJ listings.",
+          "credit": "Photos from the CJ Dropshipping product listings.",
+          "kind": "cj_listing",
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "orderMode": "purchase",
+      "storeSection": "packing",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      }
+    },
+    {
+      "id": "t01",
+      "slug": "packing-cube-set",
+      "name": "8-piece packing cube set",
+      "variants": [
+        "Beige"
+      ],
+      "desc": "An 8-piece set of packing cubes for organizing clothes in a suitcase. The offered color is Beige.",
+      "category": "Travel",
+      "price": 24.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
+      "currency": "USD",
+      "url": "/products/packing-cube-set",
+      "images": [
+        {
+          "src": "/assets/photos/cj-packing-cubes.webp",
+          "alt": "Product photo of the beige 8-piece packing cube set, from the CJ listing.",
+          "caption": "Product photo from the CJ listing.",
+          "credit": "Photo from the CJ Dropshipping product listing.",
+          "sourceUrl": "https://cjdropshipping.com/product/8-piece-set-luggage-divider-bag-travel-storage-clothes-underwear-shoes-organizer-packing-cube-bag-p-1386852733046362112.html",
+          "kind": "cj_listing",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "orderMode": "purchase",
+      "storeSection": "packing",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      }
+    },
+    {
+      "id": "t03",
+      "slug": "travel-neck-pillow",
+      "name": "U-shape travel pillow",
+      "variants": [
+        "Blue"
+      ],
+      "desc": "A U-shape travel pillow for use on flights and other journeys. The offered color is Blue.",
+      "category": "Travel",
+      "price": 18.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
+      "currency": "USD",
+      "url": "/products/travel-neck-pillow",
+      "images": [
+        {
+          "src": "/assets/photos/cj-travel-pillow.webp",
+          "alt": "Product photo of the blue U-shape travel pillow, from the CJ listing.",
+          "caption": "Product photo from the CJ listing.",
+          "credit": "Photo from the CJ Dropshipping product listing.",
+          "sourceUrl": "https://cjdropshipping.com/product/comfortable-u-shape-travel-pillow-p-CBAAC34D-ABD5-4C3D-8245-B34ADDE3D2D6.html",
+          "kind": "cj_listing",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "orderMode": "purchase",
+      "storeSection": "travel-essentials",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      }
+    },
+    {
+      "id": "t05",
+      "slug": "luggage-scale",
+      "name": "Digital luggage scale",
+      "variants": [
+        "Silver"
+      ],
+      "desc": "A handheld digital scale for checking suitcase weight before you travel, up to 50 kg / 110 lb.",
+      "category": "Travel",
+      "price": 26.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
+      "currency": "USD",
+      "url": "/products/luggage-scale",
+      "images": [
+        {
+          "src": "/assets/photos/cj-luggage-scale.webp",
+          "alt": "Product photo of the digital luggage scale, from the CJ listing.",
+          "caption": "Product photo from the CJ listing.",
+          "credit": "Photo from the CJ Dropshipping product listing.",
+          "sourceUrl": "https://cjdropshipping.com/product/portable-lcd-digital-luggage-weight-scales-hanging-suitcase-baggage-travel-scale-with-belt-for-electronic-weight-tool-50kg-110lb-p-1587093077452804096.html",
+          "kind": "cj_listing",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "orderMode": "purchase",
+      "storeSection": "tech",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      }
+    },
+    {
+      "id": "t07",
+      "slug": "cable-organizer",
+      "name": "Travel cable organizer",
+      "variants": [
+        "Black"
+      ],
+      "desc": "A zippered pouch for organizing charging cables and small travel electronics. The offered color is Black. The listing photo shows the grey colorway of the same design.",
+      "category": "Travel",
+      "price": 27.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
+      "currency": "USD",
+      "url": "/products/cable-organizer",
+      "images": [
+        {
+          "src": "/assets/photos/cj-cable-organizer.webp",
+          "alt": "Product photo of the travel cable organizer from the CJ listing. The grey colorway is pictured; the offered color is Black.",
+          "caption": "Product photo from the CJ listing.",
+          "credit": "Photo from the CJ Dropshipping product listing.",
+          "sourceUrl": "https://cjdropshipping.com/product/electronics-organizer-travel-cable-organizer-bag-waterproof-portable-digital-storage-bag-electronic-accessories-case-cable-charger-organizer-case-p-1703055389602238464.html",
+          "kind": "cj_listing",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "orderMode": "purchase",
+      "storeSection": "packing",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      }
+    },
+    {
+      "id": "t08",
+      "slug": "travel-jewelry-case",
+      "name": "PU travel jewelry box",
+      "variants": [
+        "Pink",
+        "Blue"
+      ],
+      "desc": "A compact PU zippered jewelry box for travel. Offered in Pink or Blue.",
+      "category": "Travel",
+      "price": 19.99,
+      "priceStatus": "priced",
+      "priceLabel": null,
+      "currency": "USD",
+      "url": "/products/travel-jewelry-case",
+      "images": [
+        {
+          "src": "/assets/photos/cj-jewelry-box.webp",
+          "alt": "Product photo of the PU travel jewelry box in pink and blue, from the CJ listing.",
+          "caption": "Product photo from the CJ listing.",
+          "credit": "Photo from the CJ Dropshipping product listing.",
+          "sourceUrl": "https://cjdropshipping.com/product/simple-temperament-pu-travel-portable-zipper-jewelry-box-p-1365566588367015936.html",
+          "kind": "cj_listing",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "orderMode": "purchase",
+      "storeSection": "packing",
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      }
+    },
+    {
+      "id": "t12",
+      "slug": "rfid-passport-holder",
+      "name": "RFID passport holder",
+      "category": "Travel",
+      "storeSection": "travel-essentials",
+      "price": 16.99,
+      "currency": "USD",
+      "priceStatus": "priced",
+      "orderMode": "purchase",
+      "variants": [
+        "Black"
+      ],
+      "desc": "A leather-style RFID passport holder and ID case. The offered color is Black.",
+      "images": [
+        {
+          "src": "/assets/photos/cj-passport-holder.webp",
+          "alt": "Product photo of the black RFID passport holder, from the CJ listing.",
+          "caption": "Product photo from the CJ listing.",
+          "credit": "Photo from the CJ Dropshipping product listing.",
+          "sourceUrl": "https://cjdropshipping.com/product/rfid-antimagnetic-passport-holder-leather-id-case-p-1BA30466-381C-44A5-8A86-8A2DFDF29A4C.html",
+          "kind": "cj_listing",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      },
+      "url": "/products/rfid-passport-holder"
+    },
+    {
+      "id": "t13",
+      "slug": "foldable-travel-tote",
+      "name": "Foldable travel tote",
+      "category": "Travel",
+      "storeSection": "travel-essentials",
+      "price": 29.99,
+      "currency": "USD",
+      "priceStatus": "priced",
+      "orderMode": "purchase",
+      "variants": [
+        "Standard"
+      ],
+      "desc": "A foldable, large-capacity tote travel bag. The photo is a stock photo of a travel tote, not a photo of the exact item.",
+      "images": [
+        {
+          "src": "/assets/photos/stock-tote-bottle.webp",
+          "alt": "Stock photo of a travel tote. This is not a photo of the exact product.",
+          "caption": "Stock photo of a travel tote. This is not a photo of the exact product.",
+          "credit": "Free-licence stock photo from Pexels. See /image-credits.",
+          "kind": "stock_product_type",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "publicShippingNote": "Free shipping to the United States and the United Kingdom. Delivery is usually 5-12 business days. UAE shipping coming soon.",
+      "shipping": {
+        "US": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UK": {
+          "costLabel": "Free shipping",
+          "time": "usually 5-12 business days"
+        },
+        "UAE": {
+          "note": "UAE shipping coming soon"
+        },
+        "BD": {
+          "note": "Shipping to Bangladesh is not confirmed yet. You can send a request and we will email you."
+        },
+        "other": {
+          "note": "Shipping to this destination is not confirmed yet. You can send a request and we will email you."
+        }
+      },
+      "fulfillment": {
+        "orderableCountries": [
+          "United States",
+          "United Kingdom"
+        ],
+        "preorderNotes": {
+          "United Arab Emirates (Dubai / GCC)": "UAE shipping coming soon"
+        }
+      },
+      "url": "/products/foldable-travel-tote"
+    }
+  ]
+}

@@ -97,13 +97,21 @@ function escapeHtml(value) {
 }
 
 function clientIp(req) {
+  // Vercel sets x-real-ip / x-vercel-forwarded-for itself; prefer those over a client-supplied x-forwarded-for.
+  const vercelIp = req.headers["x-vercel-forwarded-for"] || req.headers["x-real-ip"];
+  if (typeof vercelIp === "string" && vercelIp.trim()) return vercelIp.split(",")[0].trim();
   const fwd = req.headers["x-forwarded-for"];
   const raw = (typeof fwd === "string" ? fwd.split(",")[0] : "") || req.headers["x-real-ip"] || "";
   return String(raw).trim() || "unknown";
 }
 
+// Fast per-instance first layer. Serverless instances do not share memory,
+// so durableRateLimit() below enforces the same limit across instances via Blob storage.
 function rateLimit(ip) {
   const now = Date.now();
+  if (rateBucket.size > 5000) {
+    for (const [k, v] of rateBucket) if (now - v.start > RATE_WINDOW_MS) rateBucket.delete(k);
+  }
   const rec = rateBucket.get(ip);
   if (!rec || now - rec.start > RATE_WINDOW_MS) {
     rateBucket.set(ip, { start: now, count: 1 });
@@ -113,15 +121,51 @@ function rateLimit(ip) {
   return rec.count <= RATE_MAX;
 }
 
+const ALLOWED_ORIGIN_HOSTS = new Set(["brandlinkerspark.com", "www.brandlinkerspark.com"]);
+// Only this project's own preview deployments, not any *.vercel.app site.
+const PREVIEW_HOST_RE = /^brandlinker-spark-[a-z0-9-]+-brandlinker2025-4101s-projects\.vercel\.app$/;
+
 function allowOrigin(req) {
   const origin = String(req.headers.origin || "");
   const host = String(req.headers.host || "");
   if (!origin) return true;
   try {
     const { host: oh } = new URL(origin);
-    return oh === host || oh.endsWith(".vercel.app");
+    return oh === host || ALLOWED_ORIGIN_HOSTS.has(oh) || PREVIEW_HOST_RE.test(oh);
   } catch {
     return false;
+  }
+}
+
+async function durableRateLimit(ipHash) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) return true;
+  const pathname = `ratelimit/${ipHash}.json`;
+  const now = Date.now();
+  try {
+    let rec = null;
+    const found = await list({ prefix: pathname, token, limit: 1 });
+    const blob = (found.blobs || []).find((b) => b.pathname === pathname);
+    if (blob) {
+      const r = await fetch(blob.url, { headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
+      if (r.ok) rec = await r.json().catch(() => null);
+    }
+    if (!rec || !Number.isFinite(rec.start) || now - rec.start > RATE_WINDOW_MS) rec = { start: now, count: 0 };
+    if (rec.count >= RATE_MAX) return false;
+    rec.count += 1;
+    await put(pathname, JSON.stringify(rec), {
+      access: "private",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json",
+      cacheControlMaxAge: 60,
+      token,
+    });
+    return true;
+  } catch (err) {
+    // Fail open: a storage hiccup must not block real customers.
+    console.error("ratelimit-failed", err && err.message);
+    return true;
   }
 }
 
@@ -138,9 +182,8 @@ function adminAuthorized(req) {
   const header = String(req.headers["x-order-admin-secret"] || "");
   const auth = String(req.headers.authorization || "");
   const bearer = auth.toLowerCase().startsWith("bearer ") ? auth.slice(7) : "";
-  const url = new URL(req.url, "http://localhost");
-  const query = url.searchParams.get("secret") || "";
-  return secretsEqual(header, secret) || secretsEqual(bearer, secret) || secretsEqual(query, secret);
+  // The secret is accepted only in a header. A ?secret= query string would end up in logs and browser history.
+  return secretsEqual(header, secret) || secretsEqual(bearer, secret);
 }
 
 function priceOf(product) {
@@ -482,7 +525,8 @@ async function handleCreate(req, res) {
   const note = clean(data.note, 500);
   const rawType = clean(data.type, 32).toLowerCase();
   const currencyPref = clean(data.currency, 8).toUpperCase() === "BDT" ? "BDT" : "USD";
-  const isTest = data.isTest === true || /\bTEST\b/i.test(`${name} ${note} ${email}`);
+  // Only an explicit [TEST] tag marks a test order, so real customers named "Test..." are never dropped.
+  const isTest = data.isTest === true || /\[TEST\]/i.test(`${name} ${note}`);
 
   if (!name) return json(res, 400, { ok: false, error: "Please enter your full name." });
   if (!validEmail(email)) return json(res, 400, { ok: false, error: "Please enter a valid email address." });
@@ -530,9 +574,13 @@ async function handleCreate(req, res) {
 
   const shippingNote = destinationShippingNote(country, items, catalog);
 
+  const ipHash = createHash("sha256").update(ip).digest("hex").slice(0, 16);
+  if (!(await durableRateLimit(ipHash))) {
+    return json(res, 429, { ok: false, error: "Please wait a few minutes and try again." });
+  }
+
   const createdAt = new Date().toISOString();
   const id = buildOrderId();
-  const ipHash = createHash("sha256").update(ip).digest("hex").slice(0, 16);
   const order = {
     id,
     createdAt,

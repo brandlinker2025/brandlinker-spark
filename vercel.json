@@ -17,6 +17,18 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
         }
       ]
     },
@@ -79,6 +91,63 @@
     {
       "source": "/guides/:slug",
       "destination": "/guides/:slug.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/products/obsidian-minimalist-chronograph",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/caramel-bronze-sculptural-desk-lamp",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/studio-anc-wireless-headphones",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/smoked-amber-glass-aroma-diffuser",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/magnetic-magsafe-walnut-desk-dock",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hanging-toiletry-bag",
+      "destination": "/#amazon-picks",
+      "permanent": true
+    },
+    {
+      "source": "/products/travel-plug-adapter",
+      "destination": "/guides/universal-travel-adapter-guide",
+      "permanent": true
+    },
+    {
+      "source": "/products/foldable-travel-duffel",
+      "destination": "/#travel-essentials",
+      "permanent": true
+    },
+    {
+      "source": "/products/travel-shoe-bags",
+      "destination": "/#packing",
+      "permanent": true
+    },
+    {
+      "source": "/products/holder-case-for-airtag",
+      "destination": "/#amazon-picks",
+      "permanent": true
+    },
+    {
+      "source": "/products/silicone-travel-bottles",
+      "destination": "/#travel-essentials",
+      "permanent": true
     }
   ]
 }
