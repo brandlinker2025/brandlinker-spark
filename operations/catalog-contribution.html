@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Spark — Catalog Contribution Planner</title><style>
+:root{color-scheme:dark;font:16px system-ui}body{margin:0;background:#101521;color:#f3f0e8}main{max-width:890px;padding:24px;margin:auto}h1{color:#e8c47c}p{line-height:1.55}.panel{background:#1e2736;border:1px solid #756649;border-radius:12px;padding:20px;margin:18px 0}label{display:block;margin:12px 0 5px}input,select,button{box-sizing:border-box;width:100%;background:#111927;color:#fff;border:1px solid #8b7957;border-radius:8px;padding:12px;font:inherit}button{background:#e8c47c;color:#101521;font-weight:700;margin-top:12px;cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #e8c47c;outline-offset:2px}small{color:#c9bead}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101521;border-radius:8px;padding:16px;line-height:1.6}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.negative{color:#ffb4a9}.positive{color:#bce1b0}</style></head>
+<body><main><h1>BrandLinker Spark — Catalog Contribution Planner</h1>
+<p>Internal decision-support worksheet. It reads prices from this site's current product catalog. It does not verify inventory, supplier costs, shipping, fulfilment, duties or exchange rates. No orders, payments, personal data, API keys or uploads.</p>
+<section class="panel"><label for="product">Catalog product</label><select id="product"><option value="">Loading catalog…</option></select><div id="itemInfo" aria-live="polite"></div>
+<div class="grid"><div><label for="cost">Supplier cost (USD)</label><input id="cost" type="number" step=".01" min="0" max="1000000" value="0" inputmode="decimal"></div>
+<div><label for="shipping">Landed shipping/handling (USD)</label><input id="shipping" type="number" step=".01" min="0" max="1000000" value="0" inputmode="decimal"></div>
+<div><label for="duty">Duty/tax reserve (USD)</label><input id="duty" type="number" step=".01" min="0" max="1000000" value="0" inputmode="decimal"></div>
+<div><label for="service">Payment/platform costs (USD)</label><input id="service" type="number" step=".01" min="0" max="1000000" value="0" inputmode="decimal"></div>
+<div><label for="returns">Returns/defect reserve (USD)</label><input id="returns" type="number" step=".01" min="0" max="1000000" value="0" inputmode="decimal"></div>
+<div><label for="marketing">Marketing/acquisition allowance (USD)</label><input id="marketing" type="number" step=".01" min="0" max="1000000" value="0" inputmode="decimal"></div>
+</div><label for="promo">Discount assumption</label><select id="promo"><option value="none">No discount</option><option value="catalog">Catalog SPARK10 promotion (10% if still active)</option></select>
+<label for="targetMargin">Target contribution margin (%)</label><input id="targetMargin" type="number" min="0" max="90" step=".1" value="25">
+<button id="calculate" type="button">Calculate catalog contribution</button>
+<pre id="result" aria-live="polite">Choose a product and enter confirmed costs. All figures are estimates.</pre>
+<small>Discount and product prices are catalog assumptions. Prices shown in other currencies are not recalculated here. Verify supplier, logistics, taxes, current promotions and consumer-law requirements before using a price commercially.</small></section>
+</main><script type="module" src="catalog-contribution.js"></script></body></html>
