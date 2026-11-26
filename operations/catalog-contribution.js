@@ -1,7 +1,6 @@
-"use strict";
+import { wholeCents, contribution } from "./catalog-math.mjs";
 const get=id=>document.getElementById(id);
 const usd=c=>"$"+(c/100).toFixed(2);
-const wholeCents=value=>{const n=Number(value);return Number.isFinite(n)&&n>=0&&n<=1e6?Math.round(n*100):null;};
 let catalog=null;
 async function loadCatalog(){
  try{
@@ -31,20 +30,17 @@ get("calculate").addEventListener("click",()=>{
  const target=Number(get("targetMargin").value);
  if(price===null||costs.some(x=>x===null)||!Number.isFinite(target)||target<0||target>90){get("result").textContent="Enter valid non-negative cost amounts and a target margin from 0% to 90%.";return;}
  const promo=get("promo").value==="catalog";
- const discount=promo?Math.round(price*.1):0;
- const revenue=price-discount,landed=costs.reduce((a,b)=>a+b,0),contribution=revenue-landed;
- const margin=revenue?100*contribution/revenue:null;
- const factor=promo?.9:1;
- const suggested=Math.ceil(landed/((1-target/100)*factor));
+ const estimate=contribution({price,costs,discountPercent:promo?10:0,targetMargin:target});
+ const {discount,revenue,cost:landed,profit,margin,minimumListPrice,targetListPrice:suggested}=estimate;
  const lines=[
   "Product: "+product.name+" ["+product.id+"]",
   "Catalog price: "+usd(price),
   "Assumed discount: "+usd(discount),
   "Net sales revenue: "+usd(revenue),
   "Assumed total unit cost: "+usd(landed),
-  "Estimated contribution: "+usd(contribution),
+  "Estimated contribution: "+usd(profit),
   "Contribution margin: "+(margin===null?"N/A":margin.toFixed(2)+"%"),
-  "Break-even list price: "+usd(Math.ceil(landed/factor)),
+  "Break-even list price: "+usd(minimumListPrice),
   "Suggested list price for "+target.toFixed(1)+"% target margin: "+usd(suggested),
   "Not verified: supplier availability, sales taxes, fulfillment, fees or promotional eligibility."
  ];
