@@ -49,6 +49,37 @@
           "value": "application/xml; charset=utf-8"
         }
       ]
+    },
+    {
+      "source": "/order-status",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/lib/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -91,6 +122,10 @@
     {
       "source": "/guides/:slug",
       "destination": "/guides/:slug.html"
+    },
+    {
+      "source": "/order-status",
+      "destination": "/order-status.html"
     }
   ],
   "redirects": [

@@ -1,7 +1,18 @@
-import { put, list } from "@vercel/blob";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { randomBytes, createHash, timingSafeEqual } from "node:crypto";
+import { randomBytes } from "node:crypto";
+import { json, readJson, ipHash, originAllowed, sha256, header, safeLog } from "../lib/http.js";
+import { validateOrderRequest, IDEMPOTENCY_RE } from "../lib/order-schema.js";
+import { toMinor, fromMinor, percentOf, usdCentsToBdtPaisa } from "../lib/money.js";
+import { rateLimit } from "../lib/ratelimit.js";
+import { getStore, AlreadyExists, StoreNotConfigured } from "../lib/store.js";
+import { saveOrder, listOrders } from "../lib/orders.js";
+import { requireAdmin } from "../lib/admin-auth.js";
+import { mirrorOrder } from "../lib/central.js";
+
+// Orders API.
+// POST /api/orders  -> create an order or pre-order request (public, validated, rate limited, idempotent)
+// GET  /api/orders  -> admin list (requires the admin session cookie; see /api/admin/session)
 
 const PAYMENT_METHODS = {
   none: "none",
@@ -10,6 +21,18 @@ const PAYMENT_METHODS = {
   nagad: "Nagad (we'll contact you with payment details)",
 };
 const BD_PAYMENTS = ["cod", "bkash", "nagad"];
+const MAX_BODY = 20_000;
+export const ORDER_RATE = { max: 5, windowMs: 15 * 60 * 1000 };
+const IDEM_PENDING_MS = 60 * 1000;
+
+let mailer = null;
+export function setMailerForTests(fn) {
+  mailer = fn;
+}
+let mirror = mirrorOrder;
+export function setMirrorForTests(fn) {
+  mirror = fn;
+}
 
 function isInquiryProduct(product) {
   return !product || product.orderMode === "inquiry" || product.priceStatus === "coming_soon" || product.price == null;
@@ -21,207 +44,46 @@ function fxConfig(catalog) {
   return {
     rate: Number.isFinite(rate) && rate > 0 ? rate : 124.75,
     note: fx.note || "Fixed site rate: 1 USD = 124.75 BDT. Not a live bank rate.",
-    source: fx.source || "Bangladesh Bank weighted average, 19 November 2026",
   };
 }
 
-function toBdt(usd, rate) {
-  return Math.round(Number(usd) * rate * 100) / 100;
-}
-
-
-const COUNTRIES = [
-  "Bangladesh",
-  "United Arab Emirates (Dubai / GCC)",
-  "United States",
-  "United Kingdom",
-  "European Union",
-];
-
-const MAX_BODY = 20_000;
-const MAX_QTY = 20;
-const RATE_WINDOW_MS = 15 * 60 * 1000;
-const RATE_MAX = 5;
-const rateBucket = new Map();
-
-function loadCatalog() {
+export function loadCatalog() {
   const raw = readFileSync(join(process.cwd(), "data", "products.json"), "utf8");
   return JSON.parse(raw);
 }
 
-function json(res, status, body) {
-  res.statusCode = status;
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.setHeader("Cache-Control", "no-store");
-  res.end(JSON.stringify(body));
+function httpError(status, message) {
+  return Object.assign(new Error(message), { status });
 }
 
-function readBody(req, limit) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    let size = 0;
-    req.on("data", (c) => {
-      size += c.length;
-      if (size > limit) {
-        reject(Object.assign(new Error("Payload too large"), { status: 413 }));
-        req.destroy();
-        return;
-      }
-      chunks.push(c);
-    });
-    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
-    req.on("error", reject);
-  });
+const B32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+function buildOrderId(now = new Date()) {
+  const ymd = now.toISOString().slice(0, 10).replace(/-/g, "");
+  const bytes = randomBytes(10);
+  let s = "";
+  for (let i = 0; i < 10; i++) s += B32[bytes[i] & 31];
+  return `BLS-${ymd}-${s}`;
 }
 
-function clean(value, max) {
-  if (typeof value !== "string") return "";
-  return value.replace(/\s+/g, " ").trim().slice(0, max);
-}
-
-function validEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 120;
-}
-
-function validPhone(phone) {
-  const digits = phone.replace(/\D/g, "");
-  return digits.length >= 8 && digits.length <= 15 && /^[+\d][\d\s()-]{7,24}$/.test(phone);
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function clientIp(req) {
-  // Vercel sets x-real-ip / x-vercel-forwarded-for itself; prefer those over a client-supplied x-forwarded-for.
-  const vercelIp = req.headers["x-vercel-forwarded-for"] || req.headers["x-real-ip"];
-  if (typeof vercelIp === "string" && vercelIp.trim()) return vercelIp.split(",")[0].trim();
-  const fwd = req.headers["x-forwarded-for"];
-  const raw = (typeof fwd === "string" ? fwd.split(",")[0] : "") || req.headers["x-real-ip"] || "";
-  return String(raw).trim() || "unknown";
-}
-
-// Fast per-instance first layer. Serverless instances do not share memory,
-// so durableRateLimit() below enforces the same limit across instances via Blob storage.
-function rateLimit(ip) {
-  const now = Date.now();
-  if (rateBucket.size > 5000) {
-    for (const [k, v] of rateBucket) if (now - v.start > RATE_WINDOW_MS) rateBucket.delete(k);
-  }
-  const rec = rateBucket.get(ip);
-  if (!rec || now - rec.start > RATE_WINDOW_MS) {
-    rateBucket.set(ip, { start: now, count: 1 });
-    return true;
-  }
-  rec.count += 1;
-  return rec.count <= RATE_MAX;
-}
-
-const ALLOWED_ORIGIN_HOSTS = new Set(["brandlinkerspark.com", "www.brandlinkerspark.com"]);
-// Only this project's own preview deployments, not any *.vercel.app site.
-const PREVIEW_HOST_RE = /^brandlinker-spark-[a-z0-9-]+-brandlinker2025-4101s-projects\.vercel\.app$/;
-
-function allowOrigin(req) {
-  const origin = String(req.headers.origin || "");
-  const host = String(req.headers.host || "");
-  if (!origin) return true;
-  try {
-    const { host: oh } = new URL(origin);
-    return oh === host || ALLOWED_ORIGIN_HOSTS.has(oh) || PREVIEW_HOST_RE.test(oh);
-  } catch {
-    return false;
-  }
-}
-
-async function durableRateLimit(ipHash) {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) return true;
-  const pathname = `ratelimit/${ipHash}.json`;
-  const now = Date.now();
-  try {
-    let rec = null;
-    const found = await list({ prefix: pathname, token, limit: 1 });
-    const blob = (found.blobs || []).find((b) => b.pathname === pathname);
-    if (blob) {
-      const r = await fetch(blob.url, { headers: { Authorization: `Bearer ${token}` }, cache: "no-store" });
-      if (r.ok) rec = await r.json().catch(() => null);
-    }
-    if (!rec || !Number.isFinite(rec.start) || now - rec.start > RATE_WINDOW_MS) rec = { start: now, count: 0 };
-    if (rec.count >= RATE_MAX) return false;
-    rec.count += 1;
-    await put(pathname, JSON.stringify(rec), {
-      access: "private",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: "application/json",
-      cacheControlMaxAge: 60,
-      token,
-    });
-    return true;
-  } catch (err) {
-    // Fail open: a storage hiccup must not block real customers.
-    console.error("ratelimit-failed", err && err.message);
-    return true;
-  }
-}
-
-function secretsEqual(a, b) {
-  const A = Buffer.from(String(a || ""));
-  const B = Buffer.from(String(b || ""));
-  if (A.length === 0 || A.length !== B.length) return false;
-  return timingSafeEqual(A, B);
-}
-
-function adminAuthorized(req) {
-  const secret = process.env.ORDER_ADMIN_SECRET || "";
-  if (!secret) return false;
-  const header = String(req.headers["x-order-admin-secret"] || "");
-  const auth = String(req.headers.authorization || "");
-  const bearer = auth.toLowerCase().startsWith("bearer ") ? auth.slice(7) : "";
-  // The secret is accepted only in a header. A ?secret= query string would end up in logs and browser history.
-  return secretsEqual(header, secret) || secretsEqual(bearer, secret);
-}
-
-function priceOf(product) {
-  return Number(product.price);
-}
-
-function buildOrderId() {
-  const d = new Date();
-  const ymd = d.toISOString().slice(0, 10).replace(/-/g, "");
-  const rand = randomBytes(3).toString("hex").toUpperCase();
-  return `BLS-${ymd}-${rand}`;
-}
-
-function tally(catalog, items, promoCode, { inquiry = false, currency = "USD" } = {}) {
+/** Server-side pricing. Client prices are never read (the schema rejects them). */
+export function tally(catalog, items, promoCode, { inquiry = false, currency = "USD" } = {}) {
   const byId = new Map(catalog.products.map((p) => [p.id, p]));
   const lines = [];
-  let subtotal = 0;
+  let subtotalMinor = 0;
   for (const raw of items) {
-    const id = clean(raw && raw.id, 40);
-    const variant = clean(raw && raw.variant, 80);
-    const qty = Number(raw && raw.qty);
-    const product = byId.get(id);
-    if (!product) throw Object.assign(new Error("Unknown product in cart."), { status: 400 });
-    if (!Number.isInteger(qty) || qty < 1 || qty > MAX_QTY) {
-      throw Object.assign(new Error("Invalid quantity."), { status: 400 });
-    }
+    const product = byId.get(raw.id);
+    if (!product) throw httpError(400, "Unknown product in cart.");
+    const variant = raw.variant;
     if (product.variants && product.variants.length && !product.variants.includes(variant)) {
-      throw Object.assign(new Error("Invalid product option."), { status: 400 });
+      throw httpError(400, "Invalid product option.");
     }
     if (inquiry) {
-      if (!isInquiryProduct(product)) {
-        throw Object.assign(new Error("This item is not available as a pre-order request."), { status: 400 });
-      }
+      if (!isInquiryProduct(product)) throw httpError(400, "This item is not available as a pre-order request.");
       lines.push({
         id: product.id,
         name: product.name,
         variant: variant || (product.variants && product.variants[0]) || "Standard",
-        qty,
+        qty: raw.qty,
         unitPrice: null,
         lineTotal: null,
         currency: null,
@@ -229,96 +91,60 @@ function tally(catalog, items, promoCode, { inquiry = false, currency = "USD" } 
       });
       continue;
     }
-    if (isInquiryProduct(product)) {
-      throw Object.assign(new Error("This item does not have a price yet. Please send a pre-order request."), { status: 400 });
-    }
-    const unit = priceOf(product);
-    if (!Number.isFinite(unit) || unit < 0) {
-      throw Object.assign(new Error("Product price is unavailable."), { status: 400 });
-    }
-    const lineTotal = unit * qty;
-    subtotal += lineTotal;
+    if (isInquiryProduct(product)) throw httpError(400, "This item does not have a price yet. Please send a pre-order request.");
+    const unitMinor = toMinor(product.price);
+    const lineMinor = unitMinor * raw.qty;
+    subtotalMinor += lineMinor;
     lines.push({
       id: product.id,
       name: product.name,
       variant,
-      qty,
-      unitPrice: unit,
-      lineTotal,
+      qty: raw.qty,
+      unitPrice: fromMinor(unitMinor),
+      unitPriceMinor: unitMinor,
+      lineTotal: fromMinor(lineMinor),
+      lineTotalMinor: lineMinor,
       currency: "USD",
     });
   }
-  if (!lines.length) throw Object.assign(new Error("Your cart is empty."), { status: 400 });
-
+  if (!lines.length) throw httpError(400, "Your cart is empty.");
   if (inquiry) {
-    return {
-      items: lines,
-      subtotal: null,
-      discount: null,
-      total: null,
-      totalUsd: null,
-      totalBdt: null,
-      promo: null,
-      currency: null,
-      priceStatus: "price confirmed by email",
-    };
+    return { items: lines, subtotal: null, discount: null, total: null, totalUsd: null, totalBdt: null, promo: null, currency: null, priceStatus: "price confirmed by email" };
   }
-
-  const code = clean(promoCode, 24).toUpperCase();
+  const code = String(promoCode || "").toUpperCase();
   let promo = null;
-  let discount = 0;
+  let discountMinor = 0;
   if (code) {
     const offer = catalog.promoCodes && catalog.promoCodes[code];
-    if (!offer) throw Object.assign(new Error("That promo code is not valid."), { status: 400 });
-    if (offer.type === "percent") discount = subtotal * (Number(offer.value) / 100);
+    if (!offer) throw httpError(400, "That promo code is not valid.");
+    if (offer.type === "percent") discountMinor = percentOf(subtotalMinor, Number(offer.value));
     promo = { code, label: offer.label || code, type: offer.type, value: offer.value };
   }
-  const totalUsd = Math.max(0, Math.round((subtotal - discount) * 100) / 100);
+  const totalUsdMinor = Math.max(0, subtotalMinor - discountMinor);
   const fx = fxConfig(catalog);
   const cur = currency === "BDT" ? "BDT" : "USD";
-  const total = cur === "BDT" ? toBdt(totalUsd, fx.rate) : totalUsd;
+  const totalBdtMinor = usdCentsToBdtPaisa(totalUsdMinor, fx.rate);
+  const totalMinor = cur === "BDT" ? totalBdtMinor : totalUsdMinor;
   return {
     items: lines,
-    subtotal: Math.round(subtotal * 100) / 100,
-    subtotalBdt: toBdt(subtotal, fx.rate),
-    discount: Math.round(discount * 100) / 100,
-    discountBdt: toBdt(discount, fx.rate),
-    totalUsd,
-    totalBdt: toBdt(totalUsd, fx.rate),
-    total,
+    subtotal: fromMinor(subtotalMinor),
+    subtotalMinor,
+    subtotalBdt: fromMinor(usdCentsToBdtPaisa(subtotalMinor, fx.rate)),
+    discount: fromMinor(discountMinor),
+    discountMinor,
+    discountBdt: fromMinor(usdCentsToBdtPaisa(discountMinor, fx.rate)),
+    totalUsd: fromMinor(totalUsdMinor),
+    totalUsdMinor,
+    totalBdt: fromMinor(totalBdtMinor),
+    totalBdtMinor,
+    total: fromMinor(totalMinor),
+    totalMinor,
     currency: cur,
     promo,
     fxRate: fx.rate,
     fxNote: fx.note,
     priceStatus: "priced",
   };
-}
-
-async function saveOrder(order) {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) throw Object.assign(new Error("Order storage is not configured."), { status: 503 });
-  const pathname = `orders/${order.id}.json`;
-  const blob = await put(pathname, JSON.stringify(order, null, 2), {
-    access: "private",
-    addRandomSuffix: false,
-    contentType: "application/json",
-    token,
-  });
-  return { pathname, url: blob.url };
-}
-
-async function listOrders() {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) throw Object.assign(new Error("Order storage is not configured."), { status: 503 });
-  const result = await list({ prefix: "orders/", token });
-  const blobs = result.blobs || [];
-  const orders = [];
-  for (const blob of blobs.sort((a, b) => String(b.uploadedAt).localeCompare(String(a.uploadedAt)))) {
-    const res = await fetch(blob.url, { headers: { Authorization: `Bearer ${token}` } });
-    if (!res.ok) continue;
-    orders.push(await res.json());
-  }
-  return orders;
 }
 
 function buildOrderEmailText(order) {
@@ -387,8 +213,7 @@ async function emailOrderViaResend(order, { to, from, subject, text }) {
   });
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    const hint = typeof payload.message === "string" ? payload.message.slice(0, 180) : "";
-    console.error("order-email-failed", "resend", response.status, hint);
+    safeLog("order-email-failed", { provider: "resend", status: response.status, orderId: order.id });
     return { sent: false, provider: "resend", error: "Email provider rejected the message.", status: response.status };
   }
   return { sent: true, provider: "resend", emailId: payload.id || null };
@@ -495,140 +320,203 @@ function shouldPreorder(country, itemRows, catalog) {
   return true;
 }
 
-async function handleCreate(req, res) {
-  if (!allowOrigin(req)) return json(res, 403, { ok: false, error: "Forbidden." });
-  const ip = clientIp(req);
-  if (!rateLimit(ip)) {
-    return json(res, 429, { ok: false, error: "Please wait a few minutes and try again." });
+function idempotencyKeyFor(req, v) {
+  const fromHeader = header(req, "idempotency-key").trim();
+  const supplied = fromHeader || v.idempotencyKey || "";
+  if (supplied) {
+    if (!IDEMPOTENCY_RE.test(supplied)) throw httpError(400, "Invalid idempotency key.");
+    return { key: `k:${supplied}`, supplied: true };
   }
+  // No key from the client (e.g. a cached old page): fall back to a fingerprint of the
+  // order content within a 10-minute bucket so an accidental double submit is still deduped.
+  const bucket = Math.floor(Date.now() / (10 * 60 * 1000));
+  return { key: `f:${bucket}:${requestHash(v)}`, supplied: false };
+}
+
+function requestHash(v) {
+  const canonical = {
+    name: v.name, email: v.email, phone: v.phone, address: v.address || "", country: v.country,
+    paymentMethod: v.paymentMethod || "", note: v.note || "", promoCode: (v.promoCode || "").toUpperCase(),
+    currency: v.currency, type: v.type || "", items: v.items.map((i) => [i.id, i.variant, i.qty]),
+  };
+  return sha256(JSON.stringify(canonical));
+}
+
+async function handleCreate(req, res) {
+  if (!originAllowed(req)) return json(res, 403, { ok: false, error: "Forbidden." });
+  const ctype = header(req, "content-type");
+  if (ctype && !/^application\/json\b/i.test(ctype)) return json(res, 415, { ok: false, error: "Send JSON." });
 
   let data;
   try {
-    const raw = await readBody(req, MAX_BODY);
-    data = raw ? JSON.parse(raw) : {};
+    data = await readJson(req, MAX_BODY);
   } catch (err) {
-    const status = err.status || 400;
+    const status = err.status === 413 ? 413 : 400;
     return json(res, status, { ok: false, error: status === 413 ? "Payload too large." : "Invalid request." });
   }
 
   // Honeypot: pretend success, do not save or email.
-  if (clean(data.website, 200) || clean(data.company, 200)) {
-    return json(res, 200, { ok: true, orderId: `BLS-${Date.now()}`, ignored: true });
+  if ((typeof data.website === "string" && data.website.trim()) || (typeof data.company === "string" && data.company.trim())) {
+    return json(res, 200, { ok: true, orderId: buildOrderId(), ignored: true });
   }
 
-  const name = clean(data.name, 80);
-  const email = clean(data.email, 120).toLowerCase();
-  const phone = clean(data.phone, 24);
-  const address = clean(data.address, 240);
-  const country = clean(data.country, 80);
-  const paymentKey = clean(data.paymentMethod, 20).toLowerCase();
-  const note = clean(data.note, 500);
-  const rawType = clean(data.type, 32).toLowerCase();
-  const currencyPref = clean(data.currency, 8).toUpperCase() === "BDT" ? "BDT" : "USD";
-  // Only an explicit [TEST] tag marks a test order, so real customers named "Test..." are never dropped.
-  const isTest = data.isTest === true || /\[TEST\]/i.test(`${name} ${note}`);
-
-  if (!name) return json(res, 400, { ok: false, error: "Please enter your full name." });
-  if (!validEmail(email)) return json(res, 400, { ok: false, error: "Please enter a valid email address." });
-  if (!validPhone(phone)) return json(res, 400, { ok: false, error: "Please enter a valid phone number." });
-  if (!COUNTRIES.includes(country)) return json(res, 400, { ok: false, error: "Please choose a country or region." });
+  const checked = validateOrderRequest(data);
+  if (!checked.ok) return json(res, 400, { ok: false, error: checked.error, field: checked.field });
+  const v = checked.value;
+  const isTest = v.isTest || /\[TEST\]/i.test(`${v.name} ${v.note || ""}`);
 
   const catalog = loadCatalog();
-  const items = Array.isArray(data.items) ? data.items : [];
   let priced;
   try {
-    const unpriced = items.every((it) => {
-      const prod = catalog.products.find((x) => x.id === (it && it.id));
-      return isInquiryProduct(prod);
-    });
-    priced = tally(catalog, items, data.promoCode, {
-      inquiry: unpriced,
-      currency: currencyPref,
-    });
+    const unpriced = v.items.every((it) => isInquiryProduct(catalog.products.find((x) => x.id === it.id)));
+    priced = tally(catalog, v.items, v.promoCode, { inquiry: unpriced, currency: v.currency });
   } catch (err) {
     return json(res, err.status || 400, { ok: false, error: err.message || "Could not price this order." });
   }
 
   // Client type is advisory. Unpriced items and destinations we cannot ship to yet are pre-order requests.
   const unpricedOrder = priced.priceStatus === "price confirmed by email" || priced.total == null;
-  const type = (unpricedOrder || shouldPreorder(country, items, catalog)) ? "preorder_request" : "order";
-  if (type !== "preorder_request" && !address) return json(res, 400, { ok: false, error: "Please enter your address." });
+  const type = unpricedOrder || shouldPreorder(v.country, v.items, catalog) ? "preorder_request" : "order";
+  if (type !== "preorder_request" && !v.address) return json(res, 400, { ok: false, error: "Please enter your address.", field: "address" });
 
   let paymentMethod = "none";
   let paymentMethodLabel = "none";
-  if (type === "preorder_request") {
-    paymentMethod = "none";
-    paymentMethodLabel = "none";
-  } else if (country === "Bangladesh") {
-    if (!BD_PAYMENTS.includes(paymentKey)) {
-      return json(res, 400, { ok: false, error: "Please choose Cash on Delivery, bKash, or Nagad." });
+  if (type === "order") {
+    if (v.country === "Bangladesh") {
+      if (!BD_PAYMENTS.includes(v.paymentMethod)) {
+        return json(res, 400, { ok: false, error: "Please choose Cash on Delivery, bKash, or Nagad.", field: "paymentMethod" });
+      }
+      paymentMethod = v.paymentMethod;
+      paymentMethodLabel = PAYMENT_METHODS[v.paymentMethod];
+    } else if (v.country === "United States" || v.country === "United Kingdom") {
+      paymentMethodLabel = "Payment options will be emailed";
+    } else {
+      return json(res, 400, { ok: false, error: "Please choose a country or region.", field: "country" });
     }
-    paymentMethod = paymentKey;
-    paymentMethodLabel = PAYMENT_METHODS[paymentKey];
-  } else if (country === "United States" || country === "United Kingdom") {
-    paymentMethod = "none";
-    paymentMethodLabel = "Payment options will be emailed";
-  } else {
-    return json(res, 400, { ok: false, error: "Please choose a country or region." });
   }
 
-  const shippingNote = destinationShippingNote(country, items, catalog);
-
-  const ipHash = createHash("sha256").update(ip).digest("hex").slice(0, 16);
-  if (!(await durableRateLimit(ipHash))) {
-    return json(res, 429, { ok: false, error: "Please wait a few minutes and try again." });
+  let store;
+  try {
+    store = getStore();
+  } catch (err) {
+    if (err instanceof StoreNotConfigured) return json(res, 503, { ok: false, error: "Order storage is not configured.", status: "Not configured" });
+    throw err;
   }
 
+  let idem;
+  try {
+    idem = idempotencyKeyFor(req, v);
+  } catch (err) {
+    return json(res, 400, { ok: false, error: err.message, field: "idempotencyKey" });
+  }
+  // Scope the key to the customer email so one customer's key can never return another's order.
+  const idemPath = `idempotency/${sha256(`${idem.key}|${v.email}`)}.json`;
+  const reqHash = requestHash(v);
+
+  const replay = async () => {
+    const rec = await store.getJSON(idemPath);
+    if (!rec) return null;
+    if (rec.requestHash !== reqHash) {
+      json(res, 409, { ok: false, error: "This idempotency key was already used for a different order." });
+      return "handled";
+    }
+    if (rec.state === "done" && rec.response) {
+      json(res, 200, { ...rec.response, duplicate: true });
+      return "handled";
+    }
+    if (Date.now() - Number(rec.at || 0) < IDEM_PENDING_MS) {
+      json(res, 409, { ok: false, error: "This order is already being processed. Please wait a moment." });
+      return "handled";
+    }
+    return "stale";
+  };
+
+  const prior = await replay();
+  if (prior === "handled") return;
+
+  const ipId = ipHash(req);
+  const rl = await rateLimit({ scope: "orders", id: ipId, ...ORDER_RATE, failOpen: true });
+  if (!rl.ok) return json(res, 429, { ok: false, error: "Please wait a few minutes and try again." }, { "Retry-After": "900" });
+
+  try {
+    await store.putJSON(idemPath, { state: "pending", requestHash: reqHash, at: Date.now() }, { overwrite: prior === "stale" });
+  } catch (err) {
+    if (err instanceof AlreadyExists) {
+      const again = await replay();
+      if (again === "handled") return;
+      return json(res, 409, { ok: false, error: "This order is already being processed. Please wait a moment." });
+    }
+    safeLog("order-idempotency-store-failed", { code: err && err.name });
+    return json(res, 503, { ok: false, error: "We could not save your order. Please try again." });
+  }
+
+  const shippingNote = destinationShippingNote(v.country, v.items, catalog);
   const createdAt = new Date().toISOString();
   const id = buildOrderId();
+  const lookupToken = randomBytes(24).toString("base64url");
   const order = {
     id,
     createdAt,
+    updatedAt: createdAt,
     isTest,
     type,
+    status: "pending",
     currency: priced.currency,
-    customer: { name, email, phone, address, country },
-    note,
+    customer: { name: v.name, email: v.email, phone: v.phone, address: v.address || "", country: v.country },
+    note: v.note || "",
     paymentMethod,
     paymentMethodLabel,
-    paymentStatus: type === "preorder_request" ? "pending" : "pending",
+    paymentStatus: "pending",
     priceStatus: priced.priceStatus,
     items: priced.items,
     subtotal: priced.subtotal,
+    subtotalMinor: priced.subtotalMinor ?? null,
     subtotalBdt: priced.subtotalBdt,
     discount: priced.discount,
+    discountMinor: priced.discountMinor ?? null,
     discountBdt: priced.discountBdt,
     total: priced.total,
+    totalMinor: priced.totalMinor ?? null,
     totalUsd: priced.totalUsd,
+    totalUsdMinor: priced.totalUsdMinor ?? null,
     totalBdt: priced.totalBdt,
+    totalBdtMinor: priced.totalBdtMinor ?? null,
     fxRate: priced.fxRate || null,
     fxNote: priced.fxNote || null,
     promo: priced.promo,
     shippingNote: shippingNote || "",
-    ipHash,
+    tracking: null,
+    history: [{ at: createdAt, actor: "customer", to: "pending" }],
+    idempotency: idem.supplied ? "client-key" : "fingerprint",
+    lookupTokenHash: sha256(lookupToken),
+    ipHash: ipId,
   };
 
-  let stored;
   try {
-    stored = await saveOrder(order);
+    await saveOrder(order);
   } catch (err) {
-    console.error("order-store-failed", err && err.message);
+    safeLog("order-store-failed", { code: err && err.name });
+    await store.remove(idemPath).catch(() => {});
     return json(res, err.status || 500, { ok: false, error: "We could not save your order. Please try again." });
   }
 
-  const mail = await emailOrder(order).catch((err) => ({ sent: false, error: err.message || "Email failed." }));
-  if (!mail.sent) console.error("order-email-failed", mail.error);
+  const mail = await (mailer || emailOrder)(order).catch((err) => ({ sent: false, error: (err && err.name) || "Email failed." }));
+  if (!mail.sent) safeLog("order-email-failed", { provider: mail.provider, status: mail.status, orderId: id });
+  const central = await mirror(order).catch(() => ({ mirrored: false, status: "Unavailable" }));
 
-  return json(res, 200, {
+  const response = {
     ok: true,
     orderId: id,
+    lookupToken,
     total: order.total,
+    totalMinor: order.totalMinor,
     currency: order.currency,
     emailSent: Boolean(mail.sent),
     emailProvider: mail.provider || null,
     stored: true,
     isTest,
     type: order.type,
+    status: order.status,
     country: order.customer.country,
     shippingNote: order.shippingNote || "",
     priceStatus: order.priceStatus,
@@ -636,29 +524,34 @@ async function handleCreate(req, res) {
     paymentStatus: order.paymentStatus,
     totalUsd: order.totalUsd,
     totalBdt: order.totalBdt,
-  });
+    centralMirror: central.status,
+  };
+  await store
+    .putJSON(idemPath, { state: "done", requestHash: reqHash, at: Date.now(), orderId: id, response }, { overwrite: true })
+    .catch((err) => safeLog("order-idempotency-finalize-failed", { code: err && err.name, orderId: id }));
+  return json(res, 200, response);
 }
 
 async function handleList(req, res) {
-  if (!process.env.ORDER_ADMIN_SECRET) return json(res, 403, { ok: false, error: "Forbidden." });
-  if (!adminAuthorized(req)) return json(res, 401, { ok: false, error: "Unauthorized." });
+  const auth = await requireAdmin(req);
+  if (!auth.ok) return json(res, auth.status, { ok: false, error: auth.error });
   try {
     const orders = await listOrders();
     return json(res, 200, { ok: true, count: orders.length, orders });
   } catch (err) {
+    safeLog("order-list-failed", { code: err && err.name });
     return json(res, err.status || 500, { ok: false, error: "Could not load orders." });
   }
 }
 
 export default async function handler(req, res) {
-  res.setHeader("X-Content-Type-Options", "nosniff");
   try {
     if (req.method === "POST") return await handleCreate(req, res);
     if (req.method === "GET") return await handleList(req, res);
     res.setHeader("Allow", "GET, POST");
     return json(res, 405, { ok: false, error: "Method not allowed." });
   } catch (err) {
-    console.error("orders-handler", err && err.message);
+    safeLog("orders-handler", { code: err && err.name });
     return json(res, 500, { ok: false, error: "Something went wrong. Please try again." });
   }
 }

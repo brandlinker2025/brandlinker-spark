@@ -325,6 +325,7 @@
     <div class="container">
       <div class="footer-links">
         <a href="/shipping">Shipping</a>
+        <a href="/order-status">Order status</a>
         <a href="/returns">Returns &amp; Refunds</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms</a>
@@ -795,6 +796,7 @@
         note: document.getElementById("iqNote").value.trim(),
         website: document.getElementById("iqWebsite").value,
         currency,
+        idempotencyKey: checkoutKey("inquiry"),
         items: inquiryItems.map(c => ({ id: c.id, variant: c.variant, qty: c.qty }))
       };
       try {
@@ -804,17 +806,32 @@
           body: JSON.stringify(payload)
         });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.ok || !data.orderId) throw new Error(data.error || "We could not save your request. Please try again.");
+        if (!res.ok || !data.ok || !data.orderId) {
+          if (res.status === 409) delete checkoutKeys.inquiry;
+          throw new Error(data.error || "We could not save your request. Please try again.");
+        }
         document.getElementById("inquiryForm").style.display = "none";
         const box = document.getElementById("inquiryConfirm");
         box.style.display = "block";
         box.innerHTML = `<strong>Pre-order request received (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. We have saved your request. We'll email you available payment options to confirm your order. No payment has been taken.`;
         inquiryItems = [];
+        delete checkoutKeys.inquiry;
       } catch (ex) {
         err.textContent = ex.message || "We could not save your request. Please try again.";
         err.hidden = false;
         btn.disabled = false;
       }
+    }
+
+    // One idempotency key per checkout attempt: a retry or double click re-sends the same key,
+    // so the server returns the same order instead of creating a duplicate.
+    const checkoutKeys = {};
+    function checkoutKey(kind) {
+      if (!checkoutKeys[kind]) {
+        const rnd = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36) + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2));
+        checkoutKeys[kind] = (kind + "-" + rnd).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 80);
+      }
+      return checkoutKeys[kind];
     }
 
     function openCart() { document.getElementById("cartDrawer").classList.add("open"); }
@@ -853,6 +870,7 @@
         website: document.getElementById("coWebsite").value,
         promoCode,
         currency,
+        idempotencyKey: checkoutKey("order"),
         items: cart.map(c => ({ id: c.id, variant: c.variant, qty: c.qty }))
       };
       try {
@@ -863,6 +881,7 @@
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.ok || !data.orderId) {
+          if (res.status === 409) delete checkoutKeys.order;
           throw new Error(data.error || "We could not save your order. Please try again.");
         }
         const isPre = data.type === "preorder_request";
@@ -876,7 +895,8 @@
         document.getElementById("checkoutForm").style.display = "none";
         const box = document.getElementById("orderConfirm");
         box.style.display = "block";
-        box.innerHTML = `<strong>${title} (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. Your request has been saved. ${totalLine} ${destLine} ${shipLine} ${payNote}`;
+        box.innerHTML = `<strong>${title} (${escapeHtml(data.orderId)})</strong><br/>Thank you, ${escapeHtml(name)}. Your request has been saved. ${totalLine} ${destLine} ${shipLine} ${payNote} You can check it any time on <a href="/order-status">Order status</a> with this order number and your email.`;
+        delete checkoutKeys.order;
         cart = [];
         promoCode = "";
         promoDiscount = 0;

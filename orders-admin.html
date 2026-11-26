@@ -7,48 +7,133 @@
   <title>Spark Orders (private)</title>
   <style>
     body { font-family: system-ui, sans-serif; background: #070A1F; color: #F7F5FF; margin: 0; padding: 24px; }
-    main { max-width: 960px; margin: 0 auto; }
+    main { max-width: 1040px; margin: 0 auto; }
     h1 { font-weight: 600; font-size: 1.4rem; }
+    h2 { font-weight: 600; font-size: 1.1rem; margin-top: 28px; }
     p, label { color: rgba(247,245,255,0.75); }
-    input { padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(214,218,245,0.3); background: #0B0F2B; color: #F7F5FF; width: min(320px, 100%); }
+    input, select { padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(214,218,245,0.3); background: #0B0F2B; color: #F7F5FF; max-width: 100%; }
     button { margin-top: 10px; padding: 8px 16px; border-radius: 999px; border: 0; background: #FF5CA8; color: #070A1F; font-weight: 600; cursor: pointer; }
-    pre { background: #0B0F2B; border: 1px solid rgba(214,218,245,0.18); border-radius: 12px; padding: 14px; overflow: auto; white-space: pre-wrap; }
+    button.ghost { background: transparent; color: #F7F5FF; border: 1px solid rgba(214,218,245,0.4); }
+    .card { background: #0B0F2B; border: 1px solid rgba(214,218,245,0.18); border-radius: 12px; padding: 14px; margin: 12px 0; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .muted { color: rgba(247,245,255,0.6); font-size: 0.85rem; }
     .err { color: #FFB3D4; }
+    pre { white-space: pre-wrap; margin: 6px 0 0; font-size: 0.85rem; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
   <main>
     <h1>BrandLinker Spark orders</h1>
-    <p>Private list of saved orders. Enter the admin secret to view them.</p>
-    <form id="f">
-      <label for="secret">Admin secret</label><br />
-      <input id="secret" type="password" autocomplete="off" required />
-      <div><button type="submit">Load orders</button></div>
-    </form>
-    <p id="status"></p>
-    <pre id="out" hidden></pre>
+    <section id="loginView" class="hidden">
+      <p>Private order management. Sign in with the admin secret. The session lasts 8 hours and uses a secure, HttpOnly cookie. Repeated failed attempts are locked out for 15 minutes.</p>
+      <form id="loginForm">
+        <label for="secret">Admin secret</label><br />
+        <input id="secret" type="password" autocomplete="current-password" required style="width:min(320px,100%)" />
+        <div><button type="submit">Sign in</button></div>
+      </form>
+    </section>
+    <section id="appView" class="hidden">
+      <div class="row"><span id="sessionInfo" class="muted"></span><button class="ghost" id="logoutBtn" type="button">Sign out</button><button class="ghost" id="reloadBtn" type="button">Reload</button></div>
+      <h2>Integrations</h2>
+      <div id="integrations" class="card muted"></div>
+      <h2>Orders</h2>
+      <p class="muted">Status changes only update this order record. They do not place supplier orders, charge cards or send refunds — do those by hand, then record them here.</p>
+      <div id="orders"></div>
+    </section>
+    <p id="status" role="status"></p>
   </main>
   <script>
-    document.getElementById("f").addEventListener("submit", async (e) => {
+    const NEXT = { pending: ["confirmed", "cancelled"], confirmed: ["processing", "cancelled"], processing: ["shipped", "cancelled"], shipped: ["delivered", "refund_requested"], delivered: ["refund_requested"], refund_requested: ["refunded", "delivered"], cancelled: [], refunded: [] };
+    const $ = (id) => document.getElementById(id);
+    function el(tag, text, cls) { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; }
+    function setStatus(msg, err) { $("status").textContent = msg || ""; $("status").className = err ? "err" : ""; }
+    async function api(path, opts) {
+      const res = await fetch(path, Object.assign({ credentials: "same-origin", headers: { "Content-Type": "application/json" } }, opts || {}));
+      const data = await res.json().catch(() => ({}));
+      return { res, data };
+    }
+    function show(view) { $("loginView").classList.toggle("hidden", view !== "login"); $("appView").classList.toggle("hidden", view !== "app"); }
+
+    async function boot() {
+      const { res, data } = await api("/api/admin/session");
+      if (res.status !== 200) { show("login"); return; }
+      show("app");
+      $("sessionInfo").textContent = "Signed in until " + new Date(data.expiresAt).toLocaleString();
+      renderIntegrations(data.integrations || {});
+      await loadOrders();
+    }
+
+    function renderIntegrations(i) {
+      const box = $("integrations"); box.textContent = "";
+      box.appendChild(el("div", "Order storage: " + i.orderStorage));
+      box.appendChild(el("div", "Order email: " + i.email));
+      box.appendChild(el("div", "Central BrandLinker DB: " + i.centralDb));
+      (i.suppliers || []).forEach((s) => box.appendChild(el("div", "Supplier " + s.name + ": " + s.status + " (stock, shipping and delivery NOT verified)")));
+    }
+
+    async function loadOrders() {
+      setStatus("Loading orders…");
+      const { res, data } = await api("/api/admin/orders");
+      if (res.status === 401) { show("login"); setStatus("Session expired. Sign in again.", true); return; }
+      if (!res.ok || !data.ok) { setStatus(data.error || "Could not load orders.", true); return; }
+      setStatus(data.count + " order(s).");
+      const wrap = $("orders"); wrap.textContent = "";
+      data.orders.forEach((o) => wrap.appendChild(renderOrder(o)));
+    }
+
+    function renderOrder(o) {
+      const card = el("div", null, "card");
+      const status = o.status || "pending";
+      card.appendChild(el("strong", o.id + " · " + status + " · payment " + (o.paymentStatus || "pending") + (o.isTest ? " · TEST" : "")));
+      const c = o.customer || {};
+      card.appendChild(el("pre", [
+        "Created: " + o.createdAt + "   Type: " + o.type,
+        "Customer: " + c.name + " · " + c.email + " · " + c.phone,
+        "Address: " + (c.address || "(none)") + " · " + c.country,
+        "Payment: " + o.paymentMethodLabel,
+        "Items: " + (o.items || []).map((i) => i.name + " (" + i.variant + ") ×" + i.qty + (i.lineTotal != null ? " = $" + i.lineTotal : "")).join("; "),
+        "Total: " + (o.total != null ? o.currency + " " + o.total : "to be confirmed"),
+        "Tracking: " + (o.tracking ? o.tracking.carrier + " " + o.tracking.number : "(none)"),
+        "Note: " + (o.note || "(none)")
+      ].join("\n")));
+      const form = el("form", null, "row");
+      const sel = el("select"); sel.appendChild(el("option", "(no status change)")).value = "";
+      (NEXT[status] || []).forEach((s) => { const op = el("option", s); op.value = s; sel.appendChild(op); });
+      const pay = el("select"); [["", "(payment unchanged)"], ["paid", "mark paid"], ["pending", "mark pending"]].forEach(([v, t]) => { const op = el("option", t); op.value = v; pay.appendChild(op); });
+      const carrier = el("input"); carrier.placeholder = "Carrier"; carrier.maxLength = 40;
+      const num = el("input"); num.placeholder = "Tracking number"; num.maxLength = 60;
+      const btn = el("button", "Save"); btn.type = "submit";
+      [sel, pay, carrier, num, btn].forEach((x) => form.appendChild(x));
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const body = { orderId: o.id };
+        if (sel.value) body.status = sel.value;
+        if (pay.value) body.paymentStatus = pay.value;
+        if (carrier.value.trim() || num.value.trim()) body.tracking = { carrier: carrier.value.trim(), number: num.value.trim() };
+        if (Object.keys(body).length === 1) return;
+        if (body.status && !confirm("Change " + o.id + " to " + body.status + "?")) return;
+        const { res, data } = await api("/api/admin/orders", { method: "POST", body: JSON.stringify(body) });
+        if (!res.ok || !data.ok) { setStatus(data.error || "Update failed.", true); return; }
+        setStatus("Updated " + o.id + ".");
+        card.replaceWith(renderOrder(data.order));
+      });
+      card.appendChild(form);
+      return card;
+    }
+
+    $("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const secret = document.getElementById("secret").value;
-      const status = document.getElementById("status");
-      const out = document.getElementById("out");
-      status.textContent = "Loading…";
-      status.className = "";
-      try {
-        const res = await fetch("/api/orders", { headers: { "X-Order-Admin-Secret": secret } });
-        const data = await res.json();
-        if (!res.ok || !data.ok) throw new Error(data.error || "Could not load orders.");
-        status.textContent = data.count + " order(s) found.";
-        out.hidden = false;
-        out.textContent = JSON.stringify(data.orders, null, 2);
-      } catch (err) {
-        status.textContent = err.message || "Could not load orders.";
-        status.className = "err";
-        out.hidden = true;
-      }
+      setStatus("Signing in…");
+      const { res, data } = await api("/api/admin/session", { method: "POST", body: JSON.stringify({ secret: $("secret").value }) });
+      $("secret").value = "";
+      if (!res.ok || !data.ok) { setStatus(data.error || "Sign in failed.", true); return; }
+      setStatus("");
+      boot();
     });
+    $("logoutBtn").addEventListener("click", async () => { await api("/api/admin/session", { method: "DELETE" }); show("login"); setStatus("Signed out."); });
+    $("reloadBtn").addEventListener("click", loadOrders);
+    boot().catch(() => { show("login"); });
   </script>
 </body>
 </html>
