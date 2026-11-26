@@ -14,7 +14,15 @@ export function contribution({ price, costs, discountPercent = 0, targetMargin =
   const revenue = price-discount;
   const profit = revenue-cost;
   const margin = revenue === 0 ? null : profit/revenue*100;
-  const minimumListPrice = cost === 0 ? 0 : Math.ceil(cost/fraction);
-  const targetListPrice = cost === 0 ? 0 : Math.ceil(cost / (fraction*(1-targetMargin/100)));
+  const netAt = listPrice => listPrice - Math.round(listPrice * discountPercent / 100);
+  const priceForNet = requiredNet => {
+    if (requiredNet === 0) return 0;
+    let candidate = Math.ceil(requiredNet/fraction);
+    // Round the discount at each candidate, as the actual storefront does.
+    while (netAt(candidate) < requiredNet) candidate++;
+    return candidate;
+  };
+  const minimumListPrice = priceForNet(cost);
+  const targetListPrice = priceForNet(Math.ceil(cost/(1-targetMargin/100)));
   return {cost, discount, revenue, profit, margin, minimumListPrice, targetListPrice};
 }
