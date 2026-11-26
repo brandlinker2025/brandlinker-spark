@@ -17,10 +17,16 @@ export function contribution({ price, costs, discountPercent = 0, targetMargin =
   const netAt = listPrice => listPrice - Math.round(listPrice * discountPercent / 100);
   const priceForNet = requiredNet => {
     if (requiredNet === 0) return 0;
-    let candidate = Math.ceil(requiredNet/fraction);
-    // Round the discount at each candidate, as the actual storefront does.
-    while (netAt(candidate) < requiredNet) candidate++;
-    return candidate;
+    // Rounded promotional discounts make ceil(requiredNet/fraction) potentially
+    // one cent too high. Binary-search the true minimum feasible list price.
+    let low = 0;
+    let high = Math.ceil(requiredNet / fraction) + 2;
+    while (low < high) {
+      const middle = Math.floor((low + high) / 2);
+      if (netAt(middle) >= requiredNet) high = middle;
+      else low = middle + 1;
+    }
+    return low;
   };
   const minimumListPrice = priceForNet(cost);
   const targetListPrice = priceForNet(Math.ceil(cost/(1-targetMargin/100)));
